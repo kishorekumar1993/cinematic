@@ -1,22 +1,19 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:cinematic/model/screen_config.dart';
+import 'package:cinematic/presentation/tempelate/scene_design_system.dart';
 
-/// ----------------------------------------------------
-/// DOCUMENTARY HISTORY – BLACK & GOLD TEMPLATE
-/// ----------------------------------------------------
-///
-/// Uses:
-/// - scene.title        -> Main documentary title / headline
-/// - scene.subtitle     -> Era / category (e.g. "SANGAM ERA", "HISTORY FILES")
-/// - scene.hook         -> Short poetic / hook line
-/// - scene.body         -> Main narration paragraph
-/// - scene.keyPoints    -> Bullet points (facts / highlights)
-/// - scene.closureLine  -> Final punch / moral line
-/// - imageUrl/localImageBytes -> Background (painting / art / map / landscape)
-///
-/// isPlaying == true  -> run intro animation
-/// isPlaying == false -> freeze frame
+/// -----------------------------------------------------------------------
+/// DOCUMENTARY HISTORY – BLACK & GOLD TEMPLATE  (Upgraded)
+/// -----------------------------------------------------------------------
+/// Scene mapping:
+///   scene.hook        → 0-3s full-screen hero hook frame
+///   scene.subtitle    → era tag (e.g. "SANGAM ERA")
+///   scene.title       → main headline (word-by-word animation)
+///   scene.body        → narration paragraph
+///   scene.keyPoints   → bullet facts (max 3)
+///   scene.closureLine → gold punch line
+///   scene.effect      → motion preset
+/// -----------------------------------------------------------------------
 
 class CinematicSceneDocumentryOne extends StatefulWidget {
   final SceneConfig scene;
@@ -29,16 +26,20 @@ class CinematicSceneDocumentryOne extends StatefulWidget {
   });
 
   @override
-  State<CinematicSceneDocumentryOne> createState() => _CinematicSceneDocumentryOneState();
+  State<CinematicSceneDocumentryOne> createState() =>
+      _CinematicSceneDocumentryOneState();
 }
 
-class _CinematicSceneDocumentryOneState extends State<CinematicSceneDocumentryOne>
+class _CinematicSceneDocumentryOneState
+    extends State<CinematicSceneDocumentryOne>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _zoom;
   late Animation<Offset> _pan;
-  late Animation<double> _textFade;
-  late Animation<Offset> _textSlide;
+  late Animation<double> _contentFade;
+  late Animation<Offset> _contentSlide;
+
+  static const double _hookEnd = 0.18;
 
   @override
   void initState() {
@@ -48,51 +49,35 @@ class _CinematicSceneDocumentryOneState extends State<CinematicSceneDocumentryOn
       seconds: widget.scene.durationSeconds.clamp(5, 90),
     );
 
-    _controller = AnimationController(
-      vsync: this,
-      duration: duration,
-    );
+    _controller = AnimationController(vsync: this, duration: duration);
 
-    // Slow zoom for background
-    _zoom = Tween<double>(begin: 1.05, end: 1.1).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
-    );
+    // Ken Burns by default for documentary feel
+    final motionStr = widget.scene.effect.isEmpty ? 'ken_burns' : widget.scene.effect;
+    final motion = SceneMotionPreset.fromString(motionStr);
+    _zoom = SceneMotionPreset.buildZoom(_controller, motion);
+    _pan  = SceneMotionPreset.buildPan(_controller, motion);
 
-    // Subtle diagonal pan
-    _pan = Tween<Offset>(
-      begin: const Offset(-0.015, -0.01),
-      end: const Offset(0.015, 0.01),
-    ).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
-
-    // Text fade + slide
-    final textCurve = CurvedAnimation(
+    final contentCurve = CurvedAnimation(
       parent: _controller,
-      curve: const Interval(0.12, 0.7, curve: Curves.easeOut),
+      curve: Interval(_hookEnd, _hookEnd + 0.5, curve: Curves.easeOut),
     );
-
-    _textFade = Tween<double>(begin: 0.0, end: 1.0).animate(textCurve);
-    _textSlide = Tween<Offset>(
-      begin: const Offset(0.0, 0.06),
+    _contentFade = Tween<double>(begin: 0.0, end: 1.0).animate(contentCurve);
+    _contentSlide = Tween<Offset>(
+      begin: const Offset(0.0, 0.07),
       end: Offset.zero,
-    ).animate(textCurve);
+    ).animate(contentCurve);
 
-    if (widget.isPlaying) {
-      _controller.forward();
-    }
+    if (widget.isPlaying) _controller.forward();
   }
 
   @override
   void didUpdateWidget(covariant CinematicSceneDocumentryOne oldWidget) {
     super.didUpdateWidget(oldWidget);
-
     if (oldWidget.isPlaying != widget.isPlaying) {
       if (widget.isPlaying) {
-        // restart if finished or never started
         if (_controller.isCompleted || _controller.isDismissed) {
           _controller.forward(from: 0);
-        } else if (!_controller.isAnimating) {
+        } else {
           _controller.forward();
         }
       } else {
@@ -107,318 +92,138 @@ class _CinematicSceneDocumentryOneState extends State<CinematicSceneDocumentryOn
     super.dispose();
   }
 
-  // -------------------------
-  // BACKGROUND IMAGE BUILDER
-  // -------------------------
-  Widget _buildBackground(SceneConfig scene) {
-    if (scene.localImageBytes != null) {
-      return Image.memory(
-        scene.localImageBytes!,
-        fit: BoxFit.cover,
-        errorBuilder: (_, __, ___) => _fallbackBackground(),
-      );
-    }
-
-    if (scene.imageUrl.isNotEmpty) {
-      return Image.network(
-        scene.imageUrl,
-        fit: BoxFit.cover,
-        errorBuilder: (_, __, ___) => _fallbackBackground(),
-        loadingBuilder: (context, child, progress) {
-          if (progress == null) return child;
-          return Container(
-            color: Colors.black,
-            alignment: Alignment.center,
-            child: const CircularProgressIndicator(),
-          );
-        },
-      );
-    }
-
-    return _fallbackBackground();
-  }
-
-  Widget _fallbackBackground() {
-    return Container(
-      color: Colors.black,
-      alignment: Alignment.center,
-      child: const Icon(
-        Icons.image_not_supported,
-        size: 48,
-        color: Colors.white,
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final scene = widget.scene;
-
+    final hasHook = scene.hook.isNotEmpty;
     final eraTag = scene.subtitle.isNotEmpty
         ? scene.subtitle.toUpperCase()
         : 'HISTORY FILES';
-
-    final closingLine = scene.closureLine;
+    final safeBottom = SceneLayout.safeBottom(context);
+    final safeTop = SceneLayout.safeTop(context);
 
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, _) {
+        final hookExit = hasHook
+            ? ((_controller.value - _hookEnd) / 0.08).clamp(0.0, 1.0)
+            : 1.0;
+
         return Stack(
           fit: StackFit.expand,
           children: [
-            // 1) Background with zoom + pan
-            FractionalTranslation(
-              translation: _pan.value,
-              child: Transform.scale(
-                scale: _zoom.value,
-                child: ColorFiltered(
-                  colorFilter: ColorFilter.mode(
-                    Colors.black.withValues(alpha:0.25),
-                    BlendMode.darken,
-                  ),
-                  child: _buildBackground(scene),
-                ),
-              ),
+            // ── 1. Background with Ken Burns ──────────────────────────────
+            SceneBackground(
+              localImageBytes: scene.localImageBytes,
+              imageUrl: scene.imageUrl,
+              zoom: _zoom,
+              pan: _pan,
             ),
 
-            // 2) Vignette – black with slight golden tint
-            Container(
-              decoration: BoxDecoration(
-                gradient: RadialGradient(
-                  center: Alignment.center,
-                  radius: 1.0,
-                  colors: [
-                    Colors.black.withValues(alpha:0.15),
-                    Colors.black.withValues(alpha:0.9),
-                  ],
-                  stops: const [0.35, 1.0],
-                ),
-              ),
+            // ── 2. Dark amber vignette ────────────────────────────────────
+            const SceneVignette(intensity: 0.88),
+
+            // ── 3. Bottom gradient ────────────────────────────────────────
+            const SceneBottomGradient(strength: 0.95),
+
+            // ── 4. Warm documentary color grade ──────────────────────────
+            const SceneColorGrade(
+              color: Color(0xFFFACC15), // warm amber
+              opacity: 0.04,
             ),
 
-            // 3) Top-left golden label
-            Positioned(
-              top: 18,
-              left: 22,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(999),
-                      gradient: const LinearGradient(
-                        colors: [
-                          Color(0xFFFACC15), // amber 400
-                          Color(0xFFB45309), // amber 800-ish
-                        ],
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha:0.7),
-                          blurRadius: 12,
-                          offset: const Offset(0, 4),
-                        ),
-                      ],
-                    ),
-                    child: Row(
-                      children: const [
-                        Icon(
-                          Icons.history_edu_rounded,
-                          size: 14,
-                          color: Colors.black,
-                        ),
-                        SizedBox(width: 6),
-                        Text(
-                          'DOCUMENTARY',
-                          style: TextStyle(
-                            fontSize: 11,
-                            letterSpacing: 1.6,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.black.withValues(alpha:0.7),
-                      borderRadius: BorderRadius.circular(999),
-                      border: Border.all(
-                        color: const Color(0xFFFACC15).withValues(alpha:0.6),
-                        width: 0.7,
-                      ),
-                    ),
-                    child: Text(
-                      eraTag,
-                      style: const TextStyle(
-                        fontSize: 11,
-                        letterSpacing: 1.6,
-                        color: Color(0xFFFDE68A), // light gold
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            // 4) Bottom-left main history panel
+            // ── 5. Top-left badges (safe zone compliant) ──────────────────
             FadeTransition(
-              opacity: _textFade,
+              opacity: _contentFade,
+              child: Positioned(
+                top: safeTop,
+                left: 22,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SceneGoldBadge(
+                      text: 'DOCUMENTARY',
+                      icon: Icons.history_edu_rounded,
+                    ),
+                    const SizedBox(width: 8),
+                    // Era tag
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 5),
+                      decoration: BoxDecoration(
+                        color: Colors.black.withValues(alpha: 0.70),
+                        borderRadius: BorderRadius.circular(999),
+                        border: Border.all(
+                          color: SceneColors.goldOverlay(0.55),
+                          width: 0.8,
+                        ),
+                      ),
+                      child: Text(
+                        eraTag,
+                        style: SceneTypography.subtitle
+                            .copyWith(color: SceneColors.goldLight),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            // ── 6. Bottom content panel ───────────────────────────────────
+            FadeTransition(
+              opacity: _contentFade,
               child: SlideTransition(
-                position: _textSlide,
+                position: _contentSlide,
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(22, 24, 22, 44),
+                  padding: EdgeInsets.fromLTRB(22, 24, 22, safeBottom),
                   child: Align(
                     alignment: Alignment.bottomLeft,
                     child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 720),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(22),
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
-                          child: Container(
-                            padding: const EdgeInsets.fromLTRB(20, 18, 20, 18),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(22),
-                              color: Colors.black.withValues(alpha:0.78),
-                              border: Border.all(
-                                color: const Color(0xFFFACC15).withValues(alpha:0.55),
-                                width: 1.1,
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withValues(alpha:0.9),
-                                  blurRadius: 26,
-                                  offset: const Offset(0, 18),
-                                ),
-                              ],
+                      constraints: const BoxConstraints(
+                          maxWidth: SceneLayout.maxContentWidth),
+                      child: SceneGlassPanel(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Gold accent bar
+                            const SceneGoldAccent(),
+                            const SizedBox(height: 10),
+
+                            // Title — word-by-word reveal
+                            WordRevealText(
+                              text: scene.title,
+                              style: SceneTypography.mainTitle,
+                              controller: _controller,
+                              startFraction: _hookEnd,
+                              durationFraction: 0.38,
                             ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // Small top accent line
-                                Container(
-                                  width: 52,
-                                  height: 3,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(999),
-                                    gradient: const LinearGradient(
-                                      colors: [
-                                        Color(0xFFFACC15),
-                                        Color(0xFFEAB308),
-                                        Color(0xFFA16207),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
 
-                                // Title
-                                Text(
-                                  scene.title,
-                                  style: const TextStyle(
-                                    fontSize: 26,
-                                    fontWeight: FontWeight.w800,
-                                    height: 1.25,
-                                    color: Colors.white,
-                                  ),
-                                ),
+                            // Hook italic line (shown as body sub-head, NOT hook frame)
+                            // Only shows if hook text isn't used as hook frame
+                            // (when isPlaying=false or very short)
 
-                                // Hook / poetic line
-                                if (scene.hook.isNotEmpty) ...[
-                                  const SizedBox(height: 8),
-                                  Text(
-                                    scene.hook,
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                      fontStyle: FontStyle.italic,
-                                      color: Color(0xFFFDE68A),
-                                    ),
-                                  ),
-                                ],
+                            // Body narration
+                            if (scene.body.isNotEmpty) ...[
+                              const SizedBox(height: 10),
+                              Text(scene.body, style: SceneTypography.body),
+                            ],
 
-                                // Body narration
-                                if (scene.body.isNotEmpty) ...[
-                                  const SizedBox(height: 10),
-                                  Text(
-                                    scene.body,
-                                    style: const TextStyle(
-                                      fontSize: 14.5,
-                                      height: 1.5,
-                                      color: Colors.white70,
-                                    ),
-                                  ),
-                                ],
+                            // Key points — max 3
+                            if (scene.keyPoints.isNotEmpty) ...[
+                              const SizedBox(height: 10),
+                              SceneKeyPoints(points: scene.keyPoints),
+                            ],
 
-                                // Key points as facts list
-                                if (scene.keyPoints.isNotEmpty) ...[
-                                  const SizedBox(height: 10),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: scene.keyPoints
-                                        .map(
-                                          (kp) => Padding(
-                                            padding: const EdgeInsets.only(
-                                                bottom: 4),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                const Text(
-                                                  '• ',
-                                                  style: TextStyle(
-                                                    fontSize: 13.5,
-                                                    color: Color(0xFFFDE68A),
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  child: Text(
-                                                    kp,
-                                                    style: const TextStyle(
-                                                      fontSize: 13.5,
-                                                      height: 1.35,
-                                                      color: Colors.white70,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        )
-                                        .toList(),
-                                  ),
-                                ],
-
-                                // Closure line – highlighted in gold
-                                if (closingLine.isNotEmpty) ...[
-                                  const SizedBox(height: 12),
-                                  const Divider(
-                                    height: 1,
-                                    color: Colors.white24,
-                                  ),
-                                  const SizedBox(height: 6),
-                                  Text(
-                                    closingLine,
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                      color: Color(0xFFFACC15),
-                                    ),
-                                  ),
-                                ],
-                              ],
-                            ),
-                          ),
+                            // Closure line
+                            if (scene.closureLine.isNotEmpty) ...[
+                              const SizedBox(height: 12),
+                              const Divider(height: 1, color: Colors.white12),
+                              const SizedBox(height: 8),
+                              Text(scene.closureLine,
+                                  style: SceneTypography.closureLine),
+                            ],
+                          ],
                         ),
                       ),
                     ),
@@ -427,42 +232,50 @@ class _CinematicSceneDocumentryOneState extends State<CinematicSceneDocumentryOn
               ),
             ),
 
-            // 5) Tiny bottom-right year / chapter tag (optional from subtitle/body)
+            // ── 7. Bottom-right chapter tag ────────────────────────────────
             Positioned(
-              right: 20,
-              bottom: 20,
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                decoration: BoxDecoration(
-                  color: Colors.black.withValues(alpha:0.7),
-                  borderRadius: BorderRadius.circular(999),
-                  border: Border.all(
-                    color: const Color(0xFFFACC15).withValues(alpha:0.5),
-                    width: 0.8,
+              right: 22,
+              bottom: safeBottom,
+              child: FadeTransition(
+                opacity: _contentFade,
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withValues(alpha: 0.65),
+                    borderRadius: BorderRadius.circular(999),
+                    border: Border.all(
+                      color: SceneColors.goldOverlay(0.45),
+                      width: 0.8,
+                    ),
                   ),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: const [
-                    Icon(
-                      Icons.auto_stories_rounded,
-                      size: 13,
-                      color: Color(0xFFFDE68A),
-                    ),
-                    SizedBox(width: 6),
-                    Text(
-                      'CHAPTER OF TIME',
-                      style: TextStyle(
-                        fontSize: 11,
-                        letterSpacing: 1.2,
-                        color: Color(0xFFFDE68A),
+                  child: const Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.auto_stories_rounded,
+                          size: 12, color: SceneColors.goldLight),
+                      SizedBox(width: 5),
+                      Text(
+                        'CHAPTER OF TIME',
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 10,
+                          letterSpacing: 1.4,
+                          color: SceneColors.goldLight,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
+
+            // ── 8. Hook frame (0-3s hero) ──────────────────────────────────
+            if (hasHook && hookExit < 1.0)
+              SceneHookFrame(
+                hookText: scene.hook,
+                exitOpacity: hookExit,
+              ),
           ],
         );
       },

@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:cinematic/model/screen_config.dart';
 import 'package:flutter/material.dart';
 
