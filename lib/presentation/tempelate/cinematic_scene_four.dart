@@ -1,4 +1,3 @@
-import 'dart:ui'; // (kept in case you want to reuse blur later)
 
 import 'package:cinematic/model/screen_config.dart';
 import 'package:flutter/material.dart';

@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:cinematic/model/screen_config.dart';
 import 'package:flutter/material.dart';
-import 'package:vector_math/vector_math_64.dart' as vector;
 
 /// ----------------------
 /// CINEMATIC TOP 5 RANKING TEMPLATE V2

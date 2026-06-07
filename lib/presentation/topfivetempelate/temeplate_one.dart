@@ -1094,7 +1094,7 @@ class _RankCard extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        '${scene.subtitle}',
+                        scene.subtitle,
                         style: TextStyle(
                           color: Colors.white.withValues(alpha:0.7),
                           fontSize: 10,
