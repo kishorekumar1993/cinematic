@@ -37,6 +37,15 @@ import '../presentation/tempelate/cinematic_screen.dart';
 import '../presentation/tempelate/movie_temp_one.dart';
 import '../presentation/tempelate/youtube_movie_temp_two.dart';
 
+// Import Devotional templates
+import '../presentation/tempelate/devotional_scene_one.dart';
+import '../presentation/tempelate/devotional_scene_two.dart';
+import '../presentation/tempelate/devotional_scene_three.dart';
+import '../presentation/tempelate/devotional_scene_four.dart';
+import '../presentation/tempelate/devotional_scene_five.dart';
+import '../presentation/tempelate/devotional_scene_six.dart';
+import '../presentation/tempelate/devotional_scene_seven.dart';
+
 // Import Dual Comparison templates
 import '../presentation/dualscreen/dual_category_scene_screen.dart';
 import '../presentation/dualscreen/dual_mirror_sceme.dart';
@@ -617,6 +626,98 @@ class TemplateRegistry {
   //       isPlaying: isPlaying,
   //     ),
   //   ));
+
+    // --- DEVOTIONAL PACK ---
+    _register(SceneTemplate(
+      id: 'devotional_one',
+      name: 'Sacred Verse',
+      category: 'Devotional',
+      description: 'Deep indigo/violet with golden mandala ring and centred scripture verse.',
+      thumbnailUrl: 'https://images.pexels.com/photos/3171837/pexels-photo-3171837.jpeg?auto=compress&cs=tinysrgb&w=300',
+      builder: (context, scene, isPlaying) => DevotionalSceneOne(
+        key: ValueKey(scene.id),
+        scene: scene,
+        isPlaying: isPlaying,
+      ),
+    ));
+
+    _register(SceneTemplate(
+      id: 'devotional_two',
+      name: 'Sunrise Praise',
+      category: 'Devotional',
+      description: 'Warm amber/crimson sunrise with animated light rays and morning devotion.',
+      thumbnailUrl: 'https://images.pexels.com/photos/1261728/pexels-photo-1261728.jpeg?auto=compress&cs=tinysrgb&w=300',
+      builder: (context, scene, isPlaying) => DevotionalSceneTwo(
+        key: ValueKey(scene.id),
+        scene: scene,
+        isPlaying: isPlaying,
+      ),
+    ));
+
+    _register(SceneTemplate(
+      id: 'devotional_three',
+      name: 'Lotus Serenity',
+      category: 'Devotional',
+      description: 'Teal/emerald with animated floating lotus petals for spiritual mantras.',
+      thumbnailUrl: 'https://images.pexels.com/photos/1051838/pexels-photo-1051838.jpeg?auto=compress&cs=tinysrgb&w=300',
+      builder: (context, scene, isPlaying) => DevotionalSceneThree(
+        key: ValueKey(scene.id),
+        scene: scene,
+        isPlaying: isPlaying,
+      ),
+    ));
+
+    _register(SceneTemplate(
+      id: 'devotional_four',
+      name: 'Celestial Prayer',
+      category: 'Devotional',
+      description: 'Midnight blue starfield with twinkling stars and golden celestial emblem.',
+      thumbnailUrl: 'https://images.pexels.com/photos/1820563/pexels-photo-1820563.jpeg?auto=compress&cs=tinysrgb&w=300',
+      builder: (context, scene, isPlaying) => DevotionalSceneFour(
+        key: ValueKey(scene.id),
+        scene: scene,
+        isPlaying: isPlaying,
+      ),
+    ));
+
+    _register(SceneTemplate(
+      id: 'devotional_five',
+      name: 'Divine Light',
+      category: 'Devotional',
+      description: 'Holy white light column with parchment panel for scripture verses.',
+      thumbnailUrl: 'https://images.pexels.com/photos/267967/pexels-photo-267967.jpeg?auto=compress&cs=tinysrgb&w=300',
+      builder: (context, scene, isPlaying) => DevotionalSceneFive(
+        key: ValueKey(scene.id),
+        scene: scene,
+        isPlaying: isPlaying,
+      ),
+    ));
+
+    _register(SceneTemplate(
+      id: 'devotional_six',
+      name: 'Sacred Flames',
+      category: 'Devotional',
+      description: 'Holy fire with ember particle system for powerful declarations.',
+      thumbnailUrl: 'https://images.pexels.com/photos/266436/pexels-photo-266436.jpeg?auto=compress&cs=tinysrgb&w=300',
+      builder: (context, scene, isPlaying) => DevotionalSceneSix(
+        key: ValueKey(scene.id),
+        scene: scene,
+        isPlaying: isPlaying,
+      ),
+    ));
+
+    _register(SceneTemplate(
+      id: 'devotional_seven',
+      name: 'Peaceful Garden',
+      category: 'Devotional',
+      description: 'Sage green forest light with floating pollen for peaceful meditation verses.',
+      thumbnailUrl: 'https://images.pexels.com/photos/355296/pexels-photo-355296.jpeg?auto=compress&cs=tinysrgb&w=300',
+      builder: (context, scene, isPlaying) => DevotionalSceneSeven(
+        key: ValueKey(scene.id),
+        scene: scene,
+        isPlaying: isPlaying,
+      ),
+    ));
 
     _initialized = true;
   }

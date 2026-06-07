@@ -45,7 +45,11 @@ class _CinematicPlayerState extends State<CinematicPlayer> {
   @override
   void initState() {
     super.initState();
-    _scheduleNext();
+    // Defer timer start to after the first frame to avoid layout assertion
+    // races when the widget tree is still being laid out for the first time.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _scheduleNext();
+    });
   }
 
   @override
@@ -118,7 +122,19 @@ class _CinematicPlayerState extends State<CinematicPlayer> {
           duration: const Duration(milliseconds: 800),
           switchInCurve: Curves.easeOut,
           switchOutCurve: Curves.easeIn,
-          child: template.builder(context, scene, widget.isPlaying),
+          layoutBuilder: (Widget? currentChild, List<Widget> previousChildren) {
+            return Stack(
+              alignment: Alignment.center,
+              children: <Widget>[
+                ...previousChildren,
+                if (currentChild != null) currentChild,
+              ],
+            );
+          },
+          child: SizedBox.expand(
+            key: ValueKey(_currentIndex),
+            child: template.builder(context, scene, widget.isPlaying),
+          ),
         ),
 
         // Safe-area guide overlay (editor-only)

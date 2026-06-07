@@ -336,6 +336,10 @@ class SceneBackground extends StatelessWidget {
     Widget img = _imageWidget();
 
     if (zoom != null || pan != null) {
+      // Capture the original image widget in a separate variable so the
+      // AnimatedBuilder's closure does not close over the reassigned `img`
+      // (which would create an infinitely self-referential widget tree).
+      final Widget base = img;
       img = AnimatedBuilder(
         animation: Listenable.merge([
           if (zoom != null) zoom!,
@@ -345,7 +349,7 @@ class SceneBackground extends StatelessWidget {
           translation: pan?.value ?? Offset.zero,
           child: Transform.scale(
             scale: zoom?.value ?? 1.0,
-            child: img,
+            child: base,
           ),
         ),
       );
@@ -415,11 +419,17 @@ class SceneLetterbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final barH = MediaQuery.sizeOf(context).height * barFraction;
-    return Column(children: [
-      Container(height: barH, color: Colors.black),
-      const Spacer(),
-      Container(height: barH, color: Colors.black),
-    ]);
+    // Use Stack + Positioned instead of Column + Spacer so this widget is
+    // safe in both bounded and expand contexts (Spacer requires bounded height).
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        Positioned(top: 0, left: 0, right: 0, height: barH,
+          child: Container(color: Colors.black)),
+        Positioned(bottom: 0, left: 0, right: 0, height: barH,
+          child: Container(color: Colors.black)),
+      ],
+    );
   }
 }
 
