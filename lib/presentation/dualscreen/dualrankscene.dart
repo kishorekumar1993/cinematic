@@ -64,78 +64,149 @@ class DualRankScene extends StatelessWidget {
                 ],
                 const SizedBox(height: 14),
               ],
-
               Expanded(
-                child: Row(
-                  children: [
-                    // LEFT PANEL
-                    Expanded(
-                      child: _PrimeSide(
-                        title: scene.leftTitle,
-                        subtitle: scene.leftSubtitle,
-                        body: scene.leftBody,
-                        bullets: scene.leftKeyPoints,
-                        accent: scheme.primary,
-                        imageUrl: scene.leftImageUrl,
-                      ),
-                    ),
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    final isVertical = constraints.maxHeight > constraints.maxWidth;
 
-                    // VS PILLAR
-                    SizedBox(
-                      width: 62,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                    if (isVertical) {
+                      return Column(
                         children: [
-                          // Line top
-                          Container(
-                            width: 2,
-                            height: 40,
-                            color: Colors.white.withOpacity(0.25),
-                          ),
-                          const SizedBox(height: 8),
-                          // VS bubble
-                          Container(
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: LinearGradient(
-                                colors: [
-                                  scheme.primary,
-                                  Colors.pinkAccent
-                                ],
-                              ),
-                            ),
-                            child: const Text(
-                              "VS",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12,
-                              ),
+                          Expanded(
+                            child: _PrimeSide(
+                              title: scene.leftTitle,
+                              subtitle: scene.leftSubtitle,
+                              body: scene.leftBody,
+                              bullets: scene.leftKeyPoints,
+                              accent: scheme.primary,
+                              imageUrl: scene.leftImageUrl,
                             ),
                           ),
-                          const SizedBox(height: 8),
-                          // Line bottom
-                          Container(
-                            width: 2,
-                            height: 40,
-                            color: Colors.white.withOpacity(0.25),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 6.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 2,
+                                  color: Colors.white.withValues(alpha: 0.25),
+                                ),
+                                const SizedBox(width: 8),
+                                Container(
+                                  padding: const EdgeInsets.all(6),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        scheme.primary,
+                                        Colors.pinkAccent
+                                      ],
+                                    ),
+                                  ),
+                                  child: const Text(
+                                    "VS",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 10,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                Container(
+                                  width: 30,
+                                  height: 2,
+                                  color: Colors.white.withValues(alpha: 0.25),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: _PrimeSide(
+                              title: scene.rightTitle,
+                              subtitle: scene.rightSubtitle,
+                              body: scene.rightBody,
+                              bullets: scene.rightKeyPoints,
+                              accent: Colors.pinkAccent,
+                              imageUrl: scene.rightImageUrl,
+                            ),
                           ),
                         ],
-                      ),
-                    ),
+                      );
+                    } else {
+                      return Row(
+                        children: [
+                          // LEFT PANEL
+                          Expanded(
+                            child: _PrimeSide(
+                              title: scene.leftTitle,
+                              subtitle: scene.leftSubtitle,
+                              body: scene.leftBody,
+                              bullets: scene.leftKeyPoints,
+                              accent: scheme.primary,
+                              imageUrl: scene.leftImageUrl,
+                            ),
+                          ),
 
-                    // RIGHT PANEL
-                    Expanded(
-                      child: _PrimeSide(
-                        title: scene.rightTitle,
-                        subtitle: scene.rightSubtitle,
-                        body: scene.rightBody,
-                        bullets: scene.rightKeyPoints,
-                        accent: Colors.pinkAccent,
-                        imageUrl: scene.rightImageUrl,
-                      ),
-                    ),
-                  ],
+                          // VS PILLAR
+                          SizedBox(
+                            width: 62,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                // Line top
+                                Container(
+                                  width: 2,
+                                  height: 40,
+                                  color: Colors.white.withValues(alpha: 0.25),
+                                ),
+                                const SizedBox(height: 8),
+                                // VS bubble
+                                Container(
+                                  padding: const EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        scheme.primary,
+                                        Colors.pinkAccent
+                                      ],
+                                    ),
+                                  ),
+                                  child: const Text(
+                                    "VS",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                // Line bottom
+                                Container(
+                                  width: 2,
+                                  height: 40,
+                                  color: Colors.white.withValues(alpha: 0.25),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          // RIGHT PANEL
+                          Expanded(
+                            child: _PrimeSide(
+                              title: scene.rightTitle,
+                              subtitle: scene.rightSubtitle,
+                              body: scene.rightBody,
+                              bullets: scene.rightKeyPoints,
+                              accent: Colors.pinkAccent,
+                              imageUrl: scene.rightImageUrl,
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+                  },
                 ),
               ),
 
@@ -191,19 +262,19 @@ class _PrimeSide extends StatelessWidget {
               borderRadius: BorderRadius.circular(22),
               gradient: LinearGradient(
                 colors: [
-                  Colors.white.withOpacity(0.10),
-                  Colors.white.withOpacity(0.03),
+                  Colors.white.withValues(alpha: 0.10),
+                  Colors.white.withValues(alpha: 0.03),
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
               border: Border.all(
-                color: Colors.white.withOpacity(0.18),
+                color: Colors.white.withValues(alpha: 0.18),
                 width: 0.8,
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.7),
+                  color: Colors.black.withValues(alpha: 0.7),
                   blurRadius: 18,
                   offset: const Offset(0, 12),
                 ),
@@ -247,15 +318,15 @@ class _PrimeSide extends StatelessWidget {
                       borderRadius: BorderRadius.circular(14),
                       gradient: LinearGradient(
                         colors: [
-                          accent.withOpacity(0.25),
-                          accent.withOpacity(0.05),
+                          accent.withValues(alpha: 0.25),
+                          accent.withValues(alpha: 0.05),
                         ],
                       ),
                     ),
                     alignment: Alignment.center,
                     child: Icon(
                       Icons.image_outlined,
-                      color: Colors.white.withOpacity(0.75),
+                      color: Colors.white.withValues(alpha: 0.75),
                     ),
                   ),
 

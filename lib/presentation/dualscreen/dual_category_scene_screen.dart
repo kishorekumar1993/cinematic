@@ -171,68 +171,145 @@ class _DualCategorySceneState extends State<DualCategoryScene>
                         const SizedBox(height: 14),
                       ],
                       Expanded(
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: _DualSideCard(
-                                label: 'LEFT',
-                                title: scene.leftTitle,
-                                subtitle: scene.leftSubtitle,
-                                body: scene.leftBody,
-                                bullets: leftBullets,
-                                imageUrl: scene.leftImageUrl,
-                                alignRight: false,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 46,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                        child: LayoutBuilder(
+                          builder: (context, constraints) {
+                            final isVertical = constraints.maxHeight > constraints.maxWidth;
+                            if (isVertical) {
+                              return Column(
                                 children: [
-                                  Container(
-                                    width: 40,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          scheme.primary,
-                                          Colors.pinkAccent,
-                                        ],
-                                      ),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: scheme.primary
-                                              .withValues(alpha: 0.5),
-                                          blurRadius: 16,
-                                          offset: const Offset(0, 4),
+                                  Expanded(
+                                    child: _DualSideCard(
+                                      label: 'LEFT',
+                                      title: scene.leftTitle,
+                                      subtitle: scene.leftSubtitle,
+                                      body: scene.leftBody,
+                                      bullets: leftBullets,
+                                      imageUrl: scene.leftImageUrl,
+                                      alignRight: false,
+                                      isVertical: true,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(vertical: 6.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          width: 30,
+                                          height: 2,
+                                          color: Colors.white.withValues(alpha: 0.25),
+                                        ),
+                                        const SizedBox(width: 8),
+                                        Container(
+                                          padding: const EdgeInsets.all(6),
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            gradient: LinearGradient(
+                                              colors: [
+                                                scheme.primary,
+                                                Colors.pinkAccent,
+                                              ],
+                                            ),
+                                          ),
+                                          child: const Text(
+                                            "VS",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 10,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 8),
+                                        Container(
+                                          width: 30,
+                                          height: 2,
+                                          color: Colors.white.withValues(alpha: 0.25),
                                         ),
                                       ],
                                     ),
-                                    alignment: Alignment.center,
-                                    child: const Text(
-                                      'VS',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w800,
-                                      ),
+                                  ),
+                                  Expanded(
+                                    child: _DualSideCard(
+                                      label: 'RIGHT',
+                                      title: scene.rightTitle,
+                                      subtitle: scene.rightSubtitle,
+                                      body: scene.rightBody,
+                                      bullets: rightBullets,
+                                      imageUrl: scene.rightImageUrl,
+                                      alignRight: true,
+                                      isVertical: true,
                                     ),
                                   ),
                                 ],
-                              ),
-                            ),
-                            Expanded(
-                              child: _DualSideCard(
-                                label: 'RIGHT',
-                                title: scene.rightTitle,
-                                subtitle: scene.rightSubtitle,
-                                body: scene.rightBody,
-                                bullets: rightBullets,
-                                imageUrl: scene.rightImageUrl,
-                                alignRight: true,
-                              ),
-                            ),
-                          ],
+                              );
+                            } else {
+                              return Row(
+                                children: [
+                                  Expanded(
+                                    child: _DualSideCard(
+                                      label: 'LEFT',
+                                      title: scene.leftTitle,
+                                      subtitle: scene.leftSubtitle,
+                                      body: scene.leftBody,
+                                      bullets: leftBullets,
+                                      imageUrl: scene.leftImageUrl,
+                                      alignRight: false,
+                                      isVertical: false,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 46,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          width: 40,
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            gradient: LinearGradient(
+                                              colors: [
+                                                scheme.primary,
+                                                Colors.pinkAccent,
+                                              ],
+                                            ),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: scheme.primary
+                                                    .withValues(alpha: 0.5),
+                                                blurRadius: 16,
+                                                offset: const Offset(0, 4),
+                                              ),
+                                            ],
+                                          ),
+                                          alignment: Alignment.center,
+                                          child: const Text(
+                                            'VS',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w800,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: _DualSideCard(
+                                      label: 'RIGHT',
+                                      title: scene.rightTitle,
+                                      subtitle: scene.rightSubtitle,
+                                      body: scene.rightBody,
+                                      bullets: rightBullets,
+                                      imageUrl: scene.rightImageUrl,
+                                      alignRight: true,
+                                      isVertical: false,
+                                    ),
+                                  ),
+                                ],
+                              );
+                            }
+                          },
                         ),
                       ),
                       if (scene.closureLine.isNotEmpty) ...[
@@ -266,6 +343,7 @@ class _DualSideCard extends StatelessWidget {
   final String bullets;
   final String imageUrl;
   final bool alignRight;
+  final bool isVertical;
 
   const _DualSideCard({
     required this.label,
@@ -275,6 +353,7 @@ class _DualSideCard extends StatelessWidget {
     required this.bullets,
     required this.imageUrl,
     required this.alignRight,
+    required this.isVertical,
   });
 
   @override
@@ -313,7 +392,7 @@ class _DualSideCard extends StatelessWidget {
             borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
             child: imageUrl.isEmpty
                 ? Container(
-                    height: 150,
+                    height: isVertical ? 80 : 150,
                     color: Colors.grey.shade900,
                     alignment: Alignment.center,
                     child: const Icon(Icons.image_not_supported,
@@ -321,11 +400,11 @@ class _DualSideCard extends StatelessWidget {
                   )
                 : Image.network(
                     imageUrl,
-                    height: 150,
+                    height: isVertical ? 80 : 150,
                     width: double.infinity,
                     fit: BoxFit.cover,
                     errorBuilder: (_, __, ___) => Container(
-                      height: 150,
+                      height: isVertical ? 80 : 150,
                       color: Colors.grey.shade900,
                       alignment: Alignment.center,
                       child: const Icon(Icons.broken_image,
@@ -333,90 +412,93 @@ class _DualSideCard extends StatelessWidget {
                     ),
                   ),
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(14, 10, 14, 12),
-            child: Column(
-              crossAxisAlignment: alignRight
-                  ? CrossAxisAlignment.end
-                  : CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: alignRight
-                      ? MainAxisAlignment.end
-                      : MainAxisAlignment.start,
-                  children: [
-                    if (!alignRight)
-                      _labelChip(label: label, scheme: scheme),
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 6),
-                        height: 1,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              Colors.white.withValues(alpha: 0.15),
-                              Colors.transparent,
-                            ],
-                            begin: alignRight
-                                ? Alignment.centerRight
-                                : Alignment.centerLeft,
-                            end: alignRight
-                                ? Alignment.centerLeft
-                                : Alignment.centerRight,
+          Expanded(
+            child: SingleChildScrollView(
+              physics: const ClampingScrollPhysics(),
+              padding: const EdgeInsets.fromLTRB(14, 10, 14, 12),
+              child: Column(
+                crossAxisAlignment: alignRight
+                    ? CrossAxisAlignment.end
+                    : CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: alignRight
+                        ? MainAxisAlignment.end
+                        : MainAxisAlignment.start,
+                    children: [
+                      if (!alignRight)
+                        _labelChip(label: label, scheme: scheme),
+                      Expanded(
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 6),
+                          height: 1,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.white.withValues(alpha: 0.15),
+                                Colors.transparent,
+                              ],
+                              begin: alignRight
+                                  ? Alignment.centerRight
+                                  : Alignment.centerLeft,
+                              end: alignRight
+                                  ? Alignment.centerLeft
+                                  : Alignment.centerRight,
+                            ),
                           ),
                         ),
                       ),
+                      if (alignRight)
+                        _labelChip(label: label, scheme: scheme),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    title.isEmpty ? ' ' : title,
+                    textAlign: textAlign,
+                    style: TextStyle(
+                      fontSize: isVertical ? 15 : 18,
+                      fontWeight: FontWeight.w700,
+                      height: 1.2,
                     ),
-                    if (alignRight)
-                      _labelChip(label: label, scheme: scheme),
+                  ),
+                  if (subtitle.trim().isNotEmpty) ...[
+                    const SizedBox(height: 4),
+                    Text(
+                      subtitle,
+                      textAlign: textAlign,
+                      style: TextStyle(
+                        fontSize: isVertical ? 11 : 12,
+                        color: Colors.white70,
+                      ),
+                    ),
                   ],
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  title.isEmpty ? ' ' : title,
-                  textAlign: textAlign,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                    height: 1.2,
-                  ),
-                ),
-                if (subtitle.trim().isNotEmpty) ...[
-                  const SizedBox(height: 4),
-                  Text(
-                    subtitle,
-                    textAlign: textAlign,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: Colors.white70,
+                  if (body.trim().isNotEmpty) ...[
+                    const SizedBox(height: 8),
+                    Text(
+                      body,
+                      textAlign: textAlign,
+                      style: TextStyle(
+                        fontSize: isVertical ? 12 : 13.5,
+                        color: Colors.white70,
+                        height: 1.4,
+                      ),
                     ),
-                  ),
-                ],
-                if (body.trim().isNotEmpty) ...[
-                  const SizedBox(height: 8),
-                  Text(
-                    body,
-                    textAlign: textAlign,
-                    style: const TextStyle(
-                      fontSize: 13.5,
-                      color: Colors.white70,
-                      height: 1.4,
+                  ],
+                  if (bullets.trim().isNotEmpty) ...[
+                    const SizedBox(height: 8),
+                    Text(
+                      bullets,
+                      textAlign: textAlign,
+                      style: TextStyle(
+                        fontSize: isVertical ? 11.5 : 13,
+                        color: Colors.white70,
+                        height: 1.4,
+                      ),
                     ),
-                  ),
+                  ],
                 ],
-                if (bullets.trim().isNotEmpty) ...[
-                  const SizedBox(height: 8),
-                  Text(
-                    bullets,
-                    textAlign: textAlign,
-                    style: const TextStyle(
-                      fontSize: 13,
-                      color: Colors.white70,
-                      height: 1.4,
-                    ),
-                  ),
-                ],
-              ],
+              ),
             ),
           ),
         ],

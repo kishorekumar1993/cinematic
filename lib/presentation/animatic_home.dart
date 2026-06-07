@@ -31,11 +31,55 @@ class _AnimaticHomePageState extends State<AnimaticHomePage> {
   bool _isPlaying = true;
 
   int _currentSceneIndex = 0; // for info panel on the right
+  double _currentAspectRatio = 16 / 9;
 
   @override
   void initState() {
     super.initState();
     _loadSampleArchive();
+  }
+
+  Widget _buildAspectRatioSelector(BuildContext context) {
+    final theme = Theme.of(context);
+    final formats = [
+      {'label': '16:9 Widescreen', 'value': 16 / 9, 'icon': Icons.tv},
+      {'label': '9:16 Shorts', 'value': 9 / 16, 'icon': Icons.stay_current_portrait},
+      {'label': '1:1 Square', 'value': 1.0, 'icon': Icons.crop_square},
+    ];
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: formats.map((f) {
+          final isSelected = (f['value'] as double) == _currentAspectRatio;
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            child: ChoiceChip(
+              avatar: Icon(
+                f['icon'] as IconData,
+                size: 14,
+                color: isSelected ? Colors.black : Colors.white70,
+              ),
+              label: Text(f['label'] as String, style: const TextStyle(fontSize: 11)),
+              selected: isSelected,
+              onSelected: (selected) {
+                if (selected) {
+                  setState(() {
+                    _currentAspectRatio = f['value'] as double;
+                  });
+                }
+              },
+              selectedColor: theme.colorScheme.primary,
+              labelStyle: TextStyle(
+                color: isSelected ? Colors.black : Colors.white70,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+              ),
+            ),
+          );
+        }).toList(),
+      ),
+    );
   }
 
   void _openBulkGenerator() {
@@ -580,13 +624,14 @@ class _AnimaticHomePageState extends State<AnimaticHomePage> {
                           ),
                         ),
                       ),
+                      _buildAspectRatioSelector(context),
                       Padding(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 16,
                           vertical: 8,
                         ),
                         child: AspectRatio(
-                          aspectRatio: 16 / 9,
+                          aspectRatio: _currentAspectRatio,
                           child: DecoratedBox(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(24),
@@ -959,10 +1004,12 @@ class _AnimaticHomePageState extends State<AnimaticHomePage> {
                               ),
                             ),
                             const SizedBox(height: 12),
+                            _buildAspectRatioSelector(context),
                             Expanded(
-                              child: AspectRatio(
-                                aspectRatio: 16 / 9,
-                                child: DecoratedBox(
+                              child: Center(
+                                child: AspectRatio(
+                                  aspectRatio: _currentAspectRatio,
+                                  child: DecoratedBox(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(26),
                                     gradient: const LinearGradient(
@@ -1006,6 +1053,7 @@ class _AnimaticHomePageState extends State<AnimaticHomePage> {
                                   ),
                                 ),
                               ),
+                            ),
                             ),
                           ],
                         ),
