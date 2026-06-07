@@ -5,21 +5,21 @@ import 'package:cinematic/model/screen_config.dart';
 /// ------------------------------------
 /// DUAL NEON COMPARISON SCENE TEMPLATE
 /// ------------------------------------
-class DualNeonScene extends StatefulWidget {
+class DualNeoScene extends StatefulWidget {
   final SceneConfig scene;
   final bool isPlaying;
 
-  const DualNeonScene({
+  const DualNeoScene({
     super.key,
     required this.scene,
     required this.isPlaying,
   });
 
   @override
-  State<DualNeonScene> createState() => _DualNeonSceneState();
+  State<DualNeoScene> createState() => _DualNeoSceneState();
 }
 
-class _DualNeonSceneState extends State<DualNeonScene>
+class _DualNeoSceneState extends State<DualNeoScene>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fade;
@@ -61,7 +61,7 @@ class _DualNeonSceneState extends State<DualNeonScene>
   }
 
   @override
-  void didUpdateWidget(covariant DualNeonScene oldWidget) {
+  void didUpdateWidget(covariant DualNeoScene oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isPlaying != widget.isPlaying) {
       if (widget.isPlaying) {

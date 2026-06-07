@@ -15,23 +15,23 @@ import 'package:cinematic/model/screen_config.dart';
 /// localImageBytes / imageUrl -> fullscreen bg
 ///
 
-class CinematicSceneHistoryReveal extends StatefulWidget {
+class CinematicSceneHistoryRevealOne extends StatefulWidget {
   final SceneConfig scene;
   final bool isPlaying;
 
-  const CinematicSceneHistoryReveal({
+  const CinematicSceneHistoryRevealOne({
     super.key,
     required this.scene,
     required this.isPlaying,
   });
 
   @override
-  State<CinematicSceneHistoryReveal> createState() =>
-      _CinematicSceneHistoryRevealState();
+  State<CinematicSceneHistoryRevealOne> createState() =>
+      _CinematicSceneHistoryRevealOneState();
 }
 
-class _CinematicSceneHistoryRevealState
-    extends State<CinematicSceneHistoryReveal>
+class _CinematicSceneHistoryRevealOneState
+    extends State<CinematicSceneHistoryRevealOne>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fade;
@@ -58,7 +58,7 @@ class _CinematicSceneHistoryRevealState
   }
 
   @override
-  void didUpdateWidget(covariant CinematicSceneHistoryReveal oldWidget) {
+  void didUpdateWidget(covariant CinematicSceneHistoryRevealOne oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.isPlaying != widget.isPlaying) {

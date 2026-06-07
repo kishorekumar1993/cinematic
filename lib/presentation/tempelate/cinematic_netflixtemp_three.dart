@@ -12,23 +12,23 @@ import 'package:cinematic/model/screen_config.dart';
 ///   scene.keyPoints    -> Up to 5 items (Top 5)
 ///   scene.closureLine  -> Bottom CTA / summary
 ///   scene.imageUrl / localImageBytes -> optional background
-class CinematicSceneTopFiveTempOneTimeline extends StatefulWidget {
+class CinematicNetflixTempThree extends StatefulWidget {
   final SceneConfig scene;
   final bool isPlaying;
 
-  const CinematicSceneTopFiveTempOneTimeline({
+  const CinematicNetflixTempThree({
     super.key,
     required this.scene,
     required this.isPlaying,
   });
 
   @override
-  State<CinematicSceneTopFiveTempOneTimeline> createState() =>
-      _CinematicSceneTopFiveTempOneTimelineState();
+  State<CinematicNetflixTempThree> createState() =>
+      _CinematicNetflixTempThreeState();
 }
 
-class _CinematicSceneTopFiveTempOneTimelineState
-    extends State<CinematicSceneTopFiveTempOneTimeline>
+class _CinematicNetflixTempThreeState
+    extends State<CinematicNetflixTempThree>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _bgZoom;
@@ -80,7 +80,7 @@ class _CinematicSceneTopFiveTempOneTimelineState
   }
 
   @override
-  void didUpdateWidget(covariant CinematicSceneTopFiveTempOneTimeline oldWidget) {
+  void didUpdateWidget(covariant CinematicNetflixTempThree oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isPlaying != widget.isPlaying) {
       if (widget.isPlaying) {

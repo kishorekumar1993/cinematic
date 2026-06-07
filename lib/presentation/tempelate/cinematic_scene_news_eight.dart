@@ -18,24 +18,24 @@ import 'package:cinematic/model/screen_config.dart';
 /// isPlaying == true  -> subtle zoom/pan + text anim
 /// isPlaying == false -> static frame
 
-class CinematicSceneNewsEigth extends StatefulWidget {
+class CinematicSceneNewsEight extends StatefulWidget {
   final SceneConfig scene;
   final bool isPlaying;
 
-  const CinematicSceneNewsEigth({
+  const CinematicSceneNewsEight({
     super.key,
     required this.scene,
     required this.isPlaying,
   });
 
   @override
-  State<CinematicSceneNewsEigth> createState() => _CinematicSceneNewsEigthState();
-}
+  State<CinematicSceneNewsEight> createState() => _CinematicSceneNewsEightState();
+    }
 
-class _CinematicSceneNewsEigthState extends State<CinematicSceneNewsEigth>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _zoom;
+    class _CinematicSceneNewsEightState extends State<CinematicSceneNewsEight>
+        with SingleTickerProviderStateMixin {
+      late AnimationController _controller;
+      late Animation<double> _zoom;
   late Animation<Offset> _pan;
   late Animation<double> _textFade;
   late Animation<Offset> _textSlide;
@@ -87,7 +87,7 @@ class _CinematicSceneNewsEigthState extends State<CinematicSceneNewsEigth>
   }
 
   @override
-  void didUpdateWidget(covariant CinematicSceneNewsEigth oldWidget) {
+  void didUpdateWidget(covariant CinematicSceneNewsEight oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isPlaying != widget.isPlaying) {
       if (widget.isPlaying) {

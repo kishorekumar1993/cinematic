@@ -3,11 +3,11 @@ import 'package:cinematic/model/screen_config.dart';
 /// ---------------------------------------------------------------
 /// 2) DUAL STATS SCENE (Image + Badge + Bullets + Optional Body)
 /// ---------------------------------------------------------------
-class DualStatsScene extends StatelessWidget {
+class DualStatusScene extends StatelessWidget {
   final SceneConfig scene;
   final bool isPlaying;
 
-  const DualStatsScene({
+  const DualStatusScene({
     super.key,
     required this.scene,
     required this.isPlaying,

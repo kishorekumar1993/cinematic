@@ -1,40 +1,7 @@
 import 'dart:async';
 
 import 'package:cinematic/model/screen_config.dart';
-import 'package:cinematic/presentation/dualscreen/dual_banner_scene.dart';
-import 'package:cinematic/presentation/dualscreen/dual_category_scene_screen.dart';
-import 'package:cinematic/presentation/dualscreen/dual_mirror_sceme.dart';
-import 'package:cinematic/presentation/dualscreen/dual_neo.dart';
-import 'package:cinematic/presentation/dualscreen/dual_ribbon_scene.dart';
-import 'package:cinematic/presentation/dualscreen/dual_smart_scene.dart';
-import 'package:cinematic/presentation/dualscreen/dual_status_scene.dart';
-import 'package:cinematic/presentation/dualscreen/dualrankscene.dart';
-import 'package:cinematic/presentation/dualscreen/dualspotlight.dart';
-import 'package:cinematic/presentation/tempelate/cinematic_scene_four.dart';
-import 'package:cinematic/presentation/tempelate/youtube_movie_temp_two.dart';
-import 'package:cinematic/presentation/tempelate/cinematic_netflixtemp.dart';
-import 'package:cinematic/presentation/tempelate/cinematic_netflixtemp_three.dart';
-import 'package:cinematic/presentation/tempelate/cinematic_scene_documentry_five.dart';
-import 'package:cinematic/presentation/tempelate/cinematic_scene_documentry_four.dart';
-import 'package:cinematic/presentation/tempelate/cinematic_scene_documentry_one.dart';
-import 'package:cinematic/presentation/tempelate/cinematic_scene_documentry_six.dart';
-import 'package:cinematic/presentation/tempelate/cinematic_scene_documentry_three.dart';
-import 'package:cinematic/presentation/tempelate/cinematic_scene_documentry_two.dart';
-import 'package:cinematic/presentation/tempelate/cinematic_scene_history_reveal_one.dart';
-import 'package:cinematic/presentation/tempelate/cinematic_scene_news_eight.dart';
-import 'package:cinematic/presentation/tempelate/cinematic_scene_news_five.dart';
-import 'package:cinematic/presentation/tempelate/cinematic_scene_news_four.dart';
-import 'package:cinematic/presentation/tempelate/cinematic_scene_news_nine.dart';
-import 'package:cinematic/presentation/tempelate/cinematic_scene_news_one.dart';
-import 'package:cinematic/presentation/tempelate/cinematic_scene_news_seven.dart';
-import 'package:cinematic/presentation/tempelate/cinematic_scene_news_six.dart';
-import 'package:cinematic/presentation/tempelate/cinematic_scene_news_three.dart';
-import 'package:cinematic/presentation/tempelate/cinematic_scene_news_two.dart';
-import 'package:cinematic/presentation/tempelate/cinematic_screen.dart';
-import 'package:cinematic/presentation/tempelate/cinematic_screen_six.dart';
-import 'package:cinematic/presentation/tempelate/movie_temp_one.dart';
-import 'package:cinematic/presentation/topfivetemp/top_five_temp_one.dart';
-import 'package:cinematic/presentation/topfivetemp/top_five_temp_two.dart';
+import 'package:cinematic/model/template_registry.dart';
 import 'package:flutter/material.dart';
 
 /// ----------------------
@@ -125,23 +92,19 @@ class _CinematicPlayerState extends State<CinematicPlayer> {
 
     final scene = _currentScene;
 
+    // Resolve template dynamically
+    final templateId = scene.templateId.isNotEmpty
+        ? scene.templateId
+        : (scene.effect == 'dual_category' ? 'dual_category' : 'documentary_six');
+
+    final template = TemplateRegistry.get(templateId) ?? 
+                     TemplateRegistry.get('documentary_six')!;
+
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 800),
       switchInCurve: Curves.easeOut,
       switchOutCurve: Curves.easeIn,
-      child: scene.effect == 'dual_category'
-          ? DualPrimeScene(
-              key: ValueKey('dual_${scene.id}'),
-              scene: scene,
-              isPlaying: widget.isPlaying,
-            )
-          :
-          // CinematicTopFiveMovieScene(
-CinematicSceneSix(          //  CinematicSceneFour(
-              key: ValueKey(scene.id),
-              scene: scene,
-              isPlaying: widget.isPlaying,
-            ),
+      child: template.builder(context, scene, widget.isPlaying),
     );
   }
 }

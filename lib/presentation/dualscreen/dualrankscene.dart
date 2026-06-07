@@ -6,11 +6,11 @@ import 'package:cinematic/model/screen_config.dart';
 /// MASTER DUAL PRIME COMPARISON TEMPLATE
 /// Clean, symmetric, premium — best universal layout
 /// ------------------------------------------------------
-class DualPrimeScene extends StatelessWidget {
+class DualRankScene extends StatelessWidget {
   final SceneConfig scene;
   final bool isPlaying;
 
-  const DualPrimeScene({
+  const DualRankScene({
     super.key,
     required this.scene,
     required this.isPlaying,

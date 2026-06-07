@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 /// FULL SCREEN FRAME FOR TOP 5 LIST
 /// Wraps CinematicTopFiveMovieScene in a proper screen
 /// --------------------------------------------------
-class TopFiveMovieFrameScreen extends StatelessWidget {
+class CinematicNetflixTempTwo extends StatelessWidget {
   final SceneConfig scene;
   final bool isPlaying;
   final VoidCallback? onBack;
   final double progress; // 0.0 - 1.0 (for bottom timeline)
 
-  const TopFiveMovieFrameScreen({
+  const CinematicNetflixTempTwo({
     super.key,
     required this.scene,
     this.isPlaying = true,
@@ -29,7 +29,7 @@ class TopFiveMovieFrameScreen extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             // Main cinematic scene
-            TopFiveMovieFrameScreen(
+            CinematicNetflixTempTwo(
               scene: scene,
               isPlaying: isPlaying,
             ),

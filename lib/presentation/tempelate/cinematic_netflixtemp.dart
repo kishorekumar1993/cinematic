@@ -7,23 +7,23 @@ import 'package:flutter/material.dart';
 /// CINEMATIC SCENE TEMPLATE – TOP 5 MOVIE CATEGORY
 /// Netflix / IMDb Style Ranking Panel (Bottom Card)
 /// --------------------------------------------------
-class CinematicTopFiveMovieScene extends StatefulWidget {
+class CinematicNetflixTemp extends StatefulWidget {
   final SceneConfig scene;
   final bool isPlaying;
 
-  const CinematicTopFiveMovieScene({
+  const CinematicNetflixTemp({
     super.key,
     required this.scene,
     required this.isPlaying,
   });
 
   @override
-  State<CinematicTopFiveMovieScene> createState() =>
-      _CinematicTopFiveMovieSceneState();
+  State<CinematicNetflixTemp> createState() =>
+      _CinematicNetflixTempState();
 }
 
-class _CinematicTopFiveMovieSceneState
-    extends State<CinematicTopFiveMovieScene>
+class _CinematicNetflixTempState
+    extends State<CinematicNetflixTemp>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _zoom;
@@ -68,7 +68,7 @@ class _CinematicTopFiveMovieSceneState
   }
 
   @override
-  void didUpdateWidget(covariant CinematicTopFiveMovieScene oldWidget) {
+  void didUpdateWidget(covariant CinematicNetflixTemp oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.isPlaying != widget.isPlaying) {

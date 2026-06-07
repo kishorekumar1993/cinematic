@@ -6,21 +6,21 @@ import 'package:cinematic/model/screen_config.dart';
 /// DUAL CLEAN SPLIT COMPARISON SCENE
 /// Super simple, symmetric, clean and premium
 /// ------------------------------------------------------
-class DualCleanSplitScene extends StatefulWidget {
+class DualRibbonScene extends StatefulWidget {
   final SceneConfig scene;
   final bool isPlaying;
 
-  const DualCleanSplitScene({
+  const DualRibbonScene({
     super.key,
     required this.scene,
     required this.isPlaying,
   });
 
   @override
-  State<DualCleanSplitScene> createState() => _DualCleanSplitSceneState();
+  State<DualRibbonScene> createState() => _DualRibbonSceneState();
 }
 
-class _DualCleanSplitSceneState extends State<DualCleanSplitScene>
+class _DualRibbonSceneState extends State<DualRibbonScene>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fade;
@@ -54,7 +54,7 @@ class _DualCleanSplitSceneState extends State<DualCleanSplitScene>
   }
 
   @override
-  void didUpdateWidget(covariant DualCleanSplitScene oldWidget) {
+  void didUpdateWidget(covariant DualRibbonScene oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isPlaying != widget.isPlaying) {
       if (widget.isPlaying) {

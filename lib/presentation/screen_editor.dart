@@ -2,8 +2,7 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:cinematic/model/screen_config.dart';
-import 'package:cinematic/presentation/dualscreen/dual_category_scene_screen.dart';
-import 'package:cinematic/presentation/tempelate/cinematic_screen.dart';
+import 'package:cinematic/model/template_registry.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -119,6 +118,8 @@ class _SceneEditorSheetState extends State<SceneEditorSheet> {
   late String _selectedEffect;
   late String _selectedTextEffect;
   late String _selectedTransition;
+  late String _selectedTemplateId;
+  String _selectedCategoryTab = 'All';
 
   final List<String> _effects = const [
     'zoom_in',
@@ -188,6 +189,7 @@ class _SceneEditorSheetState extends State<SceneEditorSheet> {
     _selectedTransition = _transitions.contains(s.transitionOut)
         ? s.transitionOut
         : 'fade';
+    _selectedTemplateId = s.templateId.isNotEmpty ? s.templateId : 'documentary_six';
 
     _localImageBytes = s.localImageBytes;
     _localImageName = s.localImageName;
@@ -220,6 +222,225 @@ class _SceneEditorSheetState extends State<SceneEditorSheet> {
     _rightImageUrlCtrl.dispose();
 
     super.dispose();
+  }
+
+  void _openTemplateMarketplace() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setDialogState) {
+            final allTemplates = TemplateRegistry.getAll();
+            final categories = ['All', 'Documentary', 'News', 'Netflix', 'Dual Screen', 'Rankings', 'Cinema & Reveal'];
+            
+            final filtered = _selectedCategoryTab == 'All'
+                ? allTemplates
+                : allTemplates.where((t) => t.category == _selectedCategoryTab).toList();
+
+            return Dialog(
+              backgroundColor: const Color(0xFF0F111A),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+              insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+              child: Container(
+                width: 900,
+                height: 650,
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Template Marketplace',
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                letterSpacing: 0.5,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              'Choose a premium visual layout for your scene',
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: Colors.white.withOpacity(0.6),
+                              ),
+                            ),
+                          ],
+                        ),
+                        IconButton(
+                          onPressed: () => Navigator.pop(context),
+                          icon: const Icon(Icons.close, color: Colors.white54),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: categories.map((cat) {
+                          final isSelected = cat == _selectedCategoryTab;
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: ChoiceChip(
+                              label: Text(cat),
+                              selected: isSelected,
+                              onSelected: (selected) {
+                                if (selected) {
+                                  setDialogState(() {
+                                    _selectedCategoryTab = cat;
+                                  });
+                                }
+                              },
+                              selectedColor: Theme.of(context).colorScheme.primary,
+                              labelStyle: TextStyle(
+                                color: isSelected ? Colors.black : Colors.white70,
+                                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Expanded(
+                      child: filtered.isEmpty
+                          ? const Center(child: Text('No templates found in this category'))
+                          : GridView.builder(
+                              itemCount: filtered.length,
+                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                childAspectRatio: 1.25,
+                                crossAxisSpacing: 16,
+                                mainAxisSpacing: 16,
+                              ),
+                              itemBuilder: (context, idx) {
+                                final template = filtered[idx];
+                                final isCurrent = template.id == _selectedTemplateId;
+                                return InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      _selectedTemplateId = template.id;
+                                      _previewScene = _buildSceneFromInputs();
+                                      _previewKey = UniqueKey();
+                                    });
+                                    Navigator.pop(context);
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text('Applied template: ${template.name}'),
+                                        duration: const Duration(seconds: 1),
+                                      ),
+                                    );
+                                  },
+                                  borderRadius: BorderRadius.circular(16),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(16),
+                                      border: Border.all(
+                                        color: isCurrent
+                                            ? Theme.of(context).colorScheme.primary
+                                            : Colors.white.withOpacity(0.08),
+                                        width: isCurrent ? 2 : 1,
+                                      ),
+                                      gradient: const LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        colors: [
+                                          Color(0xFF161A26),
+                                          Color(0xFF0F111E),
+                                        ],
+                                      ),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(15),
+                                      child: Stack(
+                                        children: [
+                                          Positioned.fill(
+                                            child: Opacity(
+                                              opacity: 0.15,
+                                              child: Image.network(
+                                                template.thumbnailUrl,
+                                                fit: BoxFit.cover,
+                                                errorBuilder: (_, __, ___) => Container(color: Colors.transparent),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(14),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Container(
+                                                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white.withOpacity(0.08),
+                                                        borderRadius: BorderRadius.circular(6),
+                                                      ),
+                                                      child: Text(
+                                                        template.category.toUpperCase(),
+                                                        style: const TextStyle(
+                                                          fontSize: 8.5,
+                                                          fontWeight: FontWeight.bold,
+                                                          color: Colors.white70,
+                                                          letterSpacing: 1.0,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    if (isCurrent)
+                                                      Icon(
+                                                        Icons.check_circle,
+                                                        color: Theme.of(context).colorScheme.primary,
+                                                        size: 20,
+                                                      ),
+                                                  ],
+                                                ),
+                                                const Spacer(),
+                                                Text(
+                                                  template.name,
+                                                  style: const TextStyle(
+                                                    fontSize: 14.5,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 4),
+                                                Text(
+                                                  template.description,
+                                                  maxLines: 2,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  style: TextStyle(
+                                                    fontSize: 11,
+                                                    color: Colors.white.withOpacity(0.5),
+                                                    height: 1.3,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
   }
 
   Future<void> _pickImage() async {
@@ -302,6 +523,7 @@ class _SceneEditorSheetState extends State<SceneEditorSheet> {
 
     return SceneConfig(
       id: widget.scene.id,
+      templateId: _selectedTemplateId,
       title: _titleCtrl.text.trim(),
       subtitle: _subtitleCtrl.text.trim(),
       hook: _hookCtrl.text.trim(),
@@ -438,6 +660,85 @@ class _SceneEditorSheetState extends State<SceneEditorSheet> {
                               color: Colors.white.withValues(alpha: 0.85),
                             ),
                           ),
+                        ),
+                        const SizedBox(height: 8),
+                        Builder(
+                          builder: (context) {
+                            final currentTemplate = TemplateRegistry.get(_selectedTemplateId) ?? 
+                                                    TemplateRegistry.get('documentary_six')!;
+                            return Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.all(12),
+                              margin: const EdgeInsets.only(bottom: 12),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(14),
+                                border: Border.all(
+                                  color: Colors.white.withOpacity(0.15),
+                                  width: 1,
+                                ),
+                                gradient: const LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [Color(0xFF1E2235), Color(0xFF0F111E)],
+                                ),
+                              ),
+                              child: Row(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Image.network(
+                                      currentTemplate.thumbnailUrl,
+                                      width: 50,
+                                      height: 50,
+                                      fit: BoxFit.cover,
+                                      errorBuilder: (_, __, ___) => Container(
+                                        width: 50,
+                                        height: 50,
+                                        color: Colors.grey.shade900,
+                                        child: const Icon(Icons.movie, color: Colors.white24, size: 20),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white.withOpacity(0.08),
+                                            borderRadius: BorderRadius.circular(4),
+                                          ),
+                                          child: Text(
+                                            currentTemplate.category.toUpperCase(),
+                                            style: const TextStyle(fontSize: 8, color: Colors.white70, fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 4),
+                                        Text(
+                                          currentTemplate.name,
+                                          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  ElevatedButton.icon(
+                                    onPressed: _openTemplateMarketplace,
+                                    icon: const Icon(Icons.style, size: 14),
+                                    label: const Text('Change Template', style: TextStyle(fontSize: 12)),
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.15),
+                                      foregroundColor: Theme.of(context).colorScheme.primary,
+                                      elevation: 0,
+                                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
                         ),
                         const SizedBox(height: 4),
                         _field('Title', _titleCtrl),
@@ -663,17 +964,10 @@ class _SceneEditorSheetState extends State<SceneEditorSheet> {
                                         ),
                                       ),
                                     )
-                                  : (_previewScene!.effect == 'dual_category'
-                                        ? DualCategoryScene(
-                                            key: _previewKey,
-                                            scene: _previewScene!,
-                                            isPlaying: true,
-                                          )
-                                        : CinematicScene(
-                                            key: _previewKey,
-                                            scene: _previewScene!,
-                                            isPlaying: true,
-                                          )),
+                                  : (TemplateRegistry.get(_previewScene!.templateId.isNotEmpty 
+                                          ? _previewScene!.templateId 
+                                          : (_previewScene!.effect == 'dual_category' ? 'dual_category' : 'documentary_six')) ?? TemplateRegistry.get('documentary_six')!)
+                                      .builder(context, _previewScene!, true),
                             ),
                           ),
                         ),

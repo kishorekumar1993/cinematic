@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 class SceneConfig {
   final String id;
+  final String templateId;
   final String title;
   final String subtitle;
   final String hook;
@@ -38,6 +39,7 @@ class SceneConfig {
 
   SceneConfig({
     required this.id,
+    this.templateId = '',
     required this.title,
     required this.subtitle,
     required this.hook,
@@ -73,6 +75,7 @@ class SceneConfig {
   factory SceneConfig.fromJson(Map<String, dynamic> json) {
     return SceneConfig(
       id: json['id'] as String,
+      templateId: json['templateId'] as String? ?? '',
       title: json['title'] as String? ?? '',
       subtitle: json['subtitle'] as String? ?? '',
       hook: json['hook'] as String? ?? '',
@@ -118,6 +121,7 @@ class SceneConfig {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
+      'templateId': templateId,
       'title': title,
       'subtitle': subtitle,
       'hook': hook,

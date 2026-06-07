@@ -5,21 +5,21 @@ import 'package:flutter/material.dart';
 /// SINGLE CINEMATIC SCENE
 /// ----------------------
 
-class CinematicScene extends StatefulWidget {
+class CinematicScreen extends StatefulWidget {
   final SceneConfig scene;
   final bool isPlaying;
 
-  const CinematicScene({
+  const CinematicScreen({
     super.key,
     required this.scene,
     required this.isPlaying,
   });
 
   @override
-  State<CinematicScene> createState() => _CinematicSceneState();
+  State<CinematicScreen> createState() => _CinematicScreenState();
 }
 
-class _CinematicSceneState extends State<CinematicScene>
+class _CinematicScreenState extends State<CinematicScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _zoom;
@@ -120,7 +120,7 @@ class _CinematicSceneState extends State<CinematicScene>
   }
 
   @override
-  void didUpdateWidget(covariant CinematicScene oldWidget) {
+  void didUpdateWidget(covariant CinematicScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isPlaying != widget.isPlaying) {
       if (widget.isPlaying) {

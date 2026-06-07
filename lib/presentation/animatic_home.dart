@@ -8,12 +8,12 @@ import 'package:cinematic/presentation/cinematic_player.dart';
 import 'package:cinematic/presentation/full_preview.dart';
 import 'package:cinematic/presentation/scene_thumblain.dart';
 import 'package:cinematic/presentation/screen_editor.dart';
+import 'package:cinematic/presentation/bulk_generator_sheet.dart';
 import 'package:cinematic/video/frame_video_exporter.dart';
 import 'package:cinematic/video/video_export_service.dart';
 import 'package:cinematic/video/video_export_web.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'dart:html' as html;
 
 /// ----------------------
 /// HOME PAGE
@@ -36,6 +36,33 @@ class _AnimaticHomePageState extends State<AnimaticHomePage> {
   void initState() {
     super.initState();
     _loadSampleArchive();
+  }
+
+  void _openBulkGenerator() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: const Color(0xFF10121A),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (context) {
+        return const BulkGeneratorSheet();
+      },
+    ).then((result) {
+      if (result != null && result is AnimaticArchive && mounted) {
+        setState(() {
+          _archive = result;
+          _currentSceneIndex = 0;
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Successfully loaded bulk generated project: "${result.title}"'),
+            backgroundColor: Colors.green.shade800,
+          ),
+        );
+      }
+    });
   }
 
   void _loadSampleArchive() {
@@ -363,6 +390,11 @@ class _AnimaticHomePageState extends State<AnimaticHomePage> {
         elevation: 0,
         actions: [
           IconButton(
+            tooltip: 'Bulk Video Generator',
+            onPressed: _openBulkGenerator,
+            icon: const Icon(Icons.auto_awesome_motion, color: Colors.cyanAccent),
+          ),
+          IconButton(
             tooltip: 'Load JSON',
             onPressed: _showLoadJsonDialog,
             icon: const Icon(Icons.cloud_download),
@@ -628,22 +660,62 @@ class _AnimaticHomePageState extends State<AnimaticHomePage> {
                           ),
                         ),
                         child: SizedBox(
-                          height: 96,
-                          child: ListView.separated(
+                          height: 104,
+                          child: ReorderableListView.builder(
                             scrollDirection: Axis.horizontal,
+                            onReorder: (oldIndex, newIndex) {
+                              setState(() {
+                                if (newIndex > oldIndex) {
+                                  newIndex -= 1;
+                                }
+                                final item = archive.scenes.removeAt(oldIndex);
+                                archive.scenes.insert(newIndex, item);
+                              });
+                            },
                             itemBuilder: (context, index) {
                               final scene = archive.scenes[index];
-                              return GestureDetector(
-                                onTap: () => _editScene(index),
-                                child: SceneThumbnail(
-                                  scene: scene,
-                                  index: index,
-                                  isActive: index == _currentSceneIndex,
+                              return ReorderableDelayedDragStartListener(
+                                key: ValueKey('horiz_${scene.id}'),
+                                index: index,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 8.0),
+                                  child: Stack(
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () => _editScene(index),
+                                        child: SceneThumbnail(
+                                          scene: scene,
+                                          index: index,
+                                          isActive: index == _currentSceneIndex,
+                                        ),
+                                      ),
+                                      Positioned(
+                                        right: 2,
+                                        top: 2,
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              archive.scenes.removeAt(index);
+                                              if (_currentSceneIndex >= archive.scenes.length) {
+                                                _currentSceneIndex = archive.scenes.length - 1;
+                                              }
+                                            });
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.all(3),
+                                            decoration: const BoxDecoration(
+                                              color: Colors.redAccent,
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: const Icon(Icons.close, size: 8, color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               );
                             },
-                            separatorBuilder: (_, __) =>
-                                const SizedBox(width: 8),
                             itemCount: archive.scenes.length,
                           ),
                         ),
@@ -737,21 +809,73 @@ class _AnimaticHomePageState extends State<AnimaticHomePage> {
                                       ),
                                     ),
                                   ),
-                                  child: ListView.separated(
+                                  child: ReorderableListView.builder(
                                     padding: const EdgeInsets.all(8),
+                                    onReorder: (oldIndex, newIndex) {
+                                      setState(() {
+                                        if (newIndex > oldIndex) {
+                                          newIndex -= 1;
+                                        }
+                                        final item = archive.scenes.removeAt(oldIndex);
+                                        archive.scenes.insert(newIndex, item);
+                                      });
+                                    },
                                     itemBuilder: (context, index) {
                                       final scene = archive.scenes[index];
-                                      return GestureDetector(
-                                        onTap: () => _editScene(index),
-                                        child: SceneThumbnail(
-                                          scene: scene,
-                                          index: index,
-                                          isActive: index == _currentSceneIndex,
+                                      return ReorderableDelayedDragStartListener(
+                                        key: ValueKey('vert_${scene.id}'),
+                                        index: index,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(bottom: 8.0),
+                                          child: Stack(
+                                            children: [
+                                              GestureDetector(
+                                                onTap: () => _editScene(index),
+                                                child: SceneThumbnail(
+                                                  scene: scene,
+                                                  index: index,
+                                                  isActive: index == _currentSceneIndex,
+                                                ),
+                                              ),
+                                              Positioned(
+                                                right: 6,
+                                                top: 6,
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    setState(() {
+                                                      archive.scenes.removeAt(index);
+                                                      if (_currentSceneIndex >= archive.scenes.length) {
+                                                        _currentSceneIndex = archive.scenes.length - 1;
+                                                      }
+                                                    });
+                                                  },
+                                                  child: Container(
+                                                    padding: const EdgeInsets.all(4),
+                                                    decoration: const BoxDecoration(
+                                                      color: Colors.redAccent,
+                                                      shape: BoxShape.circle,
+                                                    ),
+                                                    child: const Icon(Icons.delete, size: 10, color: Colors.white),
+                                                  ),
+                                                ),
+                                              ),
+                                              Positioned(
+                                                left: 6,
+                                                top: 6,
+                                                child: Container(
+                                                  padding: const EdgeInsets.all(4),
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.black.withOpacity(0.5),
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: const Icon(Icons.drag_indicator, size: 10, color: Colors.white70),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       );
                                     },
-                                    separatorBuilder: (_, __) =>
-                                        const SizedBox(height: 8),
                                     itemCount: archive.scenes.length,
                                   ),
                                 ),

@@ -6,21 +6,21 @@ import 'package:flutter/material.dart';
 /// TOP 2025 MOVIE CINEMATIC TEMPLATE
 /// ----------------------
 
-class CinematicSceneMovieTop extends StatefulWidget {
+class MovieTempOne extends StatefulWidget {
   final SceneConfig scene;
   final bool isPlaying;
 
-  const CinematicSceneMovieTop({
+  const MovieTempOne({
     super.key,
     required this.scene,
     required this.isPlaying,
   });
 
   @override
-  State<CinematicSceneMovieTop> createState() => _CinematicSceneMovieTopState();
+  State<MovieTempOne> createState() => _MovieTempOneState();
 }
 
-class _CinematicSceneMovieTopState extends State<CinematicSceneMovieTop>
+class _MovieTempOneState extends State<MovieTempOne>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fadeIn;
@@ -79,7 +79,7 @@ class _CinematicSceneMovieTopState extends State<CinematicSceneMovieTop>
   }
 
   @override
-  void didUpdateWidget(covariant CinematicSceneMovieTop oldWidget) {
+  void didUpdateWidget(covariant MovieTempOne oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.isPlaying != widget.isPlaying) {

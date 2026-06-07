@@ -6,23 +6,23 @@ import 'package:flutter/material.dart';
 /// YOUTUBE VIDEO LAUNCH CINEMATIC TEMPLATE
 /// ----------------------
 
-class CinematicSceneYoutubeLaunch extends StatefulWidget {
+class YoutubeMovieTempTwo extends StatefulWidget {
   final SceneConfig scene;
   final bool isPlaying;
 
-  const CinematicSceneYoutubeLaunch({
+  const YoutubeMovieTempTwo({
     super.key,
     required this.scene,
     required this.isPlaying,
   });
 
   @override
-  State<CinematicSceneYoutubeLaunch> createState() =>
-      _CinematicSceneYoutubeLaunchState();
+  State<YoutubeMovieTempTwo> createState() =>
+      _YoutubeMovieTempTwoState();
 }
 
-class _CinematicSceneYoutubeLaunchState
-    extends State<CinematicSceneYoutubeLaunch>
+class _YoutubeMovieTempTwoState
+    extends State<YoutubeMovieTempTwo>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fadeIn;
@@ -105,7 +105,7 @@ class _CinematicSceneYoutubeLaunchState
   }
 
   @override
-  void didUpdateWidget(covariant CinematicSceneYoutubeLaunch oldWidget) {
+  void didUpdateWidget(covariant YoutubeMovieTempTwo oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.isPlaying != widget.isPlaying) {
