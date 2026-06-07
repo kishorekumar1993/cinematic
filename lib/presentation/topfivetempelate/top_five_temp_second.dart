@@ -281,8 +281,8 @@ class _CinemaTop5FromJsonScreenState extends State<CinemaTop5FromJsonScreen> {
                       gradient: RadialGradient(
                         radius: 1.2,
                         colors: [
-                          Colors.white.withOpacity(0.04),
-                          Colors.black.withOpacity(0.55),
+                          Colors.white.withValues(alpha:0.04),
+                          Colors.black.withValues(alpha:0.55),
                         ],
                         center: const Alignment(0, -0.2),
                       ),
@@ -299,7 +299,7 @@ class _CinemaTop5FromJsonScreenState extends State<CinemaTop5FromJsonScreen> {
                   Text(
                     config.subtitle,
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.9),
+                      color: Colors.white.withValues(alpha:0.9),
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                     ),
@@ -545,8 +545,8 @@ class _AnimatedSceneScreenState extends State<_AnimatedSceneScreen>
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Colors.black.withOpacity(0.55),
-                Colors.black.withOpacity(0.12),
+                Colors.black.withValues(alpha:0.55),
+                Colors.black.withValues(alpha:0.12),
               ],
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
@@ -596,12 +596,12 @@ class _MovieSceneTextContent extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(14, 10, 14, 10),
       constraints: const BoxConstraints(minHeight: 120),
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.78),
+        color: Colors.black.withValues(alpha:0.78),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: Colors.white.withOpacity(0.25)),
+        border: Border.all(color: Colors.white.withValues(alpha:0.25)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.7),
+            color: Colors.black.withValues(alpha:0.7),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
@@ -854,7 +854,7 @@ class _CinemaFrame extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.9),
+            color: Colors.black.withValues(alpha:0.9),
             blurRadius: 26,
             offset: const Offset(0, 14),
           ),
@@ -1027,7 +1027,7 @@ class _RankStarWithLabel extends StatelessWidget {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(isSelected ? 0.85 : 0.65),
+                    color: Colors.black.withValues(alpha:isSelected ? 0.85 : 0.65),
                     blurRadius: isSelected ? 12 : 8,
                     offset: const Offset(0, 6),
                   ),

@@ -171,7 +171,7 @@ class _CinematicSceneDocumentryThreeState extends State<CinematicSceneDocumentry
                 scale: _zoom.value,
                 child: ColorFiltered(
                   colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.35),
+                    Colors.black.withValues(alpha:0.35),
                     BlendMode.darken,
                   ),
                   child: _buildBackground(scene),
@@ -186,8 +186,8 @@ class _CinematicSceneDocumentryThreeState extends State<CinematicSceneDocumentry
                   center: Alignment.center,
                   radius: 1.0,
                   colors: [
-                    Colors.black.withOpacity(0.15),
-                    Colors.black.withOpacity(0.9),
+                    Colors.black.withValues(alpha:0.15),
+                    Colors.black.withValues(alpha:0.9),
                   ],
                   stops: const [0.35, 1.0],
                 ),
@@ -202,10 +202,10 @@ class _CinematicSceneDocumentryThreeState extends State<CinematicSceneDocumentry
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
                 decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.8),
+                  color: Colors.black.withValues(alpha:0.8),
                   borderRadius: BorderRadius.circular(999),
                   border: Border.all(
-                    color: Colors.white.withOpacity(0.3),
+                    color: Colors.white.withValues(alpha:0.3),
                     width: 0.8,
                   ),
                 ),
@@ -251,14 +251,14 @@ class _CinematicSceneDocumentryThreeState extends State<CinematicSceneDocumentry
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(18),
                               // Parchment-style neutral paper
-                              color: const Color(0xFFFAF4E8).withOpacity(0.96),
+                              color: const Color(0xFFFAF4E8).withValues(alpha:0.96),
                               border: Border.all(
                                 color: const Color(0xFFB0A28E),
                                 width: 1.0,
                               ),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.black.withOpacity(0.7),
+                                  color: Colors.black.withValues(alpha:0.7),
                                   blurRadius: 22,
                                   offset: const Offset(0, 16),
                                 ),

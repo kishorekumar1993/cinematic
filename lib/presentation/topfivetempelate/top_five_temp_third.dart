@@ -413,7 +413,7 @@ class _HeaderTitle extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 14,
-            color: Colors.white.withOpacity(0.9),
+            color: Colors.white.withValues(alpha:0.9),
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -443,7 +443,7 @@ class _MainCard extends StatelessWidget {
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.85),
+              color: Colors.black.withValues(alpha:0.85),
               blurRadius: 22,
               offset: const Offset(0, 14),
             ),
@@ -472,7 +472,7 @@ class _MainCard extends StatelessWidget {
                     ),
                     border: Border(
                       left: BorderSide(
-                        color: Colors.white.withOpacity(0.12),
+                        color: Colors.white.withValues(alpha:0.12),
                         width: 0.5,
                       ),
                     ),
@@ -626,8 +626,8 @@ Widget _buildImage() {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Colors.black.withOpacity(0.25),
-                  Colors.black.withOpacity(0.05),
+                  Colors.black.withValues(alpha:0.25),
+                  Colors.black.withValues(alpha:0.05),
                 ],
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
@@ -645,7 +645,7 @@ Widget _buildImage() {
                 const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(999),
-              color: Colors.black.withOpacity(0.55),
+              color: Colors.black.withValues(alpha:0.55),
             ),
             child: const Text(
               'POSTER',
@@ -901,7 +901,7 @@ class _RankChip extends StatelessWidget {
 
     final borderColor = isSelected
         ? Colors.white
-        : Colors.white.withOpacity(0.15);
+        : Colors.white.withValues(alpha:0.15);
 
     final textColor = isSelected ? Colors.black : Colors.white70;
 
@@ -932,7 +932,7 @@ class _RankChip extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: isSelected
-                    ? Colors.black.withOpacity(0.12)
+                    ? Colors.black.withValues(alpha:0.12)
                     : const Color(0xFF20243C),
               ),
               child: Center(

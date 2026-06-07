@@ -129,7 +129,7 @@ class _CinematicSceneNewsOneState extends State<CinematicSceneNewsOne>
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.6),
+                        color: Colors.black.withValues(alpha:0.6),
                         blurRadius: 12,
                         offset: const Offset(0, 6),
                       )
@@ -166,7 +166,7 @@ class _CinematicSceneNewsOneState extends State<CinematicSceneNewsOne>
                       color: Colors.white,
                       shadows: [
                         Shadow(
-                          color: Colors.black.withOpacity(0.7),
+                          color: Colors.black.withValues(alpha:0.7),
                           blurRadius: 10,
                         )
                       ],

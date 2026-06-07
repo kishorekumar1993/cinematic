@@ -107,8 +107,8 @@ class _CinematicSceneHistoryRevealOneState
               decoration: BoxDecoration(
                 gradient: RadialGradient(
                   colors: [
-                    Colors.black.withOpacity(0.1),
-                    Colors.black.withOpacity(0.85),
+                    Colors.black.withValues(alpha:0.1),
+                    Colors.black.withValues(alpha:0.85),
                   ],
                   stops: const [0.3, 1.0],
                 ),
@@ -131,9 +131,9 @@ class _CinematicSceneHistoryRevealOneState
                       padding: const EdgeInsets.all(24),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        color: Colors.black.withOpacity(0.55),
+                        color: Colors.black.withValues(alpha:0.55),
                         border: Border.all(
-                          color: Colors.white.withOpacity(0.28),
+                          color: Colors.white.withValues(alpha:0.28),
                           width: 1,
                         ),
                       ),
@@ -189,9 +189,9 @@ class _CinematicSceneHistoryRevealOneState
                                           horizontal: 10, vertical: 6),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(999),
-                                        color: Colors.white.withOpacity(0.07),
+                                        color: Colors.white.withValues(alpha:0.07),
                                         border: Border.all(
-                                          color: Colors.white.withOpacity(0.3),
+                                          color: Colors.white.withValues(alpha:0.3),
                                         ),
                                       ),
                                       child: Text(
@@ -225,9 +225,9 @@ class _CinematicSceneHistoryRevealOneState
                         const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.black.withOpacity(0.65),
+                      color: Colors.black.withValues(alpha:0.65),
                       border: Border.all(
-                        color: Colors.white.withOpacity(0.25),
+                        color: Colors.white.withValues(alpha:0.25),
                       ),
                     ),
                     child: Text(

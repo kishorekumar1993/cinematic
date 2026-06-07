@@ -47,10 +47,10 @@ class CinematicNetflixTempTwo extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.55),
+                        color: Colors.black.withValues(alpha:0.55),
                         borderRadius: BorderRadius.circular(999),
                         border: Border.all(
-                          color: Colors.white.withOpacity(0.25),
+                          color: Colors.white.withValues(alpha:0.25),
                           width: 0.8,
                         ),
                       ),
@@ -101,10 +101,10 @@ class CinematicNetflixTempTwo extends StatelessWidget {
                         vertical: 6,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.55),
+                        color: Colors.black.withValues(alpha:0.55),
                         borderRadius: BorderRadius.circular(999),
                         border: Border.all(
-                          color: Colors.white.withOpacity(0.25),
+                          color: Colors.white.withValues(alpha:0.25),
                           width: 0.8,
                         ),
                       ),
@@ -135,7 +135,7 @@ class CinematicNetflixTempTwo extends StatelessWidget {
                     child: Container(
                       height: 3,
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.18),
+                        color: Colors.white.withValues(alpha:0.18),
                       ),
                       child: Align(
                         alignment: Alignment.centerLeft,
@@ -148,7 +148,7 @@ class CinematicNetflixTempTwo extends StatelessWidget {
                               gradient: LinearGradient(
                                 colors: [
                                   Colors.white,
-                                  Colors.redAccent.withOpacity(0.9),
+                                  Colors.redAccent.withValues(alpha:0.9),
                                 ],
                               ),
                             ),

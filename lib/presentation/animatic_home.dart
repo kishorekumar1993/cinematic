@@ -372,31 +372,42 @@ class _AnimaticHomePageState extends State<AnimaticHomePage> {
 // final exporter = FrameVideoExporter();
 
 
+  int _recordingSessionId = 0;
+
   Future<void> _startRecording() async {
+    final totalDuration = _archive?.scenes.fold<int>(0, (sum, scene) => sum + scene.durationSeconds) ?? 5;
+
     setState(() {
+      _recordingSessionId++;
       _isRecording = true;
+      _isPlaying = true;
       _statusMessage = 'Recording...';
     });
 
     try {
-      // Small delay to ensure the widget is fully laid out
-      await Future.delayed(const Duration(milliseconds: 100));
+      // Small delay to ensure the widget is fully laid out and CinematicPlayer resets to scene 0
+      await Future.delayed(const Duration(milliseconds: 200));
 
       await _exporter.startRecording(
         repaintKey: _previewKey,
         fps: 30,           // frames per second
-        durationSeconds: 5, // change as needed
+        durationSeconds: totalDuration,
       );
-
-      setState(() {
-        _statusMessage = 'Recording finished!';
-      });
     } catch (e) {
-      setState(() {
-        _statusMessage = 'Error: $e';
-        _isRecording = false;
-      });
       debugPrint('Recording error: $e');
+      if (mounted) {
+        setState(() {
+          _statusMessage = 'Error: $e';
+        });
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isRecording = false;
+          _isPlaying = false;
+          _statusMessage = 'Ready';
+        });
+      }
     }
   }
   final GlobalKey _previewKey = GlobalKey();
@@ -412,15 +423,21 @@ class _AnimaticHomePageState extends State<AnimaticHomePage> {
 
     try {
       await _exporter.stopRecording();
-      setState(() {
-        _isRecording = false;
-        _statusMessage = 'Ready';
-      });
     } catch (e) {
-      setState(() {
-        _statusMessage = 'Stop error: $e';
-        _isRecording = false;
-      });
+      debugPrint('Stop error: $e');
+      if (mounted) {
+        setState(() {
+          _statusMessage = 'Stop error: $e';
+        });
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isRecording = false;
+          _isPlaying = false;
+          _statusMessage = 'Ready';
+        });
+      }
     }
   }
   @override
@@ -654,6 +671,7 @@ class _AnimaticHomePageState extends State<AnimaticHomePage> {
                             child:  RepaintBoundary(
   key: _previewKey,
   child: CinematicPlayer(
+    key: ValueKey('player_session_$_recordingSessionId'),
     scenes: archive.scenes,
     isPlaying: _isPlaying,
     loop: true,
@@ -910,7 +928,7 @@ class _AnimaticHomePageState extends State<AnimaticHomePage> {
                                                 child: Container(
                                                   padding: const EdgeInsets.all(4),
                                                   decoration: BoxDecoration(
-                                                    color: Colors.black.withOpacity(0.5),
+                                                    color: Colors.black.withValues(alpha:0.5),
                                                     shape: BoxShape.circle,
                                                   ),
                                                   child: const Icon(Icons.drag_indicator, size: 10, color: Colors.white70),
@@ -1040,6 +1058,7 @@ class _AnimaticHomePageState extends State<AnimaticHomePage> {
                                     child: RepaintBoundary(
   key: _previewKey,
   child: CinematicPlayer(
+    key: ValueKey('player_session_$_recordingSessionId'),
     scenes: archive.scenes,
     isPlaying: _isPlaying,
     loop: true,

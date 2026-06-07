@@ -169,8 +169,8 @@ class _CinematicSceneNewsSevenState extends State<CinematicSceneNewsSeven>
                   center: Alignment.center,
                   radius: 1.1,
                   colors: [
-                    Colors.black.withOpacity(0.08),
-                    Colors.black.withOpacity(0.85),
+                    Colors.black.withValues(alpha:0.08),
+                    Colors.black.withValues(alpha:0.85),
                   ],
                   stops: const [0.3, 1.0],
                 ),
@@ -214,7 +214,7 @@ class _CinematicSceneNewsSevenState extends State<CinematicSceneNewsSeven>
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.7),
+                          color: Colors.black.withValues(alpha:0.7),
                           blurRadius: 10,
                           offset: const Offset(0, 4),
                         ),
@@ -265,14 +265,14 @@ class _CinematicSceneNewsSevenState extends State<CinematicSceneNewsSeven>
                                     const EdgeInsets.fromLTRB(18, 16, 18, 16),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                  color: Colors.black.withOpacity(0.55),
+                                  color: Colors.black.withValues(alpha:0.55),
                                   border: Border.all(
-                                    color: Colors.white.withOpacity(0.18),
+                                    color: Colors.white.withValues(alpha:0.18),
                                     width: 0.9,
                                   ),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.black.withOpacity(0.85),
+                                      color: Colors.black.withValues(alpha:0.85),
                                       blurRadius: 22,
                                       offset: const Offset(0, 14),
                                     ),
@@ -368,9 +368,9 @@ class _CinematicSceneNewsSevenState extends State<CinematicSceneNewsSeven>
                                     const EdgeInsets.fromLTRB(14, 12, 14, 14),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(18),
-                                  color: Colors.black.withOpacity(0.65),
+                                  color: Colors.black.withValues(alpha:0.65),
                                   border: Border.all(
-                                    color: Colors.white.withOpacity(0.22),
+                                    color: Colors.white.withValues(alpha:0.22),
                                     width: 0.9,
                                   ),
                                 ),
@@ -498,10 +498,10 @@ class _CinematicSceneNewsSevenState extends State<CinematicSceneNewsSeven>
               padding:
                   const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.1),
+                color: Colors.white.withValues(alpha:0.1),
                 borderRadius: BorderRadius.circular(999),
                 border: Border.all(
-                  color: Colors.white.withOpacity(0.25),
+                  color: Colors.white.withValues(alpha:0.25),
                   width: 0.7,
                 ),
               ),

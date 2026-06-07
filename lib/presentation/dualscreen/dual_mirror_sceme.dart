@@ -56,9 +56,9 @@ class DualMirrorScene extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Colors.white.withOpacity(0),
-                    Colors.white.withOpacity(.6),
-                    Colors.white.withOpacity(0),
+                    Colors.white.withValues(alpha:0),
+                    Colors.white.withValues(alpha:.6),
+                    Colors.white.withValues(alpha:0),
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -96,9 +96,9 @@ class DualMirrorScene extends StatelessWidget {
       margin: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
-        color: Colors.white.withOpacity(0.08),
+        color: Colors.white.withValues(alpha:0.08),
         border: Border.all(
-          color: Colors.white.withOpacity(0.15),
+          color: Colors.white.withValues(alpha:0.15),
         ),
       ),
       child: Column(
@@ -136,15 +136,15 @@ class DualMirrorScene extends StatelessWidget {
                 ),
                 gradient: LinearGradient(
                   colors: [
-                    accent.withOpacity(0.25),
-                    accent.withOpacity(0.05),
+                    accent.withValues(alpha:0.25),
+                    accent.withValues(alpha:0.05),
                   ],
                 ),
               ),
               alignment: Alignment.center,
               child: Icon(
                 Icons.image_outlined,
-                color: Colors.white.withOpacity(0.8),
+                color: Colors.white.withValues(alpha:0.8),
               ),
             ),
 
@@ -161,7 +161,7 @@ class DualMirrorScene extends StatelessWidget {
                     gradient: LinearGradient(
                       colors: [
                         accent,
-                        accent.withOpacity(0.1),
+                        accent.withValues(alpha:0.1),
                       ],
                     ),
                   ),

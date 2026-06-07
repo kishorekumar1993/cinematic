@@ -178,7 +178,7 @@ class _CinematicSceneDocumentryTwoState extends State<CinematicSceneDocumentryTw
                   ]),
                   child: ColorFiltered(
                     colorFilter: ColorFilter.mode(
-                      Colors.black.withOpacity(0.28),
+                      Colors.black.withValues(alpha:0.28),
                       BlendMode.darken,
                     ),
                     child: _buildBackground(scene),
@@ -194,8 +194,8 @@ class _CinematicSceneDocumentryTwoState extends State<CinematicSceneDocumentryTw
                   center: Alignment.center,
                   radius: 1.0,
                   colors: [
-                    Colors.black.withOpacity(0.18),
-                    Colors.black.withOpacity(0.92),
+                    Colors.black.withValues(alpha:0.18),
+                    Colors.black.withValues(alpha:0.92),
                   ],
                   stops: const [0.35, 1.0],
                 ),
@@ -219,9 +219,9 @@ class _CinematicSceneDocumentryTwoState extends State<CinematicSceneDocumentryTw
                       ),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(999),
-                        color: Colors.black.withOpacity(0.75),
+                        color: Colors.black.withValues(alpha:0.75),
                         border: Border.all(
-                          color: const Color(0xFFFACC15).withOpacity(0.7),
+                          color: const Color(0xFFFACC15).withValues(alpha:0.7),
                           width: 0.8,
                         ),
                       ),
@@ -269,14 +269,14 @@ class _CinematicSceneDocumentryTwoState extends State<CinematicSceneDocumentryTw
                             padding: const EdgeInsets.fromLTRB(22, 18, 22, 20),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(22),
-                              color: Colors.black.withOpacity(0.82),
+                              color: Colors.black.withValues(alpha:0.82),
                               border: Border.all(
-                                color: const Color(0xFFFACC15).withOpacity(0.6),
+                                color: const Color(0xFFFACC15).withValues(alpha:0.6),
                                 width: 1.2,
                               ),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.black.withOpacity(0.9),
+                                  color: Colors.black.withValues(alpha:0.9),
                                   blurRadius: 26,
                                   offset: const Offset(0, 18),
                                 ),

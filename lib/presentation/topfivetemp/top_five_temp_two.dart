@@ -155,7 +155,7 @@ class _CinematicTopFiveV2State extends State<CinematicTopFiveV2>
       Colors.blueAccent,
       Colors.white,
     ];
-    return colors[_random.nextInt(colors.length)].withOpacity(0.6);
+    return colors[_random.nextInt(colors.length)].withValues(alpha:0.6);
   }
 
   @override
@@ -248,7 +248,7 @@ class _CinematicTopFiveV2State extends State<CinematicTopFiveV2>
                 center: Alignment.center,
                 radius: 1.5,
                 colors: [
-                  Colors.black.withOpacity(0.8),
+                  Colors.black.withValues(alpha:0.8),
                   Colors.transparent,
                 ],
                 stops: const [0.3, 0.9],
@@ -273,7 +273,7 @@ class _CinematicTopFiveV2State extends State<CinematicTopFiveV2>
                 center: Alignment.center,
                 radius: 1.5,
                 colors: [
-                  Colors.black.withOpacity(0.7),
+                  Colors.black.withValues(alpha:0.7),
                   Colors.transparent,
                 ],
                 stops: const [0.2, 0.8],
@@ -317,13 +317,13 @@ class _CinematicTopFiveV2State extends State<CinematicTopFiveV2>
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                rankColor.withOpacity(0.15),
-                rankColor.withOpacity(0.05),
+                rankColor.withValues(alpha:0.15),
+                rankColor.withValues(alpha:0.05),
               ],
             ),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: rankColor.withOpacity(0.3),
+              color: rankColor.withValues(alpha:0.3),
               width: 1,
             ),
           ),
@@ -375,13 +375,13 @@ class _CinematicTopFiveV2State extends State<CinematicTopFiveV2>
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  Colors.white.withOpacity(0.1),
-                  Colors.white.withOpacity(0.05),
+                  Colors.white.withValues(alpha:0.1),
+                  Colors.white.withValues(alpha:0.05),
                 ],
               ),
               borderRadius: BorderRadius.circular(16),
               border: Border.all(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withValues(alpha:0.2),
                 width: 1,
               ),
             ),
@@ -431,7 +431,7 @@ class _CinematicTopFiveV2State extends State<CinematicTopFiveV2>
                 const SizedBox(height: 8),
                 LinearProgressIndicator(
                   value: (9.0 - (_rank - 1) * 0.5) / 10,
-                  backgroundColor: Colors.white.withOpacity(0.1),
+                  backgroundColor: Colors.white.withValues(alpha:0.1),
                   color: rankColor,
                   borderRadius: BorderRadius.circular(4),
                 ),
@@ -491,25 +491,25 @@ class _CinematicTopFiveV2State extends State<CinematicTopFiveV2>
                               shape: BoxShape.circle,
                               gradient: RadialGradient(
                                 colors: [
-                                  rankColor.withOpacity(0.9),
-                                  rankColor.withOpacity(0.1),
+                                  rankColor.withValues(alpha:0.9),
+                                  rankColor.withValues(alpha:0.1),
                                 ],
                                 stops: const [0.5, 1.0],
                               ),
                               boxShadow: [
                                 BoxShadow(
-                                  color: rankColor.withOpacity(0.5),
+                                  color: rankColor.withValues(alpha:0.5),
                                   blurRadius: 30 * _rankGlow.value.clamp(0.7, 1.2),
                                   spreadRadius: 10,
                                 ),
                                 BoxShadow(
-                                  color: Colors.black.withOpacity(0.5),
+                                  color: Colors.black.withValues(alpha:0.5),
                                   blurRadius: 20,
                                   offset: const Offset(0, 10),
                                 ),
                               ],
                               border: Border.all(
-                                color: Colors.white.withOpacity(0.3),
+                                color: Colors.white.withValues(alpha:0.3),
                                 width: 2,
                               ),
                             ),
@@ -522,7 +522,7 @@ class _CinematicTopFiveV2State extends State<CinematicTopFiveV2>
                                     shape: BoxShape.circle,
                                     gradient: RadialGradient(
                                       colors: [
-                                        Colors.white.withOpacity(0.2),
+                                        Colors.white.withValues(alpha:0.2),
                                         Colors.transparent,
                                       ],
                                       stops: const [0.1, 0.5],
@@ -542,7 +542,7 @@ class _CinematicTopFiveV2State extends State<CinematicTopFiveV2>
                                         height: 1.0,
                                         shadows: [
                                           Shadow(
-                                            color: Colors.black.withOpacity(0.8),
+                                            color: Colors.black.withValues(alpha:0.8),
                                             blurRadius: 15,
                                           ),
                                         ],
@@ -553,7 +553,7 @@ class _CinematicTopFiveV2State extends State<CinematicTopFiveV2>
                                       style: TextStyle(
                                         fontSize: 24,
                                         fontWeight: FontWeight.w700,
-                                        color: Colors.white.withOpacity(0.8),
+                                        color: Colors.white.withValues(alpha:0.8),
                                       ),
                                     ),
                                   ],
@@ -581,10 +581,10 @@ class _CinematicTopFiveV2State extends State<CinematicTopFiveV2>
                                       vertical: 6,
                                     ),
                                     decoration: BoxDecoration(
-                                      color: rankColor.withOpacity(0.2),
+                                      color: rankColor.withValues(alpha:0.2),
                                       borderRadius: BorderRadius.circular(20),
                                       border: Border.all(
-                                        color: rankColor.withOpacity(0.5),
+                                        color: rankColor.withValues(alpha:0.5),
                                         width: 1,
                                       ),
                                     ),
@@ -609,7 +609,7 @@ class _CinematicTopFiveV2State extends State<CinematicTopFiveV2>
                                     color: Colors.white,
                                     shadows: [
                                       Shadow(
-                                        color: Colors.black.withOpacity(0.8),
+                                        color: Colors.black.withValues(alpha:0.8),
                                         blurRadius: 15,
                                         offset: const Offset(0, 4),
                                       ),
@@ -626,7 +626,7 @@ class _CinematicTopFiveV2State extends State<CinematicTopFiveV2>
                                       style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600,
-                                        color: Colors.white.withOpacity(0.9),
+                                        color: Colors.white.withValues(alpha:0.9),
                                         fontStyle: FontStyle.italic,
                                       ),
                                     ),
@@ -661,10 +661,10 @@ class _CinematicTopFiveV2State extends State<CinematicTopFiveV2>
                                       style: TextStyle(
                                         fontSize: 18,
                                         height: 1.6,
-                                        color: Colors.white.withOpacity(0.9),
+                                        color: Colors.white.withValues(alpha:0.9),
                                         shadows: [
                                           Shadow(
-                                            color: Colors.black.withOpacity(0.5),
+                                            color: Colors.black.withValues(alpha:0.5),
                                             blurRadius: 8,
                                           ),
                                         ],
@@ -694,13 +694,13 @@ class _CinematicTopFiveV2State extends State<CinematicTopFiveV2>
                                                   begin: Alignment.topLeft,
                                                   end: Alignment.bottomRight,
                                                   colors: [
-                                                    Colors.white.withOpacity(0.1),
-                                                    Colors.white.withOpacity(0.05),
+                                                    Colors.white.withValues(alpha:0.1),
+                                                    Colors.white.withValues(alpha:0.05),
                                                   ],
                                                 ),
                                                 borderRadius: BorderRadius.circular(12),
                                                 border: Border.all(
-                                                  color: Colors.white.withOpacity(0.2),
+                                                  color: Colors.white.withValues(alpha:0.2),
                                                   width: 1,
                                                 ),
                                               ),
@@ -757,7 +757,7 @@ class _CinematicTopFiveV2State extends State<CinematicTopFiveV2>
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
                               letterSpacing: 2.0,
-                              color: Colors.white.withOpacity(0.6),
+                              color: Colors.white.withValues(alpha:0.6),
                             ),
                           ),
                           const SizedBox(height: 12),
@@ -776,13 +776,13 @@ class _CinematicTopFiveV2State extends State<CinematicTopFiveV2>
                                         ? LinearGradient(
                                             colors: [
                                               rankColor,
-                                              rankColor.withOpacity(0.7),
+                                              rankColor.withValues(alpha:0.7),
                                             ],
                                           )
                                         : null,
                                     color: index < _rank
                                         ? null
-                                        : Colors.white.withOpacity(0.1),
+                                        : Colors.white.withValues(alpha:0.1),
                                   ),
                                   child: index == _rank - 1
                                       ? Stack(
@@ -793,7 +793,7 @@ class _CinematicTopFiveV2State extends State<CinematicTopFiveV2>
                                                 gradient: LinearGradient(
                                                   colors: [
                                                     rankColor,
-                                                    rankColor.withOpacity(0.7),
+                                                    rankColor.withValues(alpha:0.7),
                                                   ],
                                                 ),
                                               ),
@@ -804,7 +804,7 @@ class _CinematicTopFiveV2State extends State<CinematicTopFiveV2>
                                                   borderRadius: BorderRadius.circular(2),
                                                   gradient: LinearGradient(
                                                     colors: [
-                                                      Colors.white.withOpacity(0.3),
+                                                      Colors.white.withValues(alpha:0.3),
                                                       Colors.transparent,
                                                     ],
                                                   ),
@@ -838,7 +838,7 @@ class _CinematicTopFiveV2State extends State<CinematicTopFiveV2>
                   decoration: BoxDecoration(
                     gradient: RadialGradient(
                       colors: [
-                        rankColor.withOpacity(0.1),
+                        rankColor.withValues(alpha:0.1),
                         Colors.transparent,
                       ],
                     ),
@@ -857,7 +857,7 @@ class _CinematicTopFiveV2State extends State<CinematicTopFiveV2>
                   decoration: BoxDecoration(
                     gradient: RadialGradient(
                       colors: [
-                        Colors.white.withOpacity(0.05),
+                        Colors.white.withValues(alpha:0.05),
                         Colors.transparent,
                       ],
                     ),

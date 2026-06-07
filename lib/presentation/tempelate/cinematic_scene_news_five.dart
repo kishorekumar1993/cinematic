@@ -173,8 +173,8 @@ class _CinematicSceneNewsFiveState extends State<CinematicSceneNewsFive>
                   center: Alignment.center,
                   radius: 1.1,
                   colors: [
-                    Colors.black.withOpacity(0.1),
-                    Colors.black.withOpacity(0.85),
+                    Colors.black.withValues(alpha:0.1),
+                    Colors.black.withValues(alpha:0.85),
                   ],
                   stops: const [0.3, 1.0],
                 ),
@@ -202,7 +202,7 @@ class _CinematicSceneNewsFiveState extends State<CinematicSceneNewsFive>
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.8),
+                        color: Colors.black.withValues(alpha:0.8),
                         blurRadius: 20,
                         offset: const Offset(0, 12),
                       ),
@@ -223,7 +223,7 @@ class _CinematicSceneNewsFiveState extends State<CinematicSceneNewsFive>
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
                               colors: [
-                                Colors.white.withOpacity(0.25),
+                                Colors.white.withValues(alpha:0.25),
                                 Colors.transparent,
                               ],
                             ),
@@ -262,10 +262,10 @@ class _CinematicSceneNewsFiveState extends State<CinematicSceneNewsFive>
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.6),
+                  color: Colors.black.withValues(alpha:0.6),
                   borderRadius: BorderRadius.circular(999),
                   border: Border.all(
-                    color: Colors.white.withOpacity(0.25),
+                    color: Colors.white.withValues(alpha:0.25),
                     width: 0.7,
                   ),
                 ),
@@ -315,14 +315,14 @@ class _CinematicSceneNewsFiveState extends State<CinematicSceneNewsFive>
                             padding: const EdgeInsets.fromLTRB(20, 18, 20, 18),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(22),
-                              color: Colors.black.withOpacity(0.55),
+                              color: Colors.black.withValues(alpha:0.55),
                               border: Border.all(
-                                color: Colors.white.withOpacity(0.22),
+                                color: Colors.white.withValues(alpha:0.22),
                                 width: 1.0,
                               ),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.black.withOpacity(0.85),
+                                  color: Colors.black.withValues(alpha:0.85),
                                   blurRadius: 26,
                                   offset: const Offset(0, 18),
                                 ),
@@ -344,10 +344,10 @@ class _CinematicSceneNewsFiveState extends State<CinematicSceneNewsFive>
                                         borderRadius:
                                             BorderRadius.circular(999),
                                         color:
-                                            Colors.white.withOpacity(0.08),
+                                            Colors.white.withValues(alpha:0.08),
                                         border: Border.all(
                                           color:
-                                              Colors.white.withOpacity(0.22),
+                                              Colors.white.withValues(alpha:0.22),
                                           width: 0.7,
                                         ),
                                       ),
@@ -429,12 +429,12 @@ class _CinematicSceneNewsFiveState extends State<CinematicSceneNewsFive>
                                             ),
                                             decoration: BoxDecoration(
                                               color: Colors.white
-                                                  .withOpacity(0.06),
+                                                  .withValues(alpha:0.06),
                                               borderRadius:
                                                   BorderRadius.circular(999),
                                               border: Border.all(
                                                 color: Colors.white
-                                                    .withOpacity(0.2),
+                                                    .withValues(alpha:0.2),
                                                 width: 0.6,
                                               ),
                                             ),

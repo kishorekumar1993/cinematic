@@ -177,7 +177,7 @@ class _CinematicSceneNewsTwoState extends State<CinematicSceneNewsTwo>
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.7),
+                        color: Colors.black.withValues(alpha:0.7),
                         blurRadius: 12,
                         offset: const Offset(0, 4),
                       ),
@@ -247,7 +247,7 @@ class _CinematicSceneNewsTwoState extends State<CinematicSceneNewsTwo>
                           color: Colors.white,
                           shadows: [
                             Shadow(
-                              color: Colors.black.withOpacity(0.7),
+                              color: Colors.black.withValues(alpha:0.7),
                               blurRadius: 10,
                             ),
                           ],
@@ -297,10 +297,10 @@ class _CinematicSceneNewsTwoState extends State<CinematicSceneNewsTwo>
                                     vertical: 4,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: Colors.white.withOpacity(0.08),
+                                    color: Colors.white.withValues(alpha:0.08),
                                     borderRadius: BorderRadius.circular(999),
                                     border: Border.all(
-                                      color: Colors.white.withOpacity(0.16),
+                                      color: Colors.white.withValues(alpha:0.16),
                                       width: 0.6,
                                     ),
                                   ),

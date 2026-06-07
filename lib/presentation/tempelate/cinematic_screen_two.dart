@@ -228,8 +228,8 @@ class _CinematicScreenTwoState extends State<CinematicScreenTwo>
                   center: Alignment.center,
                   radius: 1.2,
                   colors: [
-                    Colors.black.withOpacity(0.15),
-                    Colors.black.withOpacity(0.8),
+                    Colors.black.withValues(alpha:0.15),
+                    Colors.black.withValues(alpha:0.8),
                   ],
                   stops: const [0.1, 1.0],
                 ),
@@ -246,8 +246,8 @@ class _CinematicScreenTwoState extends State<CinematicScreenTwo>
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Colors.black.withOpacity(0.9),
-                      Colors.black.withOpacity(0.3),
+                      Colors.black.withValues(alpha:0.9),
+                      Colors.black.withValues(alpha:0.3),
                       Colors.transparent,
                     ],
                   ),
@@ -263,10 +263,10 @@ class _CinematicScreenTwoState extends State<CinematicScreenTwo>
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.1),
+                        color: Colors.white.withValues(alpha:0.1),
                         borderRadius: BorderRadius.circular(999),
                         border: Border.all(
-                          color: Colors.white.withOpacity(0.25),
+                          color: Colors.white.withValues(alpha:0.25),
                           width: 0.6,
                         ),
                       ),
@@ -320,8 +320,8 @@ class _CinematicScreenTwoState extends State<CinematicScreenTwo>
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
                     colors: [
-                      Colors.black.withOpacity(0.9),
-                      Colors.black.withOpacity(0.3),
+                      Colors.black.withValues(alpha:0.9),
+                      Colors.black.withValues(alpha:0.3),
                       Colors.transparent,
                     ],
                   ),
@@ -372,14 +372,14 @@ class _CinematicScreenTwoState extends State<CinematicScreenTwo>
                                     20, 16, 20, 20),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(22),
-                                  color: Colors.black.withOpacity(0.45),
+                                  color: Colors.black.withValues(alpha:0.45),
                                   border: Border.all(
-                                    color: Colors.white.withOpacity(0.18),
+                                    color: Colors.white.withValues(alpha:0.18),
                                     width: 1.0,
                                   ),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.black.withOpacity(0.7),
+                                      color: Colors.black.withValues(alpha:0.7),
                                       blurRadius: 22,
                                       offset: const Offset(0, 14),
                                     ),
@@ -416,7 +416,7 @@ class _CinematicScreenTwoState extends State<CinematicScreenTwo>
                                             ),
                                             decoration: BoxDecoration(
                                               color: Colors.white
-                                                  .withOpacity(0.06),
+                                                  .withValues(alpha:0.06),
                                               borderRadius:
                                                   BorderRadius.circular(999),
                                             ),
@@ -502,7 +502,7 @@ class _CinematicScreenTwoState extends State<CinematicScreenTwo>
                                             width: 20,
                                             height: 1,
                                             color: Colors.white
-                                                .withOpacity(0.7),
+                                                .withValues(alpha:0.7),
                                           ),
                                           const SizedBox(width: 8),
                                           Expanded(

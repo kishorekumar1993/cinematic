@@ -159,8 +159,8 @@ class _CinematicSceneNewsSixState extends State<CinematicSceneNewsSix>
                   center: Alignment.topCenter,
                   radius: 1.2,
                   colors: [
-                    Colors.black.withOpacity(0.1),
-                    Colors.black.withOpacity(0.8),
+                    Colors.black.withValues(alpha:0.1),
+                    Colors.black.withValues(alpha:0.8),
                   ],
                   stops: const [0.4, 1.0],
                 ),
@@ -204,7 +204,7 @@ class _CinematicSceneNewsSixState extends State<CinematicSceneNewsSix>
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.7),
+                          color: Colors.black.withValues(alpha:0.7),
                           blurRadius: 10,
                           offset: const Offset(0, 4),
                         ),
@@ -235,10 +235,10 @@ class _CinematicSceneNewsSixState extends State<CinematicSceneNewsSix>
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.65),
+                        color: Colors.black.withValues(alpha:0.65),
                         borderRadius: BorderRadius.circular(999),
                         border: Border.all(
-                          color: Colors.white.withOpacity(0.25),
+                          color: Colors.white.withValues(alpha:0.25),
                           width: 0.7,
                         ),
                       ),
@@ -274,14 +274,14 @@ class _CinematicSceneNewsSixState extends State<CinematicSceneNewsSix>
                             padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(18),
-                              color: Colors.black.withOpacity(0.65),
+                              color: Colors.black.withValues(alpha:0.65),
                               border: Border.all(
-                                color: Colors.white.withOpacity(0.18),
+                                color: Colors.white.withValues(alpha:0.18),
                                 width: 0.9,
                               ),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.black.withOpacity(0.85),
+                                  color: Colors.black.withValues(alpha:0.85),
                                   blurRadius: 20,
                                   offset: const Offset(0, 10),
                                 ),
@@ -303,10 +303,10 @@ class _CinematicSceneNewsSixState extends State<CinematicSceneNewsSix>
                                         borderRadius:
                                             BorderRadius.circular(999),
                                         color:
-                                            Colors.white.withOpacity(0.08),
+                                            Colors.white.withValues(alpha:0.08),
                                         border: Border.all(
                                           color:
-                                              Colors.white.withOpacity(0.22),
+                                              Colors.white.withValues(alpha:0.22),
                                           width: 0.7,
                                         ),
                                       ),
@@ -378,12 +378,12 @@ class _CinematicSceneNewsSixState extends State<CinematicSceneNewsSix>
                                             ),
                                             decoration: BoxDecoration(
                                               color: Colors.white
-                                                  .withOpacity(0.06),
+                                                  .withValues(alpha:0.06),
                                               borderRadius:
                                                   BorderRadius.circular(999),
                                               border: Border.all(
                                                 color: Colors.white
-                                                    .withOpacity(0.2),
+                                                    .withValues(alpha:0.2),
                                                 width: 0.6,
                                               ),
                                             ),
@@ -418,9 +418,9 @@ class _CinematicSceneNewsSixState extends State<CinematicSceneNewsSix>
                           padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(16),
-                            color: Colors.black.withOpacity(0.7),
+                            color: Colors.black.withValues(alpha:0.7),
                             border: Border.all(
-                              color: Colors.white.withOpacity(0.2),
+                              color: Colors.white.withValues(alpha:0.2),
                               width: 0.8,
                             ),
                           ),
@@ -457,7 +457,7 @@ class _CinematicSceneNewsSixState extends State<CinematicSceneNewsSix>
                               Icon(
                                 Icons.people_alt_rounded,
                                 size: 20,
-                                color: Colors.white.withOpacity(0.9),
+                                color: Colors.white.withValues(alpha:0.9),
                               ),
                               const SizedBox(height: 4),
                               const Text(

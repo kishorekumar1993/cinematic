@@ -370,7 +370,7 @@ class TopBarTitle extends StatelessWidget {
           style: TextStyle(
             fontSize: 13,
             fontWeight: FontWeight.w500,
-            color: Colors.white.withOpacity(0.85),
+            color: Colors.white.withValues(alpha:0.85),
             letterSpacing: 0.6,
           ),
         ),
@@ -545,8 +545,8 @@ class _AnimatedSceneFrameState extends State<_AnimatedSceneFrame>
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Colors.black.withOpacity(0.75),
-                        Colors.black.withOpacity(0.20),
+                        Colors.black.withValues(alpha:0.75),
+                        Colors.black.withValues(alpha:0.20),
                       ],
                       begin: Alignment.bottomLeft,
                       end: Alignment.topRight,
@@ -629,7 +629,7 @@ class _AnimatedSceneFrameState extends State<_AnimatedSceneFrame>
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Colors.black.withOpacity(0.65),
+                  Colors.black.withValues(alpha:0.65),
                   Colors.transparent,
                 ],
                 begin: Alignment.bottomCenter,
@@ -643,7 +643,7 @@ class _AnimatedSceneFrameState extends State<_AnimatedSceneFrame>
         Positioned.fill(
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.08),
+              color: Colors.black.withValues(alpha:0.08),
               backgroundBlendMode: BlendMode.overlay,
             ),
           ),
@@ -679,12 +679,12 @@ class _SceneTextContent extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
           decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.35),
+            color: Colors.black.withValues(alpha:0.35),
             borderRadius: BorderRadius.circular(18),
-            border: Border.all(color: Colors.white.withOpacity(0.16)),
+            border: Border.all(color: Colors.white.withValues(alpha:0.16)),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.5),
+                color: Colors.black.withValues(alpha:0.5),
                 offset: const Offset(0, 6),
                 blurRadius: 16,
               ),
@@ -719,7 +719,7 @@ class _SceneTextContent extends StatelessWidget {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.orange.withOpacity(0.5),
+                          color: Colors.orange.withValues(alpha:0.5),
                           blurRadius: 6,
                           offset: const Offset(0, 4),
                         ),
@@ -778,9 +778,9 @@ class _SceneTextContent extends StatelessWidget {
                                   horizontal: 10, vertical: 5),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(999),
-                                color: Colors.black.withOpacity(0.35),
+                                color: Colors.black.withValues(alpha:0.35),
                                 border: Border.all(
-                                  color: Colors.cyanAccent.withOpacity(0.8),
+                                  color: Colors.cyanAccent.withValues(alpha:0.8),
                                   width: 1,
                                 ),
                               ),
@@ -807,7 +807,7 @@ class _SceneTextContent extends StatelessWidget {
                             ),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.greenAccent.withOpacity(0.4),
+                                color: Colors.greenAccent.withValues(alpha:0.4),
                                 blurRadius: 8,
                                 offset: const Offset(0, 4),
                               )
@@ -857,8 +857,8 @@ class _RankingColumn extends StatelessWidget {
         ),
         gradient: LinearGradient(
           colors: [
-            const Color(0xFF10163A).withOpacity(0.97),
-            const Color(0xFF090E26).withOpacity(0.9),
+            const Color(0xFF10163A).withValues(alpha:0.97),
+            const Color(0xFF090E26).withValues(alpha:0.9),
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -1003,7 +1003,7 @@ class _RankCard extends StatelessWidget {
         gradient: bgGradient,
         boxShadow: [
           BoxShadow(
-            color: borderColor.withOpacity(isSelected ? 0.7 : 0.3),
+            color: borderColor.withValues(alpha:isSelected ? 0.7 : 0.3),
             blurRadius: isSelected ? 18 : 10,
             offset: const Offset(0, 6),
           ),
@@ -1083,7 +1083,7 @@ class _RankCard extends StatelessWidget {
                     style: TextStyle(
                       color: isSelected
                           ? Colors.white
-                          : Colors.white.withOpacity(0.88),
+                          : Colors.white.withValues(alpha:0.88),
                       fontSize: 12,
                       fontWeight:
                           isSelected ? FontWeight.w700 : FontWeight.w600,
@@ -1096,7 +1096,7 @@ class _RankCard extends StatelessWidget {
                       Text(
                         '${scene.subtitle}',
                         style: TextStyle(
-                          color: Colors.white.withOpacity(0.7),
+                          color: Colors.white.withValues(alpha:0.7),
                           fontSize: 10,
                         ),
                       ),

@@ -103,7 +103,7 @@ class DualBannerScene extends StatelessWidget {
         borderRadius: BorderRadius.circular(26),
         gradient: LinearGradient(
           colors: [
-            color.withOpacity(0.20),
+            color.withValues(alpha:0.20),
             Colors.transparent,
           ],
         ),
@@ -140,15 +140,15 @@ class DualBannerScene extends StatelessWidget {
                 borderRadius: BorderRadius.circular(18),
                 gradient: LinearGradient(
                   colors: [
-                    color.withOpacity(0.25),
-                    color.withOpacity(0.05),
+                    color.withValues(alpha:0.25),
+                    color.withValues(alpha:0.05),
                   ],
                 ),
               ),
               alignment: Alignment.center,
               child: Icon(
                 Icons.image_outlined,
-                color: Colors.white.withOpacity(0.8),
+                color: Colors.white.withValues(alpha:0.8),
               ),
             ),
 

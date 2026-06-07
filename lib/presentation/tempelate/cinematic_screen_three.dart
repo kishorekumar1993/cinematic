@@ -243,8 +243,8 @@ class _CinematicScreenThreeState extends State<CinematicScreenThree>
                   center: Alignment.center,
                   radius: 1.0,
                   colors: [
-                    Colors.black.withOpacity(0.0),
-                    Colors.black.withOpacity(0.75),
+                    Colors.black.withValues(alpha:0.0),
+                    Colors.black.withValues(alpha:0.75),
                   ],
                   stops: const [0.6, 1.0],
                 ),
@@ -332,14 +332,14 @@ class _CinematicScreenThreeState extends State<CinematicScreenThree>
                             padding: const EdgeInsets.fromLTRB(24, 20, 24, 22),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(26),
-                              color: Colors.black.withOpacity(0.55),
+                              color: Colors.black.withValues(alpha:0.55),
                               border: Border.all(
-                                color: Colors.white.withOpacity(0.22),
+                                color: Colors.white.withValues(alpha:0.22),
                                 width: 1.2,
                               ),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.black.withOpacity(0.8),
+                                  color: Colors.black.withValues(alpha:0.8),
                                   blurRadius: 26,
                                   offset: const Offset(0, 18),
                                 ),
@@ -461,11 +461,11 @@ class _CinematicScreenThreeState extends State<CinematicScreenThree>
                                         ),
                                         decoration: BoxDecoration(
                                           color:
-                                              Colors.white.withOpacity(0.06),
+                                              Colors.white.withValues(alpha:0.06),
                                           borderRadius:
                                               BorderRadius.circular(999),
                                           border: Border.all(
-                                            color: Colors.white.withOpacity(0.15),
+                                            color: Colors.white.withValues(alpha:0.15),
                                             width: 0.6,
                                           ),
                                         ),
@@ -501,7 +501,7 @@ class _CinematicScreenThreeState extends State<CinematicScreenThree>
                                     decoration: BoxDecoration(
                                       border: Border(
                                         top: BorderSide(
-                                          color: Colors.white.withOpacity(0.16),
+                                          color: Colors.white.withValues(alpha:0.16),
                                           width: 0.7,
                                         ),
                                       ),
@@ -552,10 +552,10 @@ class _CinematicScreenThreeState extends State<CinematicScreenThree>
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.65),
+                    color: Colors.black.withValues(alpha:0.65),
                     borderRadius: BorderRadius.circular(999),
                     border: Border.all(
-                      color: Colors.white.withOpacity(0.2),
+                      color: Colors.white.withValues(alpha:0.2),
                       width: 0.6,
                     ),
                   ),

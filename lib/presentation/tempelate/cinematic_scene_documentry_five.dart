@@ -94,7 +94,7 @@ class _CinematicSceneDocumentryFiveState extends State<CinematicSceneDocumentryF
                 children: [
                   _bg(scene),
                   Container(
-                    color: Colors.black.withOpacity(0.35),
+                    color: Colors.black.withValues(alpha:0.35),
                   ),
                   // radial spotlight
                   Container(
@@ -103,8 +103,8 @@ class _CinematicSceneDocumentryFiveState extends State<CinematicSceneDocumentryF
                         center: Alignment.center,
                         radius: 0.8,
                         colors: [
-                          Colors.black.withOpacity(0.0),
-                          Colors.black.withOpacity(0.65),
+                          Colors.black.withValues(alpha:0.0),
+                          Colors.black.withValues(alpha:0.65),
                         ],
                       ),
                     ),
@@ -124,7 +124,7 @@ class _CinematicSceneDocumentryFiveState extends State<CinematicSceneDocumentryF
                     vertical: 12,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.75),
+                    color: Colors.black.withValues(alpha:0.75),
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
@@ -180,8 +180,8 @@ class _CinematicSceneDocumentryFiveState extends State<CinematicSceneDocumentryF
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
                         colors: [
-                          Colors.black.withOpacity(0.9),
-                          Colors.black.withOpacity(0.5),
+                          Colors.black.withValues(alpha:0.9),
+                          Colors.black.withValues(alpha:0.5),
                           Colors.transparent,
                         ],
                       ),

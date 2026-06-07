@@ -251,9 +251,9 @@ class _CinematicSceneTopFiveRankingOneState extends State<CinematicSceneTopFiveR
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Colors.black.withOpacity(0.7),
-                    Colors.black.withOpacity(0.4),
-                    Colors.black.withOpacity(0.85),
+                    Colors.black.withValues(alpha:0.7),
+                    Colors.black.withValues(alpha:0.4),
+                    Colors.black.withValues(alpha:0.85),
                   ],
                 ),
               ),
@@ -291,12 +291,12 @@ class _CinematicSceneTopFiveRankingOneState extends State<CinematicSceneTopFiveR
                       ),
                       borderRadius: BorderRadius.circular(30),
                       border: Border.all(
-                        color: Colors.white.withOpacity(0.3),
+                        color: Colors.white.withValues(alpha:0.3),
                         width: 2,
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.purple.withOpacity(0.6),
+                          color: Colors.purple.withValues(alpha:0.6),
                           blurRadius: 25,
                           spreadRadius: 3,
                         ),
@@ -311,7 +311,7 @@ class _CinematicSceneTopFiveRankingOneState extends State<CinematicSceneTopFiveR
                           size: 22,
                           shadows: [
                             Shadow(
-                              color: Colors.black.withOpacity(0.5),
+                              color: Colors.black.withValues(alpha:0.5),
                               blurRadius: 4,
                             ),
                           ],
@@ -328,7 +328,7 @@ class _CinematicSceneTopFiveRankingOneState extends State<CinematicSceneTopFiveR
                             color: Colors.white,
                             shadows: [
                               Shadow(
-                                color: Colors.black.withOpacity(0.5),
+                                color: Colors.black.withValues(alpha:0.5),
                                 blurRadius: 4,
                               ),
                             ],
@@ -364,8 +364,8 @@ class _CinematicSceneTopFiveRankingOneState extends State<CinematicSceneTopFiveR
                                 shape: BoxShape.circle,
                                 gradient: RadialGradient(
                                   colors: [
-                                    rankColor.withOpacity(0.8),
-                                    rankColor.withOpacity(0.3),
+                                    rankColor.withValues(alpha:0.8),
+                                    rankColor.withValues(alpha:0.3),
                                   ],
                                 ),
                                 border: Border.all(
@@ -374,12 +374,12 @@ class _CinematicSceneTopFiveRankingOneState extends State<CinematicSceneTopFiveR
                                 ),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: rankColor.withOpacity(_glow.value),
+                                    color: rankColor.withValues(alpha:_glow.value),
                                     blurRadius: 40,
                                     spreadRadius: 10,
                                   ),
                                   BoxShadow(
-                                    color: Colors.black.withOpacity(0.5),
+                                    color: Colors.black.withValues(alpha:0.5),
                                     blurRadius: 20,
                                     offset: const Offset(0, 8),
                                   ),
@@ -396,9 +396,9 @@ class _CinematicSceneTopFiveRankingOneState extends State<CinematicSceneTopFiveR
                                           begin: Alignment.topLeft,
                                           end: Alignment.bottomRight,
                                           colors: [
-                                            Colors.white.withOpacity(0.0),
-                                            Colors.white.withOpacity(0.3),
-                                            Colors.white.withOpacity(0.0),
+                                            Colors.white.withValues(alpha:0.0),
+                                            Colors.white.withValues(alpha:0.3),
+                                            Colors.white.withValues(alpha:0.0),
                                           ],
                                           stops: [
                                             (_shimmer.value - 0.3).clamp(0.0, 1.0),
@@ -424,7 +424,7 @@ class _CinematicSceneTopFiveRankingOneState extends State<CinematicSceneTopFiveR
                                           height: 1.0,
                                           shadows: [
                                             Shadow(
-                                              color: Colors.black.withOpacity(0.7),
+                                              color: Colors.black.withValues(alpha:0.7),
                                               blurRadius: 10,
                                             ),
                                           ],
@@ -437,7 +437,7 @@ class _CinematicSceneTopFiveRankingOneState extends State<CinematicSceneTopFiveR
                                         color: Colors.white,
                                         shadows: [
                                           Shadow(
-                                            color: Colors.black.withOpacity(0.7),
+                                            color: Colors.black.withValues(alpha:0.7),
                                             blurRadius: 8,
                                           ),
                                         ],
@@ -467,12 +467,12 @@ class _CinematicSceneTopFiveRankingOneState extends State<CinematicSceneTopFiveR
                                     color: Colors.white,
                                     shadows: [
                                       Shadow(
-                                        color: Colors.black.withOpacity(0.8),
+                                        color: Colors.black.withValues(alpha:0.8),
                                         blurRadius: 15,
                                         offset: const Offset(0, 4),
                                       ),
                                       Shadow(
-                                        color: rankColor.withOpacity(0.4),
+                                        color: rankColor.withValues(alpha:0.4),
                                         blurRadius: 20,
                                       ),
                                     ],
@@ -488,10 +488,10 @@ class _CinematicSceneTopFiveRankingOneState extends State<CinematicSceneTopFiveR
                                       vertical: 4,
                                     ),
                                     decoration: BoxDecoration(
-                                      color: rankColor.withOpacity(0.2),
+                                      color: rankColor.withValues(alpha:0.2),
                                       borderRadius: BorderRadius.circular(6),
                                       border: Border.all(
-                                        color: rankColor.withOpacity(0.5),
+                                        color: rankColor.withValues(alpha:0.5),
                                         width: 1,
                                       ),
                                     ),
@@ -501,7 +501,7 @@ class _CinematicSceneTopFiveRankingOneState extends State<CinematicSceneTopFiveR
                                         fontSize: 13,
                                         fontWeight: FontWeight.w700,
                                         letterSpacing: 1.5,
-                                        color: rankColor.withOpacity(0.9),
+                                        color: rankColor.withValues(alpha:0.9),
                                       ),
                                     ),
                                   ),
@@ -517,10 +517,10 @@ class _CinematicSceneTopFiveRankingOneState extends State<CinematicSceneTopFiveR
                                     style: TextStyle(
                                       fontSize: 16,
                                       height: 1.5,
-                                      color: Colors.white.withOpacity(0.85),
+                                      color: Colors.white.withValues(alpha:0.85),
                                       shadows: [
                                         Shadow(
-                                          color: Colors.black.withOpacity(0.8),
+                                          color: Colors.black.withValues(alpha:0.8),
                                           blurRadius: 8,
                                         ),
                                       ],
@@ -544,13 +544,13 @@ class _CinematicSceneTopFiveRankingOneState extends State<CinematicSceneTopFiveR
                                             decoration: BoxDecoration(
                                               gradient: LinearGradient(
                                                 colors: [
-                                                  Colors.white.withOpacity(0.15),
-                                                  Colors.white.withOpacity(0.08),
+                                                  Colors.white.withValues(alpha:0.15),
+                                                  Colors.white.withValues(alpha:0.08),
                                                 ],
                                               ),
                                               borderRadius: BorderRadius.circular(20),
                                               border: Border.all(
-                                                color: Colors.white.withOpacity(0.3),
+                                                color: Colors.white.withValues(alpha:0.3),
                                                 width: 1,
                                               ),
                                             ),
@@ -607,7 +607,7 @@ class _CinematicSceneTopFiveRankingOneState extends State<CinematicSceneTopFiveR
                       end: Alignment.bottomCenter,
                       colors: [
                         Colors.transparent,
-                        Colors.black.withOpacity(0.9),
+                        Colors.black.withValues(alpha:0.9),
                       ],
                     ),
                   ),
@@ -622,10 +622,10 @@ class _CinematicSceneTopFiveRankingOneState extends State<CinematicSceneTopFiveR
                             vertical: 8,
                           ),
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.1),
+                            color: Colors.white.withValues(alpha:0.1),
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(
-                              color: rankColor.withOpacity(0.4),
+                              color: rankColor.withValues(alpha:0.4),
                               width: 1,
                             ),
                           ),
@@ -635,7 +635,7 @@ class _CinematicSceneTopFiveRankingOneState extends State<CinematicSceneTopFiveR
                               fontSize: 12,
                               fontWeight: FontWeight.w700,
                               letterSpacing: 1.5,
-                              color: rankColor.withOpacity(0.9),
+                              color: rankColor.withValues(alpha:0.9),
                             ),
                           ),
                         ),
@@ -651,7 +651,7 @@ class _CinematicSceneTopFiveRankingOneState extends State<CinematicSceneTopFiveR
                             decoration: BoxDecoration(
                               color: index < rank
                                   ? rankColor
-                                  : Colors.white.withOpacity(0.2),
+                                  : Colors.white.withValues(alpha:0.2),
                               borderRadius: BorderRadius.circular(3),
                             ),
                           ),
@@ -672,7 +672,7 @@ class _CinematicSceneTopFiveRankingOneState extends State<CinematicSceneTopFiveR
                               boxShadow: widget.isPlaying
                                   ? [
                                       BoxShadow(
-                                        color: rankColor.withOpacity(0.6),
+                                        color: rankColor.withValues(alpha:0.6),
                                         blurRadius: 10,
                                         spreadRadius: 2,
                                       ),
@@ -734,7 +734,7 @@ class GridPatternPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.white.withOpacity(0.05)
+      ..color = Colors.white.withValues(alpha:0.05)
       ..strokeWidth = 1
       ..style = PaintingStyle.stroke;
 

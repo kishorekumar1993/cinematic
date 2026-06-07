@@ -206,9 +206,9 @@ class _YoutubeMovieTempTwoState
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Colors.black.withOpacity(0.8),
-                    const Color(0xFF330000).withOpacity(0.6),
-                    Colors.black.withOpacity(0.9),
+                    Colors.black.withValues(alpha:0.8),
+                    const Color(0xFF330000).withValues(alpha:0.6),
+                    Colors.black.withValues(alpha:0.9),
                   ],
                 ),
               ),
@@ -249,7 +249,7 @@ class _YoutubeMovieTempTwoState
                       borderRadius: BorderRadius.circular(8),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.red.withOpacity(0.6),
+                          color: Colors.red.withValues(alpha:0.6),
                           blurRadius: 20,
                           spreadRadius: 2,
                         ),
@@ -311,12 +311,12 @@ class _YoutubeMovieTempTwoState
                               ),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.red.withOpacity(0.6),
+                                  color: Colors.red.withValues(alpha:0.6),
                                   blurRadius: 30,
                                   spreadRadius: 5,
                                 ),
                                 BoxShadow(
-                                  color: Colors.black.withOpacity(0.4),
+                                  color: Colors.black.withValues(alpha:0.4),
                                   blurRadius: 15,
                                   offset: const Offset(0, 8),
                                 ),
@@ -349,12 +349,12 @@ class _YoutubeMovieTempTwoState
                               color: Colors.white,
                               shadows: [
                                 Shadow(
-                                  color: Colors.black.withOpacity(0.8),
+                                  color: Colors.black.withValues(alpha:0.8),
                                   blurRadius: 20,
                                   offset: const Offset(0, 4),
                                 ),
                                 Shadow(
-                                  color: Colors.red.withOpacity(0.4),
+                                  color: Colors.red.withValues(alpha:0.4),
                                   blurRadius: 30,
                                 ),
                               ],
@@ -380,7 +380,7 @@ class _YoutubeMovieTempTwoState
                                 color: Colors.red.shade300,
                                 shadows: [
                                   Shadow(
-                                    color: Colors.black.withOpacity(0.8),
+                                    color: Colors.black.withValues(alpha:0.8),
                                     blurRadius: 10,
                                   ),
                                 ],
@@ -403,10 +403,10 @@ class _YoutubeMovieTempTwoState
                             style: TextStyle(
                               fontSize: 16,
                               height: 1.5,
-                              color: Colors.white.withOpacity(0.85),
+                              color: Colors.white.withValues(alpha:0.85),
                               shadows: [
                                 Shadow(
-                                  color: Colors.black.withOpacity(0.8),
+                                  color: Colors.black.withValues(alpha:0.8),
                                   blurRadius: 8,
                                 ),
                               ],
@@ -437,12 +437,12 @@ class _YoutubeMovieTempTwoState
                               borderRadius: BorderRadius.circular(30),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.red.withOpacity(0.5),
+                                  color: Colors.red.withValues(alpha:0.5),
                                   blurRadius: 20,
                                   spreadRadius: 2,
                                 ),
                                 BoxShadow(
-                                  color: Colors.black.withOpacity(0.4),
+                                  color: Colors.black.withValues(alpha:0.4),
                                   blurRadius: 10,
                                   offset: const Offset(0, 4),
                                 ),
@@ -489,10 +489,10 @@ class _YoutubeMovieTempTwoState
                                       vertical: 6,
                                     ),
                                     decoration: BoxDecoration(
-                                      color: Colors.white.withOpacity(0.1),
+                                      color: Colors.white.withValues(alpha:0.1),
                                       borderRadius: BorderRadius.circular(6),
                                       border: Border.all(
-                                        color: Colors.red.withOpacity(0.4),
+                                        color: Colors.red.withValues(alpha:0.4),
                                         width: 1,
                                       ),
                                     ),
@@ -547,7 +547,7 @@ class _YoutubeMovieTempTwoState
                       end: Alignment.bottomCenter,
                       colors: [
                         Colors.transparent,
-                        Colors.black.withOpacity(0.9),
+                        Colors.black.withValues(alpha:0.9),
                       ],
                     ),
                   ),
@@ -601,7 +601,7 @@ class _YoutubeMovieTempTwoState
                               boxShadow: widget.isPlaying
                                   ? [
                                       BoxShadow(
-                                        color: Colors.red.withOpacity(0.6),
+                                        color: Colors.red.withValues(alpha:0.6),
                                         blurRadius: 10,
                                         spreadRadius: 2,
                                       ),

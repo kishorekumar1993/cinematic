@@ -232,8 +232,8 @@ class _CinematicSceneFourState extends State<CinematicSceneFour>
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
                     colors: [
-                      Colors.black.withOpacity(0.85),
-                      Colors.black.withOpacity(0.4),
+                      Colors.black.withValues(alpha:0.85),
+                      Colors.black.withValues(alpha:0.4),
                       Colors.transparent,
                     ],
                     stops: const [0.0, 0.4, 1.0],

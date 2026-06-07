@@ -161,10 +161,10 @@ class _CinematicNetflixTempThreeState
       height: 12,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: Colors.cyanAccent.withOpacity(alpha),
+        color: Colors.cyanAccent.withValues(alpha:alpha),
         boxShadow: [
           BoxShadow(
-            color: Colors.cyanAccent.withOpacity(alpha),
+            color: Colors.cyanAccent.withValues(alpha:alpha),
             blurRadius: 12,
           ),
         ],
@@ -203,8 +203,8 @@ class _CinematicNetflixTempThreeState
                   center: Alignment.center,
                   radius: 1.2,
                   colors: [
-                    Colors.black.withOpacity(0.1),
-                    Colors.black.withOpacity(0.85),
+                    Colors.black.withValues(alpha:0.1),
+                    Colors.black.withValues(alpha:0.85),
                   ],
                   stops: const [0.3, 1.0],
                 ),
@@ -239,10 +239,10 @@ class _CinematicNetflixTempThreeState
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.06),
+                        color: Colors.white.withValues(alpha:0.06),
                         borderRadius: BorderRadius.circular(999),
                         border: Border.all(
-                          color: Colors.white.withOpacity(0.2),
+                          color: Colors.white.withValues(alpha:0.2),
                         ),
                       ),
                       child: Text(
@@ -265,11 +265,11 @@ class _CinematicNetflixTempThreeState
                         fontSize: 38,
                         fontWeight: FontWeight.w900,
                         letterSpacing: 4,
-                        color: Colors.cyanAccent.withOpacity(0.9),
+                        color: Colors.cyanAccent.withValues(alpha:0.9),
                         shadows: [
                           Shadow(
                             color: Colors.cyanAccent
-                                .withOpacity(_yearGlow.value),
+                                .withValues(alpha:_yearGlow.value),
                             blurRadius: 24,
                           ),
                         ],
@@ -310,8 +310,8 @@ class _CinematicNetflixTempThreeState
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter,
                                     colors: [
-                                      Colors.cyanAccent.withOpacity(0.4),
-                                      Colors.purpleAccent.withOpacity(0.2),
+                                      Colors.cyanAccent.withValues(alpha:0.4),
+                                      Colors.purpleAccent.withValues(alpha:0.2),
                                     ],
                                   ),
                                 ),
@@ -353,15 +353,15 @@ class _CinematicNetflixTempThreeState
                                 const EdgeInsets.fromLTRB(20, 18, 20, 20),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(22),
-                              color: Colors.black.withOpacity(0.65),
+                              color: Colors.black.withValues(alpha:0.65),
                               border: Border.all(
-                                color: Colors.white.withOpacity(0.22),
+                                color: Colors.white.withValues(alpha:0.22),
                                 width: 0.9,
                               ),
                               boxShadow: [
                                 BoxShadow(
                                   color:
-                                      Colors.black.withOpacity(0.85),
+                                      Colors.black.withValues(alpha:0.85),
                                   blurRadius: 26,
                                   offset: const Offset(0, 18),
                                 ),
@@ -442,7 +442,7 @@ class _CinematicNetflixTempThreeState
                                                 boxShadow: [
                                                   BoxShadow(
                                                     color:
-                                                        Colors.black.withOpacity(
+                                                        Colors.black.withValues(alpha:
                                                             0.6),
                                                     blurRadius: 10,
                                                     offset:
@@ -500,10 +500,10 @@ class _CinematicNetflixTempThreeState
                       vertical: 6,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.7),
+                      color: Colors.black.withValues(alpha:0.7),
                       borderRadius: BorderRadius.circular(999),
                       border: Border.all(
-                        color: Colors.white.withOpacity(0.3),
+                        color: Colors.white.withValues(alpha:0.3),
                         width: 0.7,
                       ),
                     ),

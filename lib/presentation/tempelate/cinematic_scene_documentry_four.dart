@@ -248,7 +248,7 @@ class _CinematicSceneDocumentryFourState extends State<CinematicSceneDocumentryF
                 scale: _zoom.value,
                 child: ColorFiltered(
                   colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.2),
+                    Colors.black.withValues(alpha:0.2),
                     BlendMode.darken,
                   ),
                   child: _buildBackgroundImage(scene),
@@ -266,8 +266,8 @@ class _CinematicSceneDocumentryFourState extends State<CinematicSceneDocumentryF
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Colors.black.withOpacity(0.9),
-                      Colors.black.withOpacity(0.0),
+                      Colors.black.withValues(alpha:0.9),
+                      Colors.black.withValues(alpha:0.0),
                     ],
                   ),
                 ),
@@ -282,8 +282,8 @@ class _CinematicSceneDocumentryFourState extends State<CinematicSceneDocumentryF
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
                     colors: [
-                      Colors.black.withOpacity(0.9),
-                      Colors.black.withOpacity(0.0),
+                      Colors.black.withValues(alpha:0.9),
+                      Colors.black.withValues(alpha:0.0),
                     ],
                   ),
                 ),
@@ -298,10 +298,10 @@ class _CinematicSceneDocumentryFourState extends State<CinematicSceneDocumentryF
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.75),
+                  color: Colors.black.withValues(alpha:0.75),
                   borderRadius: BorderRadius.circular(999),
                   border: Border.all(
-                    color: Colors.white.withOpacity(0.28),
+                    color: Colors.white.withValues(alpha:0.28),
                     width: 0.8,
                   ),
                 ),
@@ -341,15 +341,15 @@ class _CinematicSceneDocumentryFourState extends State<CinematicSceneDocumentryF
                       child: Container(
                         padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
                         decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.70),
+                          color: Colors.black.withValues(alpha:0.70),
                           borderRadius: BorderRadius.circular(18),
                           border: Border.all(
-                            color: Colors.white.withOpacity(0.2),
+                            color: Colors.white.withValues(alpha:0.2),
                             width: 0.9,
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.9),
+                              color: Colors.black.withValues(alpha:0.9),
                               blurRadius: 24,
                               offset: const Offset(0, 16),
                             ),
@@ -363,7 +363,7 @@ class _CinematicSceneDocumentryFourState extends State<CinematicSceneDocumentryF
                             Container(
                               width: 40,
                               height: 2,
-                              color: Colors.white.withOpacity(0.7),
+                              color: Colors.white.withValues(alpha:0.7),
                             ),
                             const SizedBox(height: 8),
 

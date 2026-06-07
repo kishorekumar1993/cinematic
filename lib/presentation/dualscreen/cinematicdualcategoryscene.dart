@@ -234,12 +234,12 @@ class _DualCategorySideCard extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.05),
+        color: Colors.white.withValues(alpha:0.05),
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: Colors.white.withOpacity(0.25), width: 0.8),
+        border: Border.all(color: Colors.white.withValues(alpha:0.25), width: 0.8),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.6),
+            color: Colors.black.withValues(alpha:0.6),
             blurRadius: 18,
             offset: const Offset(0, 12),
           ),
@@ -278,7 +278,7 @@ class _DualCategorySideCard extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.1),
+                    color: Colors.white.withValues(alpha:0.1),
                     borderRadius: BorderRadius.circular(999),
                   ),
                   child: Text(

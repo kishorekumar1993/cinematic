@@ -164,7 +164,7 @@ class _CinematicSceneDocumentrySevenState extends State<CinematicSceneDocumentry
                 ]),
                 child: ColorFiltered(
                   colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.45),
+                    Colors.black.withValues(alpha:0.45),
                     BlendMode.darken,
                   ),
                   child: _buildBackground(scene),
@@ -179,8 +179,8 @@ class _CinematicSceneDocumentrySevenState extends State<CinematicSceneDocumentry
                   center: const Alignment(-0.4, -0.1),
                   radius: 0.9,
                   colors: [
-                    Colors.white.withOpacity(0.05),
-                    Colors.black.withOpacity(0.85),
+                    Colors.white.withValues(alpha:0.05),
+                    Colors.black.withValues(alpha:0.85),
                   ],
                   stops: const [0.0, 1.0],
                 ),
@@ -206,7 +206,7 @@ class _CinematicSceneDocumentrySevenState extends State<CinematicSceneDocumentry
                         borderRadius: BorderRadius.circular(4),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.red.shade900.withOpacity(0.6),
+                            color: Colors.red.shade900.withValues(alpha:0.6),
                             blurRadius: 10,
                             offset: const Offset(0, 4),
                           ),
@@ -229,7 +229,7 @@ class _CinematicSceneDocumentrySevenState extends State<CinematicSceneDocumentry
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.8),
+                        color: Colors.black.withValues(alpha:0.8),
                         borderRadius: BorderRadius.circular(4),
                         border: Border.all(
                           color: Colors.white24,
@@ -269,10 +269,10 @@ class _CinematicSceneDocumentrySevenState extends State<CinematicSceneDocumentry
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Colors.black.withOpacity(0.6),
+                                color: Colors.black.withValues(alpha:0.6),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.black.withOpacity(0.9),
+                                    color: Colors.black.withValues(alpha:0.9),
                                     blurRadius: 20,
                                     offset: const Offset(0, 18),
                                   ),
@@ -312,7 +312,7 @@ class _CinematicSceneDocumentrySevenState extends State<CinematicSceneDocumentry
                                   boxShadow: [
                                     BoxShadow(
                                       color: Colors.red.shade900
-                                          .withOpacity(0.7),
+                                          .withValues(alpha:0.7),
                                       blurRadius: 10,
                                       offset: const Offset(0, 4),
                                     ),
@@ -348,7 +348,7 @@ class _CinematicSceneDocumentrySevenState extends State<CinematicSceneDocumentry
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.85),
+                    color: Colors.black.withValues(alpha:0.85),
                     borderRadius: BorderRadius.circular(999),
                     border: Border.all(
                       color: Colors.red.shade500,

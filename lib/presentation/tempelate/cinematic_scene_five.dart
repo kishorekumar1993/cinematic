@@ -125,8 +125,8 @@ class _CinematicSceneFiveState extends State<CinematicSceneFive>
                   center: Alignment.center,
                   radius: 1.1,
                   colors: [
-                    Colors.black.withOpacity(0.1),
-                    Colors.black.withOpacity(0.9),
+                    Colors.black.withValues(alpha:0.1),
+                    Colors.black.withValues(alpha:0.9),
                   ],
                 ),
               ),
@@ -203,7 +203,7 @@ class _CinematicSceneFiveState extends State<CinematicSceneFive>
                                     vertical: 4,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: Colors.white.withOpacity(0.08),
+                                    color: Colors.white.withValues(alpha:0.08),
                                     borderRadius: BorderRadius.circular(999),
                                   ),
                                   child: Text(

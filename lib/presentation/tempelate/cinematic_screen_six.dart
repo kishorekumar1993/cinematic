@@ -110,8 +110,8 @@ class _CinematicSceneSixState extends State<CinematicSceneSix>
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
                   colors: [
-                    Colors.black.withOpacity(0.90),
-                    Colors.black.withOpacity(0.25),
+                    Colors.black.withValues(alpha:0.90),
+                    Colors.black.withValues(alpha:0.25),
                     Colors.transparent,
                   ],
                 ),
@@ -132,10 +132,10 @@ class _CinematicSceneSixState extends State<CinematicSceneSix>
                       child: Container(
                         padding: const EdgeInsets.all(18),
                         decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.55),
+                          color: Colors.black.withValues(alpha:0.55),
                           borderRadius: BorderRadius.circular(14),
                           border: Border.all(
-                            color: Colors.white.withOpacity(0.15),
+                            color: Colors.white.withValues(alpha:0.15),
                             width: 0.6,
                           ),
                         ),

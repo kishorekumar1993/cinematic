@@ -300,7 +300,7 @@ class _BulkGeneratorSheetState extends State<BulkGeneratorSheet> {
                       const SizedBox(height: 4),
                       Text(
                         'Generate 100+ videos instantly from topics or CSV',
-                        style: TextStyle(fontSize: 12, color: Colors.white.withOpacity(0.6)),
+                        style: TextStyle(fontSize: 12, color: Colors.white.withValues(alpha:0.6)),
                       ),
                     ],
                   ),
@@ -406,8 +406,8 @@ class _BulkGeneratorSheetState extends State<BulkGeneratorSheet> {
                         height: 120,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(14),
-                          color: Colors.white.withOpacity(0.04),
-                          border: Border.all(color: Colors.white.withOpacity(0.08)),
+                          color: Colors.white.withValues(alpha:0.04),
+                          border: Border.all(color: Colors.white.withValues(alpha:0.08)),
                         ),
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
@@ -428,7 +428,7 @@ class _BulkGeneratorSheetState extends State<BulkGeneratorSheet> {
                                     color: isSel ? theme.colorScheme.primary : Colors.white24,
                                     width: isSel ? 2 : 1,
                                   ),
-                                  color: isSel ? theme.colorScheme.primary.withOpacity(0.08) : Colors.black26,
+                                  color: isSel ? theme.colorScheme.primary.withValues(alpha:0.08) : Colors.black26,
                                 ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -491,8 +491,8 @@ class _BulkGeneratorSheetState extends State<BulkGeneratorSheet> {
                               padding: const EdgeInsets.all(12),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                border: Border.all(color: Colors.white.withOpacity(0.06)),
-                                color: Colors.white.withOpacity(0.02),
+                                border: Border.all(color: Colors.white.withValues(alpha: 0.06)),
+                                color: Colors.white.withValues(alpha:0.02),
                               ),
                               child: Row(
                                 children: [

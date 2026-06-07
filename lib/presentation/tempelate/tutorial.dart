@@ -189,7 +189,7 @@ Widget build(BuildContext context) {
               scale: _zoom.value,
               child: ColorFiltered(
                 colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.50),
+                  Colors.black.withValues(alpha:0.50),
                   BlendMode.darken,
                 ),
                 child: _buildBackground(),
@@ -204,8 +204,8 @@ Widget build(BuildContext context) {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Colors.black.withOpacity(0.15),
-                  Colors.black.withOpacity(0.82),
+                  Colors.black.withValues(alpha:0.15),
+                  Colors.black.withValues(alpha:0.82),
                 ],
               ),
             ),
@@ -220,7 +220,7 @@ Widget build(BuildContext context) {
               height: 280,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: const Color(0xFF2563EB).withOpacity(0.15),
+                color: const Color(0xFF2563EB).withValues(alpha:0.15),
               ),
             ),
           ),
@@ -276,16 +276,16 @@ Widget _buildModernCompactCard(SceneConfig scene) {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Colors.white.withOpacity(0.14),
-              Colors.white.withOpacity(0.05),
+              Colors.white.withValues(alpha:0.14),
+              Colors.white.withValues(alpha:0.05),
             ],
           ),
           border: Border.all(
-            color: Colors.white.withOpacity(0.08),
+            color: Colors.white.withValues(alpha:0.08),
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.45),
+              color: Colors.black.withValues(alpha:0.45),
               blurRadius: 35,
               offset: const Offset(0, 24),
             ),
@@ -334,7 +334,7 @@ Widget _buildModernCompactCard(SceneConfig scene) {
                         ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
-                          color: Colors.blue.withOpacity(0.15),
+                          color: Colors.blue.withValues(alpha:0.15),
                         ),
                         child: const Text(
                           "FLUTTER TUTORIAL",
@@ -372,7 +372,7 @@ Widget _buildModernCompactCard(SceneConfig scene) {
                           style: TextStyle(
                             fontSize: 15,
                             height: 1.5,
-                            color: Colors.white.withOpacity(0.72),
+                            color: Colors.white.withValues(alpha:0.72),
                           ),
                         ),
                       ],
@@ -391,9 +391,9 @@ Widget _buildModernCompactCard(SceneConfig scene) {
                 padding: const EdgeInsets.all(18),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(22),
-                  color: Colors.black.withOpacity(0.18),
+                  color: Colors.black.withValues(alpha:0.18),
                   border: Border.all(
-                    color: Colors.white.withOpacity(0.05),
+                    color: Colors.white.withValues(alpha:0.05),
                   ),
                 ),
                 child: Text(
@@ -403,7 +403,7 @@ Widget _buildModernCompactCard(SceneConfig scene) {
                   style: TextStyle(
                     fontSize: 15,
                     height: 1.8,
-                    color: Colors.white.withOpacity(0.84),
+                    color: Colors.white.withValues(alpha:0.84),
                   ),
                 ),
               ),
@@ -423,9 +423,9 @@ Widget _buildModernCompactCard(SceneConfig scene) {
                         padding: const EdgeInsets.all(18),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(24),
-                          color: Colors.white.withOpacity(0.05),
+                          color: Colors.white.withValues(alpha:0.05),
                           border: Border.all(
-                            color: Colors.white.withOpacity(0.06),
+                            color: Colors.white.withValues(alpha:0.06),
                           ),
                         ),
                         child: Column(
@@ -502,7 +502,7 @@ Widget _buildModernCompactCard(SceneConfig scene) {
                                               fontSize: 14,
                                               height: 1.6,
                                               color: Colors.white
-                                                  .withOpacity(0.82),
+                                                  .withValues(alpha:0.82),
                                             ),
                                           ),
                                         ),
@@ -617,12 +617,12 @@ Widget _buildModernCompactCard(SceneConfig scene) {
                   borderRadius: BorderRadius.circular(20),
                   gradient: LinearGradient(
                     colors: [
-                      const Color(0xFFF59E0B).withOpacity(0.18),
-                      const Color(0xFFEA580C).withOpacity(0.10),
+                      const Color(0xFFF59E0B).withValues(alpha:0.18),
+                      const Color(0xFFEA580C).withValues(alpha:0.10),
                     ],
                   ),
                   border: Border.all(
-                    color: Colors.orange.withOpacity(0.15),
+                    color: Colors.orange.withValues(alpha:0.15),
                   ),
                 ),
                 child: Row(
@@ -643,7 +643,7 @@ Widget _buildModernCompactCard(SceneConfig scene) {
                         style: TextStyle(
                           fontSize: 14,
                           height: 1.6,
-                          color: Colors.white.withOpacity(0.85),
+                          color: Colors.white.withValues(alpha:0.85),
                         ),
                       ),
                     ),
@@ -688,7 +688,7 @@ Widget _buildModernCompactCard(SceneConfig scene) {
   //               scale: _zoom.value,
   //               child: ColorFiltered(
   //                 colorFilter: ColorFilter.mode(
-  //                   Colors.black.withOpacity(0.45),
+  //                   Colors.black.withValues(alpha:0.45),
   //                   BlendMode.darken,
   //                 ),
   //                 child: _buildBackground(),
@@ -703,8 +703,8 @@ Widget _buildModernCompactCard(SceneConfig scene) {
   //                 begin: Alignment.topCenter,
   //                 end: Alignment.bottomCenter,
   //                 colors: [
-  //                   Colors.black.withOpacity(0.15),
-  //                   Colors.black.withOpacity(0.7),
+  //                   Colors.black.withValues(alpha:0.15),
+  //                   Colors.black.withValues(alpha:0.7),
   //                 ],
   //               ),
   //             ),
@@ -759,16 +759,16 @@ Widget _buildModernCompactCard(SceneConfig scene) {
   //         begin: Alignment.topLeft,
   //         end: Alignment.bottomRight,
   //         colors: [
-  //           Colors.white.withOpacity(0.12),
-  //           Colors.white.withOpacity(0.04),
+  //           Colors.white.withValues(alpha:0.12),
+  //           Colors.white.withValues(alpha:0.04),
   //         ],
   //       ),
   //       border: Border.all(
-  //         color: Colors.white.withOpacity(0.08),
+  //         color: Colors.white.withValues(alpha:0.08),
   //       ),
   //       boxShadow: [
   //         BoxShadow(
-  //           color: Colors.black.withOpacity(0.45),
+  //           color: Colors.black.withValues(alpha:0.45),
   //           blurRadius: 30,
   //           offset: const Offset(0, 20),
   //         ),
@@ -786,10 +786,10 @@ Widget _buildModernCompactCard(SceneConfig scene) {
   //             vertical: 8,
   //           ),
   //           decoration: BoxDecoration(
-  //             color: const Color(0xFF2563EB).withOpacity(0.18),
+  //             color: const Color(0xFF2563EB).withValues(alpha:0.18),
   //             borderRadius: BorderRadius.circular(100),
   //             border: Border.all(
-  //               color: const Color(0xFF60A5FA).withOpacity(0.35),
+  //               color: const Color(0xFF60A5FA).withValues(alpha:0.35),
   //             ),
   //           ),
   //           child: const Row(
@@ -836,7 +836,7 @@ Widget _buildModernCompactCard(SceneConfig scene) {
   //             style: TextStyle(
   //               fontSize: 17,
   //               height: 1.5,
-  //               color: Colors.white.withOpacity(0.72),
+  //               color: Colors.white.withValues(alpha:0.72),
   //             ),
   //           ),
   //         ],
@@ -848,10 +848,10 @@ Widget _buildModernCompactCard(SceneConfig scene) {
   //           Container(
   //             padding: const EdgeInsets.all(20),
   //             decoration: BoxDecoration(
-  //               color: Colors.black.withOpacity(0.18),
+  //               color: Colors.black.withValues(alpha:0.18),
   //               borderRadius: BorderRadius.circular(20),
   //               border: Border.all(
-  //                 color: Colors.white.withOpacity(0.06),
+  //                 color: Colors.white.withValues(alpha:0.06),
   //               ),
   //             ),
   //             child: Text(
@@ -859,7 +859,7 @@ Widget _buildModernCompactCard(SceneConfig scene) {
   //               style: TextStyle(
   //                 fontSize: 15,
   //                 height: 1.8,
-  //                 color: Colors.white.withOpacity(0.85),
+  //                 color: Colors.white.withValues(alpha:0.85),
   //               ),
   //             ),
   //           ),
@@ -885,9 +885,9 @@ Widget _buildModernCompactCard(SceneConfig scene) {
   //               padding: const EdgeInsets.all(18),
   //               decoration: BoxDecoration(
   //                 borderRadius: BorderRadius.circular(20),
-  //                 color: Colors.white.withOpacity(0.05),
+  //                 color: Colors.white.withValues(alpha:0.05),
   //                 border: Border.all(
-  //                   color: Colors.white.withOpacity(0.08),
+  //                   color: Colors.white.withValues(alpha:0.08),
   //                 ),
   //               ),
   //               child: Row(
@@ -926,7 +926,7 @@ Widget _buildModernCompactCard(SceneConfig scene) {
   //                       style: TextStyle(
   //                         fontSize: 15,
   //                         height: 1.7,
-  //                         color: Colors.white.withOpacity(0.82),
+  //                         color: Colors.white.withValues(alpha:0.82),
   //                       ),
   //                     ),
   //                   ),
@@ -993,12 +993,12 @@ Widget _buildModernCompactCard(SceneConfig scene) {
   //               borderRadius: BorderRadius.circular(20),
   //               gradient: LinearGradient(
   //                 colors: [
-  //                   const Color(0xFFF59E0B).withOpacity(0.18),
-  //                   const Color(0xFFEA580C).withOpacity(0.10),
+  //                   const Color(0xFFF59E0B).withValues(alpha:0.18),
+  //                   const Color(0xFFEA580C).withValues(alpha:0.10),
   //                 ],
   //               ),
   //               border: Border.all(
-  //                 color: Colors.orange.withOpacity(0.18),
+  //                 color: Colors.orange.withValues(alpha:0.18),
   //               ),
   //             ),
   //             child: Row(
@@ -1018,7 +1018,7 @@ Widget _buildModernCompactCard(SceneConfig scene) {
   //                     style: TextStyle(
   //                       fontSize: 14,
   //                       height: 1.7,
-  //                       color: Colors.white.withOpacity(0.85),
+  //                       color: Colors.white.withValues(alpha:0.85),
   //                     ),
   //                   ),
   //                 ),

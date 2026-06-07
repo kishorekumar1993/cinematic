@@ -141,8 +141,8 @@ class _CinematicNetflixTempState
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
                   colors: [
-                    Colors.black.withOpacity(0.90),
-                    Colors.black.withOpacity(0.35),
+                    Colors.black.withValues(alpha:0.90),
+                    Colors.black.withValues(alpha:0.35),
                     Colors.transparent,
                   ],
                 ),
@@ -166,15 +166,15 @@ class _CinematicNetflixTempState
                           vertical: 18,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.60),
+                          color: Colors.black.withValues(alpha:0.60),
                           borderRadius: BorderRadius.circular(16),
                           border: Border.all(
-                            color: Colors.white.withOpacity(0.16),
+                            color: Colors.white.withValues(alpha:0.16),
                             width: 0.7,
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.60),
+                              color: Colors.black.withValues(alpha:0.60),
                               blurRadius: 18,
                               offset: const Offset(0, 10),
                             ),
@@ -340,13 +340,13 @@ class _TopMovieItemRow extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: Colors.white.withOpacity(0.80),
+                  color: Colors.white.withValues(alpha:0.80),
                   width: 1.2,
                 ),
                 gradient: LinearGradient(
                   colors: [
-                    Colors.white.withOpacity(0.95),
-                    Colors.white.withOpacity(0.65),
+                    Colors.white.withValues(alpha:0.95),
+                    Colors.white.withValues(alpha:0.65),
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,

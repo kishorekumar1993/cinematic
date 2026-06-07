@@ -186,9 +186,9 @@ class _MovieTempOneState extends State<MovieTempOne>
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Colors.black.withOpacity(0.7),
-                    Colors.black.withOpacity(0.3),
-                    Colors.black.withOpacity(0.85),
+                    Colors.black.withValues(alpha:0.7),
+                    Colors.black.withValues(alpha:0.3),
+                    Colors.black.withValues(alpha:0.85),
                   ],
                   stops: const [0.0, 0.5, 1.0],
                 ),
@@ -262,12 +262,12 @@ class _MovieTempOneState extends State<MovieTempOne>
                         borderRadius: BorderRadius.circular(8),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.amber.withOpacity(0.5),
+                            color: Colors.amber.withValues(alpha:0.5),
                             blurRadius: 20,
                             spreadRadius: 2,
                           ),
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.7),
+                            color: Colors.black.withValues(alpha:0.7),
                             blurRadius: 10,
                             offset: const Offset(0, 4),
                           ),
@@ -284,9 +284,9 @@ class _MovieTempOneState extends State<MovieTempOne>
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
                                   colors: [
-                                    Colors.white.withOpacity(0.0),
-                                    Colors.white.withOpacity(0.3),
-                                    Colors.white.withOpacity(0.0),
+                                    Colors.white.withValues(alpha:0.0),
+                                    Colors.white.withValues(alpha:0.3),
+                                    Colors.white.withValues(alpha:0.0),
                                   ],
                                   stops: [
                                     _shimmer.value - 0.3,
@@ -309,7 +309,7 @@ class _MovieTempOneState extends State<MovieTempOne>
                                 size: 20,
                                 shadows: [
                                   Shadow(
-                                    color: Colors.black.withOpacity(0.5),
+                                    color: Colors.black.withValues(alpha:0.5),
                                     blurRadius: 4,
                                   ),
                                 ],
@@ -326,7 +326,7 @@ class _MovieTempOneState extends State<MovieTempOne>
                                   color: Colors.white,
                                   shadows: [
                                     Shadow(
-                                      color: Colors.black.withOpacity(0.5),
+                                      color: Colors.black.withValues(alpha:0.5),
                                       blurRadius: 4,
                                     ),
                                   ],
@@ -339,7 +339,7 @@ class _MovieTempOneState extends State<MovieTempOne>
                                 size: 20,
                                 shadows: [
                                   Shadow(
-                                    color: Colors.black.withOpacity(0.5),
+                                    color: Colors.black.withValues(alpha:0.5),
                                     blurRadius: 4,
                                   ),
                                 ],
@@ -379,12 +379,12 @@ class _MovieTempOneState extends State<MovieTempOne>
                               color: Colors.white,
                               shadows: [
                                 Shadow(
-                                  color: Colors.black.withOpacity(0.8),
+                                  color: Colors.black.withValues(alpha:0.8),
                                   blurRadius: 20,
                                   offset: const Offset(0, 4),
                                 ),
                                 Shadow(
-                                  color: Colors.amber.withOpacity(0.3),
+                                  color: Colors.amber.withValues(alpha:0.3),
                                   blurRadius: 30,
                                 ),
                               ],
@@ -421,7 +421,7 @@ class _MovieTempOneState extends State<MovieTempOne>
                                   color: Colors.amber.shade200,
                                   shadows: [
                                     Shadow(
-                                      color: Colors.black.withOpacity(0.7),
+                                      color: Colors.black.withValues(alpha:0.7),
                                       blurRadius: 8,
                                     ),
                                   ],
@@ -441,10 +441,10 @@ class _MovieTempOneState extends State<MovieTempOne>
                               style: TextStyle(
                                 fontSize: 16,
                                 height: 1.5,
-                                color: Colors.white.withOpacity(0.9),
+                                color: Colors.white.withValues(alpha:0.9),
                                 shadows: [
                                   Shadow(
-                                    color: Colors.black.withOpacity(0.8),
+                                    color: Colors.black.withValues(alpha:0.8),
                                     blurRadius: 10,
                                   ),
                                 ],
@@ -470,15 +470,15 @@ class _MovieTempOneState extends State<MovieTempOne>
                                         gradient: LinearGradient(
                                           colors: [
                                             Colors.amber.shade800
-                                                .withOpacity(0.3),
+                                                .withValues(alpha:0.3),
                                             Colors.amber.shade600
-                                                .withOpacity(0.2),
+                                                .withValues(alpha:0.2),
                                           ],
                                         ),
                                         borderRadius: BorderRadius.circular(20),
                                         border: Border.all(
                                           color: Colors.amber.shade700
-                                              .withOpacity(0.5),
+                                              .withValues(alpha:0.5),
                                           width: 1,
                                         ),
                                       ),
@@ -524,10 +524,10 @@ class _MovieTempOneState extends State<MovieTempOne>
                             vertical: 6,
                           ),
                           decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.6),
+                            color: Colors.black.withValues(alpha:0.6),
                             borderRadius: BorderRadius.circular(6),
                             border: Border.all(
-                              color: Colors.amber.shade700.withOpacity(0.4),
+                              color: Colors.amber.shade700.withValues(alpha:0.4),
                               width: 1,
                             ),
                           ),
@@ -556,7 +556,7 @@ class _MovieTempOneState extends State<MovieTempOne>
                               boxShadow: widget.isPlaying
                                   ? [
                                       BoxShadow(
-                                        color: Colors.amber.withOpacity(0.6),
+                                        color: Colors.amber.withValues(alpha:0.6),
                                         blurRadius: 10,
                                         spreadRadius: 2,
                                       ),
@@ -571,7 +571,7 @@ class _MovieTempOneState extends State<MovieTempOne>
                               fontSize: 11,
                               fontWeight: FontWeight.w600,
                               letterSpacing: 1.5,
-                              color: Colors.white.withOpacity(0.7),
+                              color: Colors.white.withValues(alpha:0.7),
                             ),
                           ),
                         ],

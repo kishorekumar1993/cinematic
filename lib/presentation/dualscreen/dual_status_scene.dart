@@ -76,8 +76,8 @@ class DualStatusScene extends StatelessWidget {
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Colors.white.withOpacity(0.05),
-        border: Border.all(color: Colors.white.withOpacity(0.12)),
+        color: Colors.white.withValues(alpha:0.05),
+        border: Border.all(color: Colors.white.withValues(alpha:0.12)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,15 +110,15 @@ class DualStatusScene extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
                 gradient: LinearGradient(
                   colors: [
-                    color.withOpacity(0.25),
-                    color.withOpacity(0.05),
+                    color.withValues(alpha:0.25),
+                    color.withValues(alpha:0.05),
                   ],
                 ),
               ),
               alignment: Alignment.center,
               child: Icon(
                 Icons.image_outlined,
-                color: Colors.white.withOpacity(0.8),
+                color: Colors.white.withValues(alpha:0.8),
               ),
             ),
 
@@ -129,7 +129,7 @@ class DualStatusScene extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
               decoration: BoxDecoration(
-                color: color.withOpacity(0.3),
+                color: color.withValues(alpha:0.3),
                 borderRadius: BorderRadius.circular(50),
               ),
               child: Text(

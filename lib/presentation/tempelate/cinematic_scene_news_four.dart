@@ -189,7 +189,7 @@ class _CinematicSceneNewsFourState extends State<CinematicSceneNewsFour>
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.55),
+                        color: Colors.black.withValues(alpha:0.55),
                         borderRadius: BorderRadius.circular(999),
                       ),
                       child: Text(
@@ -223,7 +223,7 @@ class _CinematicSceneNewsFourState extends State<CinematicSceneNewsFour>
                           filter: ImageFilter.blur(sigmaX: 14, sigmaY: 14),
                           child: Container(
                             padding: const EdgeInsets.all(20),
-                            color: Colors.black.withOpacity(0.55),
+                            color: Colors.black.withValues(alpha:0.55),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisSize: MainAxisSize.min,
@@ -296,7 +296,7 @@ class _CinematicSceneNewsFourState extends State<CinematicSceneNewsFour>
                                                 horizontal: 8, vertical: 4),
                                             decoration: BoxDecoration(
                                               color:
-                                                  Colors.white.withOpacity(0.06),
+                                                  Colors.white.withValues(alpha:0.06),
                                               borderRadius:
                                                   BorderRadius.circular(999),
                                             ),

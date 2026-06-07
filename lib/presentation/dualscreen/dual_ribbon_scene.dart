@@ -85,7 +85,7 @@ class _DualRibbonSceneState extends State<DualRibbonScene>
           shape: BoxShape.circle,
           gradient: RadialGradient(
             colors: [
-              color.withOpacity(0.45),
+              color.withValues(alpha:0.45),
               Colors.transparent,
             ],
           ),
@@ -165,7 +165,7 @@ class _DualRibbonSceneState extends State<DualRibbonScene>
                           value: _controller.value.clamp(0.0, 1.0),
                           minHeight: 4,
                           backgroundColor:
-                              Colors.white.withOpacity(0.08),
+                              Colors.white.withValues(alpha:0.08),
                           valueColor: AlwaysStoppedAnimation(scheme.primary),
                         ),
                       ),
@@ -201,7 +201,7 @@ class _DualRibbonSceneState extends State<DualRibbonScene>
                                     width: 2,
                                     height: 40,
                                     color:
-                                        Colors.white.withOpacity(0.25),
+                                        Colors.white.withValues(alpha:0.25),
                                   ),
                                   const SizedBox(height: 8),
                                   Container(
@@ -212,9 +212,9 @@ class _DualRibbonSceneState extends State<DualRibbonScene>
                                     decoration: BoxDecoration(
                                       borderRadius:
                                           BorderRadius.circular(999),
-                                      color: Colors.white.withOpacity(0.08),
+                                      color: Colors.white.withValues(alpha:0.08),
                                       border: Border.all(
-                                        color: Colors.white.withOpacity(0.4),
+                                        color: Colors.white.withValues(alpha:0.4),
                                       ),
                                     ),
                                     child: const Text(
@@ -230,7 +230,7 @@ class _DualRibbonSceneState extends State<DualRibbonScene>
                                     width: 2,
                                     height: 40,
                                     color:
-                                        Colors.white.withOpacity(0.25),
+                                        Colors.white.withValues(alpha:0.25),
                                   ),
                                 ],
                               ),
@@ -309,19 +309,19 @@ class _CleanSideCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(22),
               gradient: LinearGradient(
                 colors: [
-                  Colors.white.withOpacity(0.10),
-                  Colors.white.withOpacity(0.03),
+                  Colors.white.withValues(alpha:0.10),
+                  Colors.white.withValues(alpha:0.03),
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
               border: Border.all(
-                color: Colors.white.withOpacity(0.18),
+                color: Colors.white.withValues(alpha:0.18),
                 width: 0.8,
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.7),
+                  color: Colors.black.withValues(alpha:0.7),
                   blurRadius: 18,
                   offset: const Offset(0, 12),
                 ),
@@ -350,9 +350,9 @@ class _CleanSideCard extends StatelessWidget {
                       ),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(999),
-                        color: accent.withOpacity(0.22),
+                        color: accent.withValues(alpha:0.22),
                         border: Border.all(
-                          color: accent.withOpacity(0.7),
+                          color: accent.withValues(alpha:0.7),
                           width: 0.7,
                         ),
                       ),
@@ -369,7 +369,7 @@ class _CleanSideCard extends StatelessWidget {
                     Expanded(
                       child: Container(
                         height: 1,
-                        color: Colors.white.withOpacity(0.20),
+                        color: Colors.white.withValues(alpha:0.20),
                       ),
                     ),
                   ],
@@ -404,15 +404,15 @@ class _CleanSideCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(14),
                       gradient: LinearGradient(
                         colors: [
-                          accent.withOpacity(0.25),
-                          accent.withOpacity(0.05),
+                          accent.withValues(alpha:0.25),
+                          accent.withValues(alpha:0.05),
                         ],
                       ),
                     ),
                     alignment: Alignment.center,
                     child: Icon(
                       Icons.image_outlined,
-                      color: Colors.white.withOpacity(0.75),
+                      color: Colors.white.withValues(alpha:0.75),
                     ),
                   ),
 

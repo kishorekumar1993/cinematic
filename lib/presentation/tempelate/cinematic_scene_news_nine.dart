@@ -142,18 +142,18 @@ class _CinematicSceneNewsNineState extends State<CinematicSceneNewsNine>
                         width: 800,
                         padding: const EdgeInsets.all(24),
                         decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.55),
+                          color: Colors.black.withValues(alpha:0.55),
                           borderRadius: BorderRadius.circular(24),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.blueAccent.withOpacity(0.5),
+                              color: Colors.blueAccent.withValues(alpha:0.5),
                               blurRadius: 24,
                               spreadRadius: 2,
                               offset: const Offset(0, 6),
                             ),
                           ],
                           border: Border.all(
-                            color: Colors.blueAccent.withOpacity(0.6),
+                            color: Colors.blueAccent.withValues(alpha:0.6),
                             width: 1.4,
                           ),
                         ),
@@ -171,9 +171,9 @@ class _CinematicSceneNewsNineState extends State<CinematicSceneNewsNine>
                                   ),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(999),
-                                    color: Colors.blueAccent.withOpacity(0.22),
+                                    color: Colors.blueAccent.withValues(alpha:0.22),
                                     border: Border.all(
-                                      color: Colors.blueAccent.withOpacity(0.5),
+                                      color: Colors.blueAccent.withValues(alpha:0.5),
                                     ),
                                   ),
                                   child: Text(
@@ -243,7 +243,7 @@ class _CinematicSceneNewsNineState extends State<CinematicSceneNewsNine>
                                           vertical: 5,
                                         ),
                                         decoration: BoxDecoration(
-                                          color: Colors.blueAccent.withOpacity(
+                                          color: Colors.blueAccent.withValues(alpha:
                                             0.18,
                                           ),
                                           borderRadius: BorderRadius.circular(
@@ -251,7 +251,7 @@ class _CinematicSceneNewsNineState extends State<CinematicSceneNewsNine>
                                           ),
                                           border: Border.all(
                                             color: Colors.blueAccent
-                                                .withOpacity(0.5),
+                                                .withValues(alpha:0.5),
                                           ),
                                         ),
                                         child: Text(
@@ -284,13 +284,13 @@ class _CinematicSceneNewsNineState extends State<CinematicSceneNewsNine>
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      Colors.blueAccent.withOpacity(0.9),
-                      Colors.blueAccent.withOpacity(0.5),
+                      Colors.blueAccent.withValues(alpha:0.9),
+                      Colors.blueAccent.withValues(alpha:0.5),
                     ],
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.blueAccent.withOpacity(0.8),
+                      color: Colors.blueAccent.withValues(alpha:0.8),
                       blurRadius: 20,
                       spreadRadius: 2,
                     ),

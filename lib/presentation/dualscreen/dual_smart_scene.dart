@@ -89,7 +89,7 @@ class DualSmartScene extends StatelessWidget {
         borderRadius: BorderRadius.circular(26),
         gradient: LinearGradient(
           colors: [
-            accent.withOpacity(0.20),
+            accent.withValues(alpha:0.20),
             Colors.transparent,
           ],
         ),

@@ -316,7 +316,7 @@ class _HeaderBanner extends StatelessWidget {
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.blue.withOpacity(0.4),
+                color: Colors.blue.withValues(alpha:0.4),
                 blurRadius: 12,
               )
             ],
@@ -335,7 +335,7 @@ class _HeaderBanner extends StatelessWidget {
         Text(
           subtitle,
           style: TextStyle(
-            color: Colors.white.withOpacity(0.75),
+            color: Colors.white.withValues(alpha:0.75),
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -372,8 +372,8 @@ class PlayerHeroCard extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Colors.black.withOpacity(0.6),
-                    Colors.black.withOpacity(0.15)
+                    Colors.black.withValues(alpha:0.6),
+                    Colors.black.withValues(alpha:0.15)
                   ],
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
@@ -417,7 +417,7 @@ class PlayerHeroCard extends StatelessWidget {
                 filter: ImageFilter.blur(sigmaX: 14, sigmaY: 14),
                 child: Container(
                   padding: const EdgeInsets.all(12),
-                  color: Colors.black.withOpacity(0.55),
+                  color: Colors.black.withValues(alpha:0.55),
                   child: _Info(player: player),
                 ),
               ),
@@ -449,7 +449,7 @@ class _Info extends StatelessWidget {
         Text(
           player.subtitle,
           style: TextStyle(
-            color: Colors.white.withOpacity(0.85),
+            color: Colors.white.withValues(alpha:0.85),
             fontSize: 12,
           ),
         ),
@@ -525,7 +525,7 @@ class _RankChip extends StatelessWidget {
         border: Border.all(
           color: selected
               ? Colors.white
-              : Colors.white.withOpacity(0.2),
+              : Colors.white.withValues(alpha:0.2),
         ),
       ),
       child: Row(
@@ -536,7 +536,7 @@ class _RankChip extends StatelessWidget {
             alignment: Alignment.center,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha:0.1),
             ),
             child: Text(
               '$rank',

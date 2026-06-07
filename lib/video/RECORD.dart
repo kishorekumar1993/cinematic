@@ -109,16 +109,20 @@ class _RecorderScreenState extends State<RecorderScreen> {
         fps: 30,           // frames per second
         durationSeconds: 5, // change as needed
       );
-
-      setState(() {
-        _statusMessage = 'Recording finished!';
-      });
     } catch (e) {
-      setState(() {
-        _statusMessage = 'Error: $e';
-        _isRecording = false;
-      });
       debugPrint('Recording error: $e');
+      if (mounted) {
+        setState(() {
+          _statusMessage = 'Error: $e';
+        });
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isRecording = false;
+          _statusMessage = 'Ready';
+        });
+      }
     }
   }
 
@@ -129,15 +133,20 @@ class _RecorderScreenState extends State<RecorderScreen> {
 
     try {
       await _exporter.stopRecording();
-      setState(() {
-        _isRecording = false;
-        _statusMessage = 'Ready';
-      });
     } catch (e) {
-      setState(() {
-        _statusMessage = 'Stop error: $e';
-        _isRecording = false;
-      });
+      debugPrint('Stop error: $e');
+      if (mounted) {
+        setState(() {
+          _statusMessage = 'Stop error: $e';
+        });
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isRecording = false;
+          _statusMessage = 'Ready';
+        });
+      }
     }
   }
 

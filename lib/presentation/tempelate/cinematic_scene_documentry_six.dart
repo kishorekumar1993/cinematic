@@ -152,7 +152,7 @@ class _CinematicSceneDocumentrySixState
                   ]),
                   child: ColorFiltered(
                     colorFilter: ColorFilter.mode(
-                      Colors.black.withOpacity(0.3),
+                      Colors.black.withValues(alpha:0.3),
                       BlendMode.darken,
                     ),
                     child: _buildBackground(scene),
@@ -167,8 +167,8 @@ class _CinematicSceneDocumentrySixState
                     center: Alignment.center,
                     radius: 1.1,
                     colors: [
-                      Colors.black.withOpacity(0.0),
-                      Colors.black.withOpacity(0.7),
+                      Colors.black.withValues(alpha:0.0),
+                      Colors.black.withValues(alpha:0.7),
                     ],
                     stops: const [0.4, 1.0],
                   ),
@@ -254,8 +254,8 @@ class _CinematicSceneDocumentrySixState
                           begin: Alignment.bottomCenter,
                           end: Alignment.topCenter,
                           colors: [
-                            Colors.black.withOpacity(0.95),
-                            Colors.black.withOpacity(0.6),
+                            Colors.black.withValues(alpha:0.95),
+                            Colors.black.withValues(alpha:0.6),
                             Colors.transparent,
                           ],
                         ),

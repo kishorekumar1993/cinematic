@@ -268,7 +268,7 @@ class _SceneEditorSheetState extends State<SceneEditorSheet> {
                               'Choose a premium visual layout for your scene',
                               style: TextStyle(
                                 fontSize: 13,
-                                color: Colors.white.withOpacity(0.6),
+                                color: Colors.white.withValues(alpha:0.6),
                               ),
                             ),
                           ],
@@ -344,7 +344,7 @@ class _SceneEditorSheetState extends State<SceneEditorSheet> {
                                       border: Border.all(
                                         color: isCurrent
                                             ? Theme.of(context).colorScheme.primary
-                                            : Colors.white.withOpacity(0.08),
+                                            : Colors.white.withValues(alpha:0.08),
                                         width: isCurrent ? 2 : 1,
                                       ),
                                       gradient: const LinearGradient(
@@ -381,7 +381,7 @@ class _SceneEditorSheetState extends State<SceneEditorSheet> {
                                                     Container(
                                                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                                                       decoration: BoxDecoration(
-                                                        color: Colors.white.withOpacity(0.08),
+                                                        color: Colors.white.withValues(alpha:0.08),
                                                         borderRadius: BorderRadius.circular(6),
                                                       ),
                                                       child: Text(
@@ -418,7 +418,7 @@ class _SceneEditorSheetState extends State<SceneEditorSheet> {
                                                   overflow: TextOverflow.ellipsis,
                                                   style: TextStyle(
                                                     fontSize: 11,
-                                                    color: Colors.white.withOpacity(0.5),
+                                                    color: Colors.white.withValues(alpha:0.5),
                                                     height: 1.3,
                                                   ),
                                                 ),
@@ -673,7 +673,7 @@ class _SceneEditorSheetState extends State<SceneEditorSheet> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(14),
                                 border: Border.all(
-                                  color: Colors.white.withOpacity(0.15),
+                                  color: Colors.white.withValues(alpha:0.15),
                                   width: 1,
                                 ),
                                 gradient: const LinearGradient(
@@ -707,7 +707,7 @@ class _SceneEditorSheetState extends State<SceneEditorSheet> {
                                         Container(
                                           padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
                                           decoration: BoxDecoration(
-                                            color: Colors.white.withOpacity(0.08),
+                                            color: Colors.white.withValues(alpha:0.08),
                                             borderRadius: BorderRadius.circular(4),
                                           ),
                                           child: Text(
@@ -728,7 +728,7 @@ class _SceneEditorSheetState extends State<SceneEditorSheet> {
                                     icon: const Icon(Icons.style, size: 14),
                                     label: const Text('Change Template', style: TextStyle(fontSize: 12)),
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.15),
+                                      backgroundColor: Theme.of(context).colorScheme.primary.withValues(alpha:0.15),
                                       foregroundColor: Theme.of(context).colorScheme.primary,
                                       elevation: 0,
                                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),

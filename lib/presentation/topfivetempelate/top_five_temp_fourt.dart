@@ -6,13 +6,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
-import 'dart:ui';
 
-import 'package:flutter/material.dart';
-
-void main() {
-  runApp(const Top5BannerSpotlightApp());
-}
 
 class Top5BannerSpotlightApp extends StatelessWidget {
   const Top5BannerSpotlightApp({super.key});
@@ -389,7 +383,7 @@ class _HeaderBanner extends StatelessWidget {
           subtitle,
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: Colors.white.withOpacity(0.88),
+            color: Colors.white.withValues(alpha:0.88),
             fontSize: 14,
             fontWeight: FontWeight.w500,
           ),
@@ -427,8 +421,8 @@ class _HeroBannerCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      Colors.black.withOpacity(0.65),
-                      Colors.black.withOpacity(0.15),
+                      Colors.black.withValues(alpha:0.65),
+                      Colors.black.withValues(alpha:0.15),
                     ],
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,
@@ -681,10 +675,10 @@ class _GlassInfoPanel extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.fromLTRB(14, 10, 14, 10),
             decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.65),
+              color: Colors.black.withValues(alpha:0.65),
               borderRadius: BorderRadius.circular(18),
               border: Border.all(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withValues(alpha:0.2),
                 width: 1,
               ),
             ),
@@ -784,7 +778,7 @@ class _InfoPanelInner extends StatelessWidget {
                           horizontal: 9, vertical: 4),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(999),
-                        color: Colors.black.withOpacity(0.6),
+                        color: Colors.black.withValues(alpha:0.6),
                         border: Border.all(
                           color: const Color(0xFF9CF3FF),
                           width: 0.8,
@@ -920,7 +914,7 @@ class _RankChip extends StatelessWidget {
           border: Border.all(
             color: isSelected
                 ? Colors.white
-                : Colors.white.withOpacity(0.18),
+                : Colors.white.withValues(alpha:0.18),
           ),
           boxShadow: [
             if (isSelected)
@@ -939,7 +933,7 @@ class _RankChip extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: isSelected
-                    ? Colors.black.withOpacity(0.12)
+                    ? Colors.black.withValues(alpha:0.12)
                     : const Color(0xFF20243C),
               ),
               child: Center(

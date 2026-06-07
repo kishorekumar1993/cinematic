@@ -180,8 +180,8 @@ class CinematicSceneNewsEight extends StatefulWidget {
                   center: Alignment.center,
                   radius: 1.1,
                   colors: [
-                    Colors.black.withOpacity(0.05),
-                    Colors.black.withOpacity(0.85),
+                    Colors.black.withValues(alpha:0.05),
+                    Colors.black.withValues(alpha:0.85),
                   ],
                   stops: const [0.35, 1.0],
                 ),
@@ -207,9 +207,9 @@ class CinematicSceneNewsEight extends StatefulWidget {
                         ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(999),
-                          color: Colors.black.withOpacity(0.55),
+                          color: Colors.black.withValues(alpha:0.55),
                           border: Border.all(
-                            color: Colors.white.withOpacity(0.2),
+                            color: Colors.white.withValues(alpha:0.2),
                             width: 0.8,
                           ),
                         ),
@@ -284,14 +284,14 @@ class CinematicSceneNewsEight extends StatefulWidget {
                             padding: const EdgeInsets.fromLTRB(18, 14, 18, 14),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(22),
-                              color: Colors.black.withOpacity(0.65),
+                              color: Colors.black.withValues(alpha:0.65),
                               border: Border.all(
-                                color: Colors.white.withOpacity(0.22),
+                                color: Colors.white.withValues(alpha:0.22),
                                 width: 1.0,
                               ),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.black.withOpacity(0.85),
+                                  color: Colors.black.withValues(alpha:0.85),
                                   blurRadius: 22,
                                   offset: const Offset(0, 14),
                                 ),
@@ -313,10 +313,10 @@ class CinematicSceneNewsEight extends StatefulWidget {
                                         borderRadius:
                                             BorderRadius.circular(999),
                                         color:
-                                            Colors.white.withOpacity(0.08),
+                                            Colors.white.withValues(alpha:0.08),
                                         border: Border.all(
                                           color:
-                                              Colors.white.withOpacity(0.25),
+                                              Colors.white.withValues(alpha:0.25),
                                           width: 0.7,
                                         ),
                                       ),
@@ -413,12 +413,12 @@ class CinematicSceneNewsEight extends StatefulWidget {
                                             ),
                                             decoration: BoxDecoration(
                                               color: Colors.white
-                                                  .withOpacity(0.06),
+                                                  .withValues(alpha:0.06),
                                               borderRadius:
                                                   BorderRadius.circular(999),
                                               border: Border.all(
                                                 color: Colors.white
-                                                    .withOpacity(0.2),
+                                                    .withValues(alpha:0.2),
                                                 width: 0.6,
                                               ),
                                             ),
