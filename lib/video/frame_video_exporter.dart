@@ -100,11 +100,13 @@ class FrameVideoExporter {
 
           final url = html.Url.createObjectUrlFromBlob(blob);
 
-          html.AnchorElement(
-            href: url,
-          )
-            ..download = 'cinematic_movie.webm'
-            ..click();
+          final anchor = html.AnchorElement(href: url)
+            ..setAttribute('download', 'cinematic_movie.webm')
+            ..style.display = 'none';
+            
+          html.document.body?.append(anchor);
+          anchor.click();
+          anchor.remove();
 
           html.Url.revokeObjectUrl(
             url,
@@ -124,16 +126,14 @@ class FrameVideoExporter {
     _mediaRecorder!.start();
     debugPrint('🎬 Recording Started');
 
-    final totalFrames = fps * durationSeconds;
+    final totalDurationMs = durationSeconds * 1000;
+    final stopwatch = Stopwatch()..start();
+    int frameCount = 0;
 
-    for (int i = 0; i < totalFrames; i++) {
+    while (stopwatch.elapsedMilliseconds < totalDurationMs) {
       if (!_isRecording) break;
 
-      await Future.delayed(
-        Duration(
-          milliseconds: (1000 / fps).round(),
-        ),
-      );
+      final startIteration = stopwatch.elapsedMilliseconds;
 
       try {
         final image = await boundary.toImage(
@@ -197,10 +197,23 @@ class FrameVideoExporter {
         html.Url.revokeObjectUrl(
           url,
         );
-
-        debugPrint('✅ Frame ${i + 1}/$totalFrames');
+        
+        frameCount++;
+        debugPrint('✅ Frame $frameCount recorded');
       } catch (e) {
         debugPrint('❌ Frame error: $e');
+      }
+
+      final endIteration = stopwatch.elapsedMilliseconds;
+      final timeTaken = endIteration - startIteration;
+      final targetFrameTime = 1000 ~/ fps;
+      final waitTime = targetFrameTime - timeTaken;
+
+      if (waitTime > 0) {
+        await Future.delayed(Duration(milliseconds: waitTime));
+      } else {
+        // Yield to event loop to allow Flutter to render the next frame
+        await Future.delayed(Duration.zero);
       }
     }
 

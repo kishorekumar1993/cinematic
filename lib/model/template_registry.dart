@@ -61,6 +61,16 @@ import '../presentation/dualscreen/dual_ribbon_scene.dart';
 import '../presentation/topfivetemp/top_five_temp_one.dart';
 import '../presentation/topfivetemp/top_five_temp_two.dart';
 
+// Import Tutorial templates
+import '../presentation/tempelate/tutorial/tutorial_scene_one.dart';
+import '../presentation/tempelate/tutorial/tutorial_scene_two.dart';
+import '../presentation/tempelate/tutorial/tutorial_scene_three.dart';
+import '../presentation/tempelate/tutorial/tutorial_scene_four.dart';
+import '../presentation/tempelate/tutorial/tutorial_scene_five.dart';
+import '../presentation/tempelate/tutorial/tutorial_scene_six.dart';
+import '../presentation/tempelate/tutorial/tutorial_scene_seven.dart';
+import '../presentation/tempelate/tutorial/tutorial_scene_eight.dart';
+
 typedef SceneTemplateBuilder = Widget Function(BuildContext context, SceneConfig scene, bool isPlaying);
 
 class SceneTemplate {
@@ -713,6 +723,111 @@ class TemplateRegistry {
       description: 'Sage green forest light with floating pollen for peaceful meditation verses.',
       thumbnailUrl: 'https://images.pexels.com/photos/355296/pexels-photo-355296.jpeg?auto=compress&cs=tinysrgb&w=300',
       builder: (context, scene, isPlaying) => DevotionalSceneSeven(
+        key: ValueKey(scene.id),
+        scene: scene,
+        isPlaying: isPlaying,
+      ),
+    ));
+
+    // --- TUTORIAL PACK ---
+    _register(SceneTemplate(
+      id: 'tutorial_one',
+      name: 'Introduction Scene',
+      category: 'Tutorial',
+      description: 'Clean introduction template with large bold titles and clear step indicators.',
+      thumbnailUrl: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=300',
+      builder: (context, scene, isPlaying) => TutorialSceneOne(
+        key: ValueKey(scene.id),
+        scene: scene,
+        isPlaying: isPlaying,
+      ),
+    ));
+
+    _register(SceneTemplate(
+      id: 'tutorial_two',
+      name: 'Code Snippet Layout',
+      category: 'Tutorial',
+      description: 'Prioritizes code display using a sleek IDE-style window layout.',
+      thumbnailUrl: 'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=300',
+      builder: (context, scene, isPlaying) => TutorialSceneTwo(
+        key: ValueKey(scene.id),
+        scene: scene,
+        isPlaying: isPlaying,
+      ),
+    ));
+
+    _register(SceneTemplate(
+      id: 'tutorial_three',
+      name: 'Step-by-Step Guide',
+      category: 'Tutorial',
+      description: 'Focuses on expanding key points into large, readable bullet point layouts.',
+      thumbnailUrl: 'https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?auto=compress&cs=tinysrgb&w=300',
+      builder: (context, scene, isPlaying) => TutorialSceneThree(
+        key: ValueKey(scene.id),
+        scene: scene,
+        isPlaying: isPlaying,
+      ),
+    ));
+
+    _register(SceneTemplate(
+      id: 'tutorial_four',
+      name: 'Tip Highlight',
+      category: 'Tutorial',
+      description: 'Highlights important tutorial tips using glowing borders and animations.',
+      thumbnailUrl: 'https://images.pexels.com/photos/3394939/pexels-photo-3394939.jpeg?auto=compress&cs=tinysrgb&w=300',
+      builder: (context, scene, isPlaying) => TutorialSceneFour(
+        key: ValueKey(scene.id),
+        scene: scene,
+        isPlaying: isPlaying,
+      ),
+    ));
+
+    _register(SceneTemplate(
+      id: 'tutorial_five',
+      name: 'Split Screen Guide',
+      category: 'Tutorial',
+      description: 'Visuals on one side, and text instructions clearly laid out on the other.',
+      thumbnailUrl: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=300',
+      builder: (context, scene, isPlaying) => TutorialSceneFive(
+        key: ValueKey(scene.id),
+        scene: scene,
+        isPlaying: isPlaying,
+      ),
+    ));
+
+    _register(SceneTemplate(
+      id: 'tutorial_six',
+      name: 'Terminal Output Guide',
+      category: 'Tutorial',
+      description: 'Ideal for tech tutorials, displaying code execution in a mock terminal.',
+      thumbnailUrl: 'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=300',
+      builder: (context, scene, isPlaying) => TutorialSceneSix(
+        key: ValueKey(scene.id),
+        scene: scene,
+        isPlaying: isPlaying,
+      ),
+    ));
+
+    _register(SceneTemplate(
+      id: 'tutorial_seven',
+      name: 'Roadmap Guide',
+      category: 'Tutorial',
+      description: 'Clean path and timeline styling for sequential tutorial steps.',
+      thumbnailUrl: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=300',
+      builder: (context, scene, isPlaying) => TutorialSceneSeven(
+        key: ValueKey(scene.id),
+        scene: scene,
+        isPlaying: isPlaying,
+      ),
+    ));
+
+    _register(SceneTemplate(
+      id: 'tutorial_eight',
+      name: 'Floating Cards',
+      category: 'Tutorial',
+      description: 'Immersive floating 3D cards layout suitable for displaying up to 3 core concepts.',
+      thumbnailUrl: 'https://images.pexels.com/photos/3394939/pexels-photo-3394939.jpeg?auto=compress&cs=tinysrgb&w=300',
+      builder: (context, scene, isPlaying) => TutorialSceneEight(
         key: ValueKey(scene.id),
         scene: scene,
         isPlaying: isPlaying,

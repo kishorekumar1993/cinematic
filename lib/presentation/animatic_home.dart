@@ -416,30 +416,7 @@ class _AnimaticHomePageState extends State<AnimaticHomePage> {
   bool _isRecording = false;
   String _statusMessage = 'Ready';
 
-  Future<void> _stopRecording() async {
-    setState(() {
-      _statusMessage = 'Stopping & downloading...';
-    });
 
-    try {
-      await _exporter.stopRecording();
-    } catch (e) {
-      debugPrint('Stop error: $e');
-      if (mounted) {
-        setState(() {
-          _statusMessage = 'Stop error: $e';
-        });
-      }
-    } finally {
-      if (mounted) {
-        setState(() {
-          _isRecording = false;
-          _isPlaying = false;
-          _statusMessage = 'Ready';
-        });
-      }
-    }
-  }
   @override
   Widget build(BuildContext context) {
     final archive = _archive;
@@ -509,22 +486,41 @@ class _AnimaticHomePageState extends State<AnimaticHomePage> {
 // ),
 
 
-   IconButton(
-                  tooltip: 'Start Recording',
-                  onPressed: _isRecording ? null : _startRecording,
-                  icon: const Icon(
-                    Icons.fiber_manual_record,
-                    color: Colors.red,
-                    size: 48,
-                  ),
+          if (_isRecording)
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const [
+                    SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: CircularProgressIndicator(strokeWidth: 2, color: Colors.red),
+                    ),
+                    SizedBox(width: 8),
+                    Text(
+                      'Downloading...',
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(width: 20),
-                // Stop Recording button
-                IconButton(
-                  tooltip: 'Stop Recording',
-                  onPressed: _isRecording ? _stopRecording : null,
-                  icon: const Icon(Icons.stop, size: 48),
-                ),
+              ),
+            ),
+
+          IconButton(
+            tooltip: 'Start Recording',
+            onPressed: _isRecording ? null : _startRecording,
+            icon: const Icon(
+              Icons.fiber_manual_record,
+              color: Colors.red,
+              size: 48,
+            ),
+          ),
 
           IconButton(
             tooltip: 'Add Scene',
