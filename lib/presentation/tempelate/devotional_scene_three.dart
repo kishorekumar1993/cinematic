@@ -2,6 +2,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:cinematic/model/screen_config.dart';
 import 'package:cinematic/presentation/tempelate/scene_design_system.dart';
+import 'package:cinematic/presentation/effects/dust_painter.dart';
+import 'package:cinematic/presentation/effects/smoke_painter.dart';
 
 /// -----------------------------------------------------------------------
 /// DEVOTIONAL TEMPLATE 3 – LOTUS SERENITY (Spiritual / Hindu / Buddhist)
@@ -105,6 +107,7 @@ class _DevotionalSceneThreeState extends State<DevotionalSceneThree>
     final safeBottom = SceneLayout.safeBottom(context);
     final safeTop    = SceneLayout.safeTop(context);
     final size       = MediaQuery.sizeOf(context);
+    final screenWidth = size.width;
 
     return AnimatedBuilder(
       animation: _controller,
@@ -139,6 +142,10 @@ class _DevotionalSceneThreeState extends State<DevotionalSceneThree>
                 ),
               ),
             ),
+
+            // ── 2.5 Temple Mist & Gold Dust Atmosphere ───────────────────
+            const SmokeEffect(color: Color(0x1500FFCC)),
+            const DustEffect(color: Color(0xFFFFD700), count: 40, speedMultiplier: 0.8),
 
             // ── 3. Floating lotus petals (particle system) ───────────────
             AnimatedBuilder(
@@ -175,12 +182,12 @@ class _DevotionalSceneThreeState extends State<DevotionalSceneThree>
             ),
 
             // ── 5. Top om/mantra badge ────────────────────────────────────
-            FadeTransition(
-              opacity: _contentFade,
-              child: Positioned(
-                top: safeTop,
-                left: 0,
-                right: 0,
+            Positioned(
+              top: safeTop,
+              left: 0,
+              right: 0,
+              child: FadeTransition(
+                opacity: _contentFade,
                 child: Center(
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 7),
@@ -263,7 +270,7 @@ class _DevotionalSceneThreeState extends State<DevotionalSceneThree>
                               style: SceneTypography.mainTitle.copyWith(
                                 color: _cream,
                                 fontStyle: FontStyle.italic,
-                                fontSize: 26,
+                                fontSize: screenWidth * 0.05,
                               ),
                               textAlign: TextAlign.center,
                               controller: _controller,
@@ -278,6 +285,7 @@ class _DevotionalSceneThreeState extends State<DevotionalSceneThree>
                                 textAlign: TextAlign.center,
                                 style: SceneTypography.body.copyWith(
                                   color: Colors.white.withValues(alpha: 0.85),
+                                  fontSize: screenWidth * 0.035,
                                   height: 1.65,
                                 ),
                               ),
@@ -296,6 +304,7 @@ class _DevotionalSceneThreeState extends State<DevotionalSceneThree>
                                       child: Text(kp,
                                           style: SceneTypography.keyPoint.copyWith(
                                             color: Colors.white.withValues(alpha: 0.88),
+                                            fontSize: screenWidth * 0.035,
                                           )),
                                     ),
                                   ],
@@ -310,10 +319,10 @@ class _DevotionalSceneThreeState extends State<DevotionalSceneThree>
                               Text(
                                 scene.closureLine,
                                 textAlign: TextAlign.center,
-                                style: SceneTypography.closureLine.copyWith(
-                                  color: _lotus,
-                                  fontSize: 15,
-                                ),
+                                  style: SceneTypography.closureLine.copyWith(
+                                    color: _lotus,
+                                    fontSize: screenWidth * 0.038,
+                                  ),
                               ),
                             ],
                           ],

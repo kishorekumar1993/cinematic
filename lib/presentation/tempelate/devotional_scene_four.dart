@@ -2,6 +2,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:cinematic/model/screen_config.dart';
 import 'package:cinematic/presentation/tempelate/scene_design_system.dart';
+import 'package:cinematic/presentation/effects/dust_painter.dart';
+import 'package:cinematic/presentation/effects/smoke_painter.dart';
 
 /// -----------------------------------------------------------------------
 /// DEVOTIONAL TEMPLATE 4 – CELESTIAL PRAYER
@@ -111,6 +113,7 @@ class _DevotionalSceneFourState extends State<DevotionalSceneFour>
     final safeBottom = SceneLayout.safeBottom(context);
     final safeTop    = SceneLayout.safeTop(context);
     final size       = MediaQuery.sizeOf(context);
+    final screenWidth = size.width;
 
     return AnimatedBuilder(
       animation: _controller,
@@ -145,6 +148,10 @@ class _DevotionalSceneFourState extends State<DevotionalSceneFour>
                 ),
               ),
             ),
+
+            // ── 2.5 Celestial Mist & Floating Dust ───────────────────────
+            const SmokeEffect(color: Color(0x156366F1)),
+            const DustEffect(color: Color(0xFFF0F4FF), count: 30, speedMultiplier: 0.5),
 
             // ── 3. Animated star particles ────────────────────────────────
             AnimatedBuilder(
@@ -201,143 +208,7 @@ class _DevotionalSceneFourState extends State<DevotionalSceneFour>
               ),
             ),
 
-            // ── 5. Top prayer badge ───────────────────────────────────────
-            FadeTransition(
-              opacity: _contentFade,
-              child: Positioned(
-                top: safeTop,
-                left: 22,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(999),
-                    color: _navy.withValues(alpha: 0.90),
-                    border: Border.all(color: _prayerBlue.withValues(alpha: 0.6), width: 1.0),
-                    boxShadow: [
-                      BoxShadow(
-                        color: _celestial.withValues(alpha: 0.35),
-                        blurRadius: 12,
-                      )
-                    ],
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.nights_stay_rounded, size: 13, color: _prayerBlue),
-                      const SizedBox(width: 6),
-                      Text(prayerTag,
-                          style: SceneTypography.subtitle.copyWith(
-                            color: _prayerBlue,
-                            fontSize: 10,
-                          )),
-                    ],
-                  ),
-                ),
-              ),
-            ),
 
-            // ── 6. Bottom prayer panel ────────────────────────────────────
-            FadeTransition(
-              opacity: _contentFade,
-              child: SlideTransition(
-                position: _contentSlide,
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(22, 0, 22, safeBottom + 8),
-                  child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: SceneLayout.maxContentWidth),
-                      child: SceneGlassPanel(
-                        backgroundOpacity: 0.82,
-                        blurSigma: 22,
-                        borderColor: _celestial.withValues(alpha: 0.45),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            // Celestial blue accent bar
-                            Container(
-                              width: 50,
-                              height: 3,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(999),
-                                gradient: LinearGradient(colors: [
-                                  _prayerBlue,
-                                  _celestial,
-                                ]),
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-
-                            WordRevealText(
-                              text: scene.title,
-                              style: SceneTypography.mainTitle.copyWith(
-                                color: _starWhite,
-                                fontSize: 28,
-                              ),
-                              controller: _controller,
-                              startFraction: _hookEnd,
-                              durationFraction: 0.38,
-                            ),
-
-                            if (scene.body.isNotEmpty) ...[
-                              const SizedBox(height: 10),
-                              Text(scene.body,
-                                  style: SceneTypography.body.copyWith(
-                                    color: Colors.white.withValues(alpha: 0.85),
-                                    fontStyle: FontStyle.italic,
-                                    height: 1.7,
-                                  )),
-                            ],
-
-                            if (scene.keyPoints.isNotEmpty) ...[
-                              const SizedBox(height: 10),
-                              ...scene.keyPoints.take(3).map((kp) => Padding(
-                                padding: const EdgeInsets.only(bottom: 5),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 3),
-                                      child: Container(
-                                        width: 5, height: 5,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: _prayerBlue,
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    Expanded(child: Text(kp,
-                                        style: SceneTypography.keyPoint.copyWith(
-                                          color: Colors.white.withValues(alpha: 0.88),
-                                        ))),
-                                  ],
-                                ),
-                              )),
-                            ],
-
-                            if (scene.closureLine.isNotEmpty) ...[
-                              const SizedBox(height: 12),
-                              Divider(height: 1, color: _celestial.withValues(alpha: 0.3)),
-                              const SizedBox(height: 8),
-                              Text(
-                                scene.closureLine,
-                                style: SceneTypography.closureLine.copyWith(
-                                  color: _gold,
-                                  fontSize: 15,
-                                  letterSpacing: 1.2,
-                                ),
-                              ),
-                            ],
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
 
             // ── 7. Hook frame ─────────────────────────────────────────────
             if (hasHook && hookExit < 1.0)

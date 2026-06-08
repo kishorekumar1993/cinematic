@@ -133,11 +133,11 @@ class _CinematicSceneDocumentryOneState
             ),
 
             // ── 5. Top-left badges (safe zone compliant) ──────────────────
-            FadeTransition(
-              opacity: _contentFade,
-              child: Positioned(
-                top: safeTop,
-                left: 22,
+            Positioned(
+              top: safeTop,
+              left: 22,
+              child: FadeTransition(
+                opacity: _contentFade,
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [

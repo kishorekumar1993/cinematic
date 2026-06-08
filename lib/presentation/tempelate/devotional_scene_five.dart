@@ -2,6 +2,9 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:cinematic/model/screen_config.dart';
 import 'package:cinematic/presentation/tempelate/scene_design_system.dart';
+import 'package:cinematic/presentation/effects/dust_painter.dart';
+import 'package:cinematic/presentation/effects/smoke_painter.dart';
+import 'package:cinematic/presentation/effects/light_ray_painter.dart';
 
 /// -----------------------------------------------------------------------
 /// DEVOTIONAL TEMPLATE 5 – DIVINE LIGHT (Full-screen Holy Glow)
@@ -110,6 +113,7 @@ class _DevotionalSceneFiveState extends State<DevotionalSceneFive>
     final safeBottom = SceneLayout.safeBottom(context);
     final safeTop    = SceneLayout.safeTop(context);
     final size       = MediaQuery.sizeOf(context);
+    final screenWidth = size.width;
 
     return AnimatedBuilder(
       animation: _controller,
@@ -145,6 +149,11 @@ class _DevotionalSceneFiveState extends State<DevotionalSceneFive>
               ),
             ),
 
+            // ── 2.5 Cloud Layer & Floating Dust ──────────────────────────
+            const SmokeEffect(color: Color(0x15FFFFFF)),
+            const LightRayEffect(color: Color(0x1AFFF8DC)),
+            const DustEffect(color: Color(0xFFFFF8DC), count: 50, speedMultiplier: 0.7),
+
             // ── 3. Divine light column ────────────────────────────────────
             AnimatedBuilder(
               animation: _lightBeam,
@@ -158,170 +167,7 @@ class _DevotionalSceneFiveState extends State<DevotionalSceneFive>
               ),
             ),
 
-            // ── 4. Top scripture badge ────────────────────────────────────
-            FadeTransition(
-              opacity: _contentFade,
-              child: Positioned(
-                top: safeTop,
-                left: 0,
-                right: 0,
-                child: Center(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 7),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(999),
-                      color: _brown.withValues(alpha: 0.88),
-                      border: Border.all(color: _warmGold.withValues(alpha: 0.7), width: 1.0),
-                      boxShadow: [
-                        BoxShadow(
-                          color: _amber.withValues(alpha: 0.4),
-                          blurRadius: 14,
-                        )
-                      ],
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(Icons.menu_book_rounded, size: 13, color: Color(0xFFFFD700)),
-                        const SizedBox(width: 6),
-                        Text(wordTag,
-                            style: SceneTypography.subtitle.copyWith(
-                              color: _ivory,
-                              letterSpacing: 2.0,
-                              fontSize: 10,
-                            )),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
 
-            // ── 5. Bottom parchment panel ─────────────────────────────────
-            FadeTransition(
-              opacity: _contentFade,
-              child: SlideTransition(
-                position: _contentSlide,
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(22, 0, 22, safeBottom + 8),
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: SceneLayout.maxContentWidth),
-                      child: Container(
-                        padding: const EdgeInsets.fromLTRB(22, 20, 22, 20),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(22),
-                          color: _brown.withValues(alpha: 0.88),
-                          border: Border.all(color: _warmGold.withValues(alpha: 0.5), width: 1.0),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withValues(alpha: 0.7),
-                              blurRadius: 28,
-                              offset: const Offset(0, 16),
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            // Ornamental separator
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(width: 30, height: 1,
-                                    color: _warmGold.withValues(alpha: 0.5)),
-                                const SizedBox(width: 8),
-                                Icon(Icons.stars_rounded, size: 16, color: _warmGold),
-                                const SizedBox(width: 8),
-                                Container(width: 30, height: 1,
-                                    color: _warmGold.withValues(alpha: 0.5)),
-                              ],
-                            ),
-                            const SizedBox(height: 12),
-
-                            WordRevealText(
-                              text: scene.title,
-                              style: SceneTypography.mainTitle.copyWith(
-                                color: _ivory,
-                                fontSize: 26,
-                                fontStyle: FontStyle.italic,
-                                height: 1.3,
-                              ),
-                              textAlign: TextAlign.center,
-                              controller: _controller,
-                              startFraction: _hookEnd,
-                              durationFraction: 0.38,
-                            ),
-
-                            if (scene.body.isNotEmpty) ...[
-                              const SizedBox(height: 12),
-                              Text(
-                                scene.body,
-                                textAlign: TextAlign.center,
-                                style: SceneTypography.body.copyWith(
-                                  color: _ivory.withValues(alpha: 0.88),
-                                  height: 1.65,
-                                ),
-                              ),
-                            ],
-
-                            if (scene.keyPoints.isNotEmpty) ...[
-                              const SizedBox(height: 10),
-                              ...scene.keyPoints.take(3).map((kp) => Padding(
-                                padding: const EdgeInsets.only(bottom: 5),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Icon(Icons.bookmark_rounded, size: 13, color: _warmGold),
-                                    const SizedBox(width: 6),
-                                    Expanded(child: Text(kp,
-                                        style: SceneTypography.keyPoint.copyWith(
-                                          color: _ivory.withValues(alpha: 0.90),
-                                        ))),
-                                  ],
-                                ),
-                              )),
-                            ],
-
-                            if (scene.closureLine.isNotEmpty) ...[
-                              const SizedBox(height: 12),
-                              Divider(height: 1, color: _warmGold.withValues(alpha: 0.3)),
-                              const SizedBox(height: 10),
-                              Text(
-                                scene.closureLine,
-                                textAlign: TextAlign.center,
-                                style: SceneTypography.closureLine.copyWith(
-                                  color: _warmGold,
-                                  fontSize: 16,
-                                  letterSpacing: 1.5,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                              ),
-                            ],
-
-                            const SizedBox(height: 8),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(width: 30, height: 1,
-                                    color: _warmGold.withValues(alpha: 0.5)),
-                                const SizedBox(width: 8),
-                                Icon(Icons.stars_rounded, size: 16, color: _warmGold),
-                                const SizedBox(width: 8),
-                                Container(width: 30, height: 1,
-                                    color: _warmGold.withValues(alpha: 0.5)),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
 
             // ── 6. Hook frame ─────────────────────────────────────────────
             if (hasHook && hookExit < 1.0)

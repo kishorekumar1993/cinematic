@@ -2,6 +2,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:cinematic/model/screen_config.dart';
 import 'package:cinematic/presentation/tempelate/scene_design_system.dart';
+import 'package:cinematic/presentation/effects/dust_painter.dart';
+import 'package:cinematic/presentation/effects/light_ray_painter.dart';
 
 /// -----------------------------------------------------------------------
 /// DEVOTIONAL TEMPLATE 1 – SACRED VERSE
@@ -109,6 +111,7 @@ class _DevotionalSceneOneState extends State<DevotionalSceneOne>
     final scripture = scene.subtitle.isNotEmpty ? scene.subtitle : 'HOLY SCRIPTURE';
     final safeBottom = SceneLayout.safeBottom(context);
     final safeTop    = SceneLayout.safeTop(context);
+    final screenWidth = MediaQuery.sizeOf(context).width;
 
     return AnimatedBuilder(
       animation: _controller,
@@ -144,7 +147,13 @@ class _DevotionalSceneOneState extends State<DevotionalSceneOne>
               ),
             ),
 
-            // ── 3. Radial holy glow at centre ────────────────────────────
+            // ── 3. Atmosphere (Light Rays) ───────────────────────────────
+            const LightRayEffect(color: Color(0x1AFFF0A0)),
+
+            // ── 4. Particles (Golden Dust) ───────────────────────────────
+            const DustEffect(color: Color(0xFFFFD700), count: 60),
+
+            // ── 5. Radial holy glow at centre ────────────────────────────
             Center(
               child: AnimatedBuilder(
                 animation: _glowPulse,
@@ -181,12 +190,12 @@ class _DevotionalSceneOneState extends State<DevotionalSceneOne>
             ),
 
             // ── 5. Scripture reference badge (top) ───────────────────────
-            FadeTransition(
-              opacity: _contentFade,
-              child: Positioned(
-                top: safeTop,
-                left: 0,
-                right: 0,
+            Positioned(
+              top: safeTop,
+              left: 0,
+              right: 0,
+              child: FadeTransition(
+                opacity: _contentFade,
                 child: Center(
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 6),
@@ -252,7 +261,7 @@ class _DevotionalSceneOneState extends State<DevotionalSceneOne>
                               style: SceneTypography.mainTitle.copyWith(
                                 color: _goldLight,
                                 fontStyle: FontStyle.italic,
-                                fontSize: 28,
+                                fontSize: screenWidth * 0.05,
                               ),
                               textAlign: TextAlign.center,
                               controller: _controller,
@@ -267,6 +276,7 @@ class _DevotionalSceneOneState extends State<DevotionalSceneOne>
                                 textAlign: TextAlign.center,
                                 style: SceneTypography.body.copyWith(
                                   color: Colors.white.withValues(alpha: 0.85),
+                                  fontSize: screenWidth * 0.035,
                                   height: 1.6,
                                 ),
                               ),
@@ -285,6 +295,7 @@ class _DevotionalSceneOneState extends State<DevotionalSceneOne>
                                       child: Text(kp,
                                           style: SceneTypography.keyPoint.copyWith(
                                             color: Colors.white.withValues(alpha: 0.88),
+                                            fontSize: screenWidth * 0.035,
                                           )),
                                     ),
                                   ],
@@ -301,6 +312,7 @@ class _DevotionalSceneOneState extends State<DevotionalSceneOne>
                                 textAlign: TextAlign.center,
                                 style: SceneTypography.closureLine.copyWith(
                                   color: _gold,
+                                  fontSize: screenWidth * 0.038,
                                   letterSpacing: 0.8,
                                 ),
                               ),

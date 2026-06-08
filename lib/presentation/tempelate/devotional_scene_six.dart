@@ -2,6 +2,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:cinematic/model/screen_config.dart';
 import 'package:cinematic/presentation/tempelate/scene_design_system.dart';
+import 'package:cinematic/presentation/effects/smoke_painter.dart';
 
 /// -----------------------------------------------------------------------
 /// DEVOTIONAL TEMPLATE 6 – SACRED FLAMES (Agni / Holy Fire)
@@ -105,6 +106,7 @@ class _DevotionalSceneSixState extends State<DevotionalSceneSix>
     final safeBottom = SceneLayout.safeBottom(context);
     final safeTop    = SceneLayout.safeTop(context);
     final size       = MediaQuery.sizeOf(context);
+    final screenWidth = size.width;
 
     return AnimatedBuilder(
       animation: _controller,
@@ -139,6 +141,9 @@ class _DevotionalSceneSixState extends State<DevotionalSceneSix>
                 ),
               ),
             ),
+
+            // ── 2.5 Smoke Atmosphere ──────────────────────────────────────
+            const SmokeEffect(color: Color(0x25EA580C)),
 
             // ── 3. Ember particle system ──────────────────────────────────
             AnimatedBuilder(
@@ -181,141 +186,7 @@ class _DevotionalSceneSixState extends State<DevotionalSceneSix>
               ),
             ),
 
-            // ── 5. Top fire badge ─────────────────────────────────────────
-            FadeTransition(
-              opacity: _contentFade,
-              child: Positioned(
-                top: safeTop,
-                left: 22,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(999),
-                    gradient: LinearGradient(colors: [
-                      _crimson.withValues(alpha: 0.92),
-                      _ember.withValues(alpha: 0.78),
-                    ]),
-                    border: Border.all(color: _fireYellow.withValues(alpha: 0.6), width: 1.0),
-                    boxShadow: [
-                      BoxShadow(
-                        color: _ember.withValues(alpha: 0.5),
-                        blurRadius: 14,
-                      )
-                    ],
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Text('🔥', style: TextStyle(fontSize: 13)),
-                      const SizedBox(width: 6),
-                      Text(fireTag,
-                          style: SceneTypography.subtitle.copyWith(
-                            color: Colors.white,
-                            fontSize: 10,
-                          )),
-                    ],
-                  ),
-                ),
-              ),
-            ),
 
-            // ── 6. Fire-styled content panel ─────────────────────────────
-            FadeTransition(
-              opacity: _contentFade,
-              child: SlideTransition(
-                position: _contentSlide,
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(22, 0, 22, safeBottom + 8),
-                  child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: SceneLayout.maxContentWidth),
-                      child: SceneGlassPanel(
-                        backgroundOpacity: 0.85,
-                        blurSigma: 20,
-                        borderColor: _fireOrange.withValues(alpha: 0.55),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            // Fire gradient accent bar
-                            Container(
-                              width: 54,
-                              height: 3,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(999),
-                                gradient: const LinearGradient(colors: [
-                                  Color(0xFFFBBF24),
-                                  Color(0xFFEA580C),
-                                  Color(0xFF991B1B),
-                                ]),
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-
-                            WordRevealText(
-                              text: scene.title,
-                              style: SceneTypography.mainTitle.copyWith(
-                                color: const Color(0xFFFFF0A0),
-                                fontSize: 30,
-                                fontWeight: FontWeight.w900,
-                              ),
-                              controller: _controller,
-                              startFraction: _hookEnd,
-                              durationFraction: 0.38,
-                            ),
-
-                            if (scene.body.isNotEmpty) ...[
-                              const SizedBox(height: 10),
-                              Text(scene.body,
-                                  style: SceneTypography.body.copyWith(
-                                    color: Colors.white.withValues(alpha: 0.88),
-                                  )),
-                            ],
-
-                            if (scene.keyPoints.isNotEmpty) ...[
-                              const SizedBox(height: 10),
-                              ...scene.keyPoints.take(3).map((kp) => Padding(
-                                padding: const EdgeInsets.only(bottom: 5),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 2),
-                                      child: const Text('🔥',
-                                          style: TextStyle(fontSize: 11)),
-                                    ),
-                                    const SizedBox(width: 6),
-                                    Expanded(child: Text(kp,
-                                        style: SceneTypography.keyPoint.copyWith(
-                                          color: Colors.white.withValues(alpha: 0.90),
-                                        ))),
-                                  ],
-                                ),
-                              )),
-                            ],
-
-                            if (scene.closureLine.isNotEmpty) ...[
-                              const SizedBox(height: 12),
-                              Divider(height: 1, color: _fireOrange.withValues(alpha: 0.35)),
-                              const SizedBox(height: 8),
-                              Text(
-                                scene.closureLine,
-                                style: SceneTypography.closureLine.copyWith(
-                                  color: _fireYellow,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                              ),
-                            ],
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
 
             // ── 7. Hook frame ─────────────────────────────────────────────
             if (hasHook && hookExit < 1.0)

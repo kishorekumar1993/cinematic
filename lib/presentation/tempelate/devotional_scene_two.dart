@@ -2,6 +2,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:cinematic/model/screen_config.dart';
 import 'package:cinematic/presentation/tempelate/scene_design_system.dart';
+import 'package:cinematic/presentation/effects/dust_painter.dart';
+import 'package:cinematic/presentation/effects/smoke_painter.dart';
 
 /// -----------------------------------------------------------------------
 /// DEVOTIONAL TEMPLATE 2 – SUNRISE PRAISE
@@ -110,6 +112,7 @@ class _DevotionalSceneTwoState extends State<DevotionalSceneTwo>
     final safeBottom = SceneLayout.safeBottom(context);
     final safeTop    = SceneLayout.safeTop(context);
     final size       = MediaQuery.sizeOf(context);
+    final screenWidth = size.width;
 
     return AnimatedBuilder(
       animation: _controller,
@@ -145,6 +148,10 @@ class _DevotionalSceneTwoState extends State<DevotionalSceneTwo>
                 ),
               ),
             ),
+
+            // ── 2.5 Atmosphere (Clouds/Mist & Flying Dust) ───────────────
+            const SmokeEffect(color: Color(0x15FFFFFF)),
+            const DustEffect(color: Color(0xFFFFD700), count: 50, speedMultiplier: 1.5),
 
             // ── 3. Animated light rays from bottom ───────────────────────
             AnimatedBuilder(
@@ -194,11 +201,11 @@ class _DevotionalSceneTwoState extends State<DevotionalSceneTwo>
             ),
 
             // ── 5. Top praise badge ───────────────────────────────────────
-            FadeTransition(
-              opacity: _contentFade,
-              child: Positioned(
-                top: safeTop,
-                left: 22,
+            Positioned(
+              top: safeTop,
+              left: 22,
+              child: FadeTransition(
+                opacity: _contentFade,
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
                   decoration: BoxDecoration(
@@ -267,7 +274,7 @@ class _DevotionalSceneTwoState extends State<DevotionalSceneTwo>
                               text: scene.title,
                               style: SceneTypography.mainTitle.copyWith(
                                 color: _goldHalo,
-                                fontSize: 30,
+                                fontSize: screenWidth * 0.05,
                               ),
                               controller: _controller,
                               startFraction: _hookEnd,
@@ -279,6 +286,7 @@ class _DevotionalSceneTwoState extends State<DevotionalSceneTwo>
                               Text(scene.body,
                                   style: SceneTypography.body.copyWith(
                                     color: Colors.white.withValues(alpha: 0.88),
+                                    fontSize: screenWidth * 0.035,
                                   )),
                             ],
 
@@ -299,6 +307,7 @@ class _DevotionalSceneTwoState extends State<DevotionalSceneTwo>
                                         child: Text(kp,
                                             style: SceneTypography.keyPoint.copyWith(
                                               color: Colors.white.withValues(alpha: 0.88),
+                                              fontSize: screenWidth * 0.035,
                                             ))),
                                   ],
                                 ),
@@ -312,6 +321,7 @@ class _DevotionalSceneTwoState extends State<DevotionalSceneTwo>
                               Text(scene.closureLine,
                                   style: SceneTypography.closureLine.copyWith(
                                     color: _goldHalo,
+                                    fontSize: screenWidth * 0.038,
                                   )),
                             ],
                           ],

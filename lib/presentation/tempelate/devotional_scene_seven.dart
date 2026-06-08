@@ -2,6 +2,9 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:cinematic/model/screen_config.dart';
 import 'package:cinematic/presentation/tempelate/scene_design_system.dart';
+import 'package:cinematic/presentation/effects/dust_painter.dart';
+import 'package:cinematic/presentation/effects/light_ray_painter.dart';
+import 'package:cinematic/presentation/effects/smoke_painter.dart';
 
 /// -----------------------------------------------------------------------
 /// DEVOTIONAL TEMPLATE 7 – PEACEFUL GARDEN (Nature / Meditation)
@@ -111,6 +114,7 @@ class _DevotionalSceneSevenState extends State<DevotionalSceneSeven>
     final safeBottom = SceneLayout.safeBottom(context);
     final safeTop    = SceneLayout.safeTop(context);
     final size       = MediaQuery.sizeOf(context);
+    final screenWidth = size.width;
 
     return AnimatedBuilder(
       animation: _controller,
@@ -171,6 +175,11 @@ class _DevotionalSceneSevenState extends State<DevotionalSceneSeven>
               ),
             ),
 
+            // ── 3.5 Forest Atmosphere ─────────────────────────────────────
+            const SmokeEffect(color: Color(0x156EE7B7)),
+            const LightRayEffect(color: Color(0x11FDE68A)),
+            const DustEffect(color: Color(0xFFFDE68A), count: 25, speedMultiplier: 0.4),
+
             // ── 4. Floating pollen/light dust ─────────────────────────────
             AnimatedBuilder(
               animation: _pollenProgress,
@@ -184,166 +193,7 @@ class _DevotionalSceneSevenState extends State<DevotionalSceneSeven>
               ),
             ),
 
-            // ── 5. Top nature badge ───────────────────────────────────────
-            FadeTransition(
-              opacity: _contentFade,
-              child: Positioned(
-                top: safeTop,
-                left: 0,
-                right: 0,
-                child: Center(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 7),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(999),
-                      color: _sage.withValues(alpha: 0.88),
-                      border: Border.all(color: _mint.withValues(alpha: 0.55), width: 1.0),
-                      boxShadow: [
-                        BoxShadow(
-                          color: _mint.withValues(alpha: 0.3),
-                          blurRadius: 14,
-                        ),
-                      ],
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Text('🌿', style: TextStyle(fontSize: 13)),
-                        const SizedBox(width: 6),
-                        Text(peaceTag,
-                            style: SceneTypography.subtitle.copyWith(
-                              color: _mint,
-                              fontSize: 10,
-                              letterSpacing: 2.0,
-                            )),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
 
-            // ── 6. Serene verse panel ─────────────────────────────────────
-            FadeTransition(
-              opacity: _contentFade,
-              child: SlideTransition(
-                position: _contentSlide,
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(22, 0, 22, safeBottom + 8),
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: SceneLayout.maxContentWidth),
-                      child: SceneGlassPanel(
-                        backgroundOpacity: 0.80,
-                        blurSigma: 26,
-                        borderColor: _mint.withValues(alpha: 0.40),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            // Leaf-vine accent
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text('🌿', style: TextStyle(fontSize: 14)),
-                                const SizedBox(width: 10),
-                                Container(width: 36, height: 1.5,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(999),
-                                      gradient: LinearGradient(colors: [
-                                        _mint.withValues(alpha: 0.8),
-                                        _lavender.withValues(alpha: 0.6),
-                                      ]),
-                                    )),
-                                const SizedBox(width: 10),
-                                const Text('🌿', style: TextStyle(fontSize: 14)),
-                              ],
-                            ),
-                            const SizedBox(height: 12),
-
-                            WordRevealText(
-                              text: scene.title,
-                              style: SceneTypography.mainTitle.copyWith(
-                                color: _cream,
-                                fontStyle: FontStyle.italic,
-                                fontSize: 26,
-                              ),
-                              textAlign: TextAlign.center,
-                              controller: _controller,
-                              startFraction: _hookEnd,
-                              durationFraction: 0.38,
-                            ),
-
-                            if (scene.body.isNotEmpty) ...[
-                              const SizedBox(height: 10),
-                              Text(
-                                scene.body,
-                                textAlign: TextAlign.center,
-                                style: SceneTypography.body.copyWith(
-                                  color: Colors.white.withValues(alpha: 0.85),
-                                  height: 1.65,
-                                ),
-                              ),
-                            ],
-
-                            if (scene.keyPoints.isNotEmpty) ...[
-                              const SizedBox(height: 10),
-                              ...scene.keyPoints.take(3).map((kp) => Padding(
-                                padding: const EdgeInsets.only(bottom: 5),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('✿ ', style: TextStyle(color: _mint, fontSize: 13)),
-                                    Expanded(child: Text(kp,
-                                        style: SceneTypography.keyPoint.copyWith(
-                                          color: Colors.white.withValues(alpha: 0.88),
-                                        ))),
-                                  ],
-                                ),
-                              )),
-                            ],
-
-                            if (scene.closureLine.isNotEmpty) ...[
-                              const SizedBox(height: 12),
-                              Divider(height: 1, color: _mint.withValues(alpha: 0.25)),
-                              const SizedBox(height: 8),
-                              Text(
-                                scene.closureLine,
-                                textAlign: TextAlign.center,
-                                style: SceneTypography.closureLine.copyWith(
-                                  color: _softGold,
-                                  fontSize: 15,
-                                ),
-                              ),
-                            ],
-
-                            const SizedBox(height: 6),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text('🌿', style: TextStyle(fontSize: 14)),
-                                const SizedBox(width: 10),
-                                Container(width: 36, height: 1.5,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(999),
-                                      gradient: LinearGradient(colors: [
-                                        _lavender.withValues(alpha: 0.6),
-                                        _mint.withValues(alpha: 0.8),
-                                      ]),
-                                    )),
-                                const SizedBox(width: 10),
-                                const Text('🌿', style: TextStyle(fontSize: 14)),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
 
             // ── 7. Hook frame ─────────────────────────────────────────────
             if (hasHook && hookExit < 1.0)
