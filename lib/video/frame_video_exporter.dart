@@ -7,6 +7,8 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import 'package:cinematic/services/voice_manager.dart';
+
 class FrameVideoExporter {
   bool _isRecording = false;
   bool get isRecording => _isRecording;
@@ -61,9 +63,23 @@ class FrameVideoExporter {
 
     final stream = _recordCanvas.captureStream(fps);
 
-    String mimeType = 'video/webm;codecs=vp9';
-    if (html.MediaRecorder.isTypeSupported('video/webm;codecs=vp9,opus')) {
-      mimeType = 'video/webm;codecs=vp9,opus';
+    // VoiceManager().initWebAudio();
+    // final audioStream = VoiceManager().audioStream;
+    // if (audioStream != null) {
+    //   final audioTracks = audioStream.getAudioTracks();
+    //   if (audioTracks.isNotEmpty) {
+    //     // stream.addTrack(audioTracks.first); // This is likely causing the WebM corruption if the track is empty!
+    //   }
+    // }
+
+    String mimeType = 'video/webm';
+    String ext = 'webm';
+    
+    if (html.MediaRecorder.isTypeSupported('video/mp4')) {
+      mimeType = 'video/mp4';
+      ext = 'mp4';
+    } else if (html.MediaRecorder.isTypeSupported('video/webm;codecs=vp8,opus')) {
+      mimeType = 'video/webm;codecs=vp8,opus';
     }
 
     _mediaRecorder = html.MediaRecorder(
@@ -95,13 +111,13 @@ class FrameVideoExporter {
 
           final blob = html.Blob(
             _chunks,
-            'video/webm',
+            mimeType,
           );
 
           final url = html.Url.createObjectUrlFromBlob(blob);
 
           final anchor = html.AnchorElement(href: url)
-            ..setAttribute('download', 'cinematic_movie.webm')
+            ..setAttribute('download', 'cinematic_movie.$ext')
             ..style.display = 'none';
             
           html.document.body?.append(anchor);

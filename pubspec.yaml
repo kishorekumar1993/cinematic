@@ -41,6 +41,8 @@ dependencies:
   file_picker: ^10.3.7
   ffmpeg_kit_flutter_new: ^4.1.0
   path_provider: ^2.1.5
+  http: ^1.2.0
+  audioplayers: ^6.7.1
   js: ^0.7.2
   ffmpeg_wasm: ^1.0.3
   

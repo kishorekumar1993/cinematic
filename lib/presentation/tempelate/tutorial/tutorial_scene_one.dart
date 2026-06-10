@@ -1,5 +1,6 @@
 import 'package:cinematic/model/screen_config.dart';
 import 'package:flutter/material.dart';
+import 'package:cinematic/services/voice_manager.dart';
 import 'dart:ui';
 import 'dart:math' as math;
 
@@ -76,6 +77,8 @@ class _TutorialSceneOneState extends State<TutorialSceneOne>
 
     if (widget.isPlaying) {
       _masterController.forward();
+      // Speak the title and subtitle when the scene starts playing
+      VoiceManager().speak("${widget.scene.title}. ${widget.scene.subtitle}");
     }
   }
 
@@ -83,7 +86,13 @@ class _TutorialSceneOneState extends State<TutorialSceneOne>
   void didUpdateWidget(covariant TutorialSceneOne oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isPlaying != widget.isPlaying) {
-      widget.isPlaying ? _masterController.forward() : _masterController.stop();
+      if (widget.isPlaying) {
+        _masterController.forward();
+        VoiceManager().speak("${widget.scene.title}. ${widget.scene.subtitle}");
+      } else {
+        _masterController.stop();
+        VoiceManager().stop();
+      }
     }
   }
 
